@@ -19,15 +19,16 @@
     <h4 class="mb-2">Program Profesi Insinyur UNSRI</h4>
     <p>Silakan Register</p>
 
-    <form id="formAuthentication" class="mb-3" action="/" method="">
+    <form id="formAuthentication" class="mb-3" action="{{ route('register.process') }}" method="post" enctype="multipart/form-data">
+      @csrf
         {{-- Nama Lengkap Mahasiswa --}}
       <div class="mb-3">
         <label for="nama-lengkap" class="form-label">Nama Lengkap</label>
         <input
           type="text"
           class="form-control"
-          id="nama-lengkap"
-          name="nama-lengkap"
+          id="name"
+          name="name"
           placeholder="Masukkan Nama Lengkap"
           autofocus
         />
@@ -38,8 +39,8 @@
         <input
           type="text"
           class="form-control"
-          id="nim"
-          name="nim"
+          id="nikmhs"
+          name="nikmhs"
           placeholder="Masukkan Nomor Induk Mahasiswa"
           autofocus
         />
@@ -50,16 +51,16 @@
         <input
           type="text"
           class="form-control"
-          id="no-kta"
-          name="no-kta"
+          id="nokta"
+          name="nokta"
           placeholder="Masukkan No. KTA (6 Digit Terakhir)"
           autofocus
         />
       </div>
       {{-- Profesi Utama Mahasiswa, nanti bakal nentuin komposisi penilaian di rekognisi pencapaian sama kartu hasil studi --}}
       <div class="mb-3">
-        <label for="profesi" class="form-label">Profesi Utama</label>
-        <select id="profesi" class="select2 form-select">
+        <label for="profesiutama" class="form-label">Profesi Utama</label>
+        <select id="profesiutama" name="profesiutama" class="select2 form-select">
             <option value="" selected>
             Pilih Profesi Utama
             </option>
@@ -77,8 +78,8 @@
             <input
                 type="file"
                 class="form-control"
-                id="foto"
-                name="foto"
+                id="image"
+                name="image"
                 placeholder="Upload Pasfoto Terbaru 3x4 cm" accept="image/*"
                 autofocus
             />
@@ -113,9 +114,9 @@
         <div class="input-group input-group-merge">
           <input
             type="password"
-            id="password2"
+            id="password"
             class="form-control"
-            name="password2"
+            name="password_confirmation"
             placeholder="Konfirmasi Password"
             aria-describedby="password"
           />
@@ -123,7 +124,7 @@
         </div>
       </div>
 
-      <button class="btn btn-primary d-grid w-100">Register</button>
+      <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
     </form>
 
     <p class="text-center">

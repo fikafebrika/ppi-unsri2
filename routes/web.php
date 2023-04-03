@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,6 +192,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', function () {
     return view('mahasiswa.auth.register');
 });
+Route::post('/register', [RegisterController::class, 'store'])->name('register.process');
 
 Route::get('/beranda', function () {
     return view('mahasiswa.index');
