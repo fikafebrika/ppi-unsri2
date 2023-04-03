@@ -93,13 +93,15 @@
             <li>
               <div class="dropdown-divider"></div>
             </li>
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="dropdown-item">
-                    <i class="bx bx-power-off me-2"></i>
-                    <span class="align-middle">Logout</span>
-                </button>
-            </form>
+            <li>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Logout</span>
+                    </button>
+                </form>
+            </li>
             {{-- <li>
               <a class="dropdown-item" href="/">
                 <i class="bx bx-power-off me-2"></i>
