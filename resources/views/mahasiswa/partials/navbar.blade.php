@@ -94,8 +94,11 @@
               <div class="dropdown-divider"></div>
             </li>
             <form action="/logout" method="post">
-              @csrf 
-            <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-left"></i> Logout</a></button>
+                @csrf
+                <button type="submit" class="dropdown-item">
+                    <i class="bx bx-power-off me-2"></i>
+                    <span class="align-middle">Logout</span>
+                </button>
             </form>
             {{-- <li>
               <a class="dropdown-item" href="/">
