@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -198,9 +199,13 @@ Route::get('/beranda', function () {
     return view('mahasiswa.index');
 })->middleware('auth');
 
-Route::get('/profil', function () {
-    return view('mahasiswa.profil');
-});
+
+
+//PROFILE
+Route::get('profil', [ProfilController::class,'index'])->name('profil');
+// Route::get('profil/create', [ProfilController::class,'create'])->name('profil.create');
+Route::put('profil/store', [ProfilController::class,'store'])->name('profil.store');
+
 
 //route login mhs, registrasi mhs //
 // Route::get('beranda', [CustomAuthController::class, 'beranda']); 

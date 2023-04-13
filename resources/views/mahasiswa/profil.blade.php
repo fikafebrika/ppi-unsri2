@@ -159,8 +159,14 @@
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="{{route('profil.store')}}"
+      {{-- onsubmit="return false" --}}
     >
+    @csrf
+    @method('PUT')
+    @foreach ($data as $item)
+        
+    
       <h5 class="card-header">Data Profil</h5>
       <div class="card-body">
         <div
@@ -168,12 +174,13 @@
         >
         {{-- Pasfoto Terbaru 3x4 cm pas Register --}}
           <img
-            src="{{asset('mahasiswa/assets/img/avatars/1.png')}}"
+            src="{{url("upload")}}/{{$item->image}}"
             alt="user-avatar"
             class="d-block rounded"
             height="133"
             width="100"
-            id="uploadedAvatar"
+            id="uploadAvatar"
+            name="uploadAvatar"
           />
           <div class="button-wrapper">
             <label
@@ -211,17 +218,17 @@
             {{-- Nama Lengkap pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="nama-lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama-lengkap" name="nama-lengkap" placeholder="Nama Lengkap" value="Bambang Pamungkas"/>
+                <input type="text" class="form-control" id="nama-lengkap" name="fullname" placeholder="Nama Lengkap" value="{{$item['name'] }}"/>
             </div>
             {{-- No. KTA pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="no-kta" class="form-label">No. KTA (6 Digit Terakhir)</label>
-                <input type="text" class="form-control" id="no-kta" name="no-kta" placeholder="No. KTA (6 Digit Terakhir)" value="924160"/>
+                <input type="text" class="form-control" id="no-kta" name="no-kta" placeholder="No. KTA (6 Digit Terakhir)" value="{{$item['nokta'] }}"/>
             </div>
             {{-- Nomor Induk Mahasiswa pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="nim" class="form-label">Nomor Induk Mahasiswa</label>
-                <input type="text" class="form-control" id="nim" name="nim" placeholder="Nomor Induk Mahasiswa" value="924160"/>
+                <input type="text" class="form-control" id="nim" name="nim" placeholder="Nomor Induk Mahasiswa" value="{{$item['nikmhs'] }}"/>
             </div>
             {{-- Profesi Utama pas Register --}}
             <div class="mb-3 col-md-6">
@@ -232,14 +239,14 @@
                     Praktisi
                   </option>
                   <option value="tenaga-pendidik">
-                    Tenaga Pendidik
+                    Tenaga Pendidikan
                   </option>
                 </select>
             </div>
             {{-- Email pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="bambang@unsri.ac.id"/>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$item->email }}"/>
             </div>
         </div>
       </div>
@@ -252,32 +259,32 @@
                 <label for="periode-mulai" class="form-label">Periode</label>
                 <div class="d-flex align-items-baseline">
                     <input class="form-control" type="number" id="periode-mulai" name="periode-mulai" placeholder="Tahun Mulai"
-                    value="2000"/>
+                    value=""/>
                     <p class="px-2 pb-0 mb-0">s/d.</p>
                     <input class="form-control" type="number"
-                    id="periode-berakhir" name="periode-berakhir" placeholder="Tahun Berakhir" value="2022"/>
+                    id="periode-berakhir" name="periode-berakhir" placeholder="Tahun Berakhir" value=""/>
                 </div>
             </div>
             <div class="col-md-6"></div>
             {{-- I.1 B5 --}}
             <div class="mb-3 col-md-6">
                 <label for="nama-lengkap2" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama-lengkap2" name="nama-lengkap2" placeholder="Nama Lengkap" value="Bambang Pamungkas"/>
+                <input type="text" class="form-control" id="nama-lengkap2" name="nama-lengkap2" placeholder="Nama Lengkap" value=" "/>
             </div>
             {{-- I.1 B6 --}}
             <div class="mb-3 col-md-6">
                 <label for="ttl" class="form-label">Tempat & Tanggal Lahir</label>
-                <input type="text" class="form-control" id="ttl" name="ttl" placeholder="Tempat & Tanggal Lahir" value="Palembang, 13 Februari 2022"/>
+                <input type="text" class="form-control" id="ttl" name="ttl" placeholder="Tempat & Tanggal Lahir" value=""/>
             </div>
             {{-- I.1 B7 --}}
             <div class="mb-3 col-md-6">
                 <label for="no-kta2" class="form-label">No. KTA (6 Digit Terakhir)</label>
-                <input type="text" class="form-control" id="no-kta2" name="no-kta2" placeholder="No. KTA (6 Digit Terakhir)" value="924160"/>
+                <input type="text" class="form-control" id="no-kta2" name="no-kta2" placeholder="No. KTA (6 Digit Terakhir)" value=""/>
             </div>
             {{-- I.1 B8 --}}
             <div class="mb-3 col-md-6">
                 <label class="form-label" for="badan-kejurusan">Badan Kejurusan</label>
-                <input type="text" class="form-control" id="badan-kejurusan" name="badan-kejurusan" placeholder="Badan Kejurusan" value="Teknik Informatika"/>
+                <input type="text" class="form-control" id="badan-kejurusan" name="badan-kejurusan" placeholder="Badan Kejurusan" value=""/>
             </div>
         </div>
       </div>
@@ -288,22 +295,22 @@
             {{-- I.1 B12 --}}
             <div class="mb-3">
                 <label for="alamat-rumah" class="form-label">Alamat Rumah</label>
-                <input type="text" class="form-control" id="alamat-rumah" name="alamat-rumah" placeholder="Alamat Rumah" value="Jl. PHDM 1 Blok B No.96A"/>
+                <input type="text" class="form-control" id="alamat-rumah" name="alamat-rumah" placeholder="Alamat Rumah" value=""/>
             </div>
             {{-- I.1 C17 --}}
             <div class="mb-3 col-md-6">
                 <label for="kota" class="form-label">Kota</label>
-                <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota" value="Palembang"/>
+                <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota" value=""/>
             </div>
             {{-- I.1 E17 --}}
             <div class="mb-3 col-md-6">
                 <label for="kode-pos" class="form-label">Kode Pos</label>
-                <input class="form-control" type="text" id="kode-pos" name="kode-pos" placeholder="Kode Pos" value="30119"/>
+                <input class="form-control" type="text" id="kode-pos" name="kode-pos" placeholder="Kode Pos" value=""/>
             </div>
             {{-- I.1 C18 --}}
             <div class="mb-3 col-md-6">
                 <label for="telepon" class="form-label">Telepon</label>
-                <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Telepon" value="087894614101"/>
+                <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Telepon" value=""/>
             </div>
             {{-- I.1 C19 --}}
             <div class="mb-3 col-md-6">
@@ -313,12 +320,12 @@
             {{-- I.1 C20 --}}
             <div class="mb-3 col-md-6">
                 <label for="no-hp" class="form-label">No. HP</label>
-                <input type="text" class="form-control" id="no-hp" name="no-hp" placeholder="No. HP" value="087894614101"/>
+                <input type="text" class="form-control" id="no-hp" name="no-hp" placeholder="No. HP" value=""/>
             </div>
             {{-- I.1 E19 --}}
             <div class="mb-3 col-md-6">
                 <label for="email2" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email2" name="email2" placeholder="Email" value="bambang@unsri.ac.id"/>
+                <input type="email" class="form-control" id="email2" name="email2" placeholder="Email" value=""/>
             </div>
             {{-- I.1 E18 --}}
             <div class="mb-3 col-md-6">
@@ -334,27 +341,27 @@
             {{-- I.1 F13 --}}
             <div class="mb-3 col-md-6">
                 <label for="nama-lembaga" class="form-label">Nama Lembaga</label>
-                <input type="text" class="form-control" id="nama-lembaga" name="nama-lembaga" placeholder="Nama Lembaga" value="Universitas Sriwijaya"/>
+                <input type="text" class="form-control" id="nama-lembaga" name="nama-lembaga" placeholder="Nama Lembaga" value=""/>
             </div>
             {{-- I.1 F16 --}}
             <div class="mb-3 col-md-6">
                 <label for="jabatan" class="form-label">Jabatan</label>
-                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" value="Dosen"/>
+                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" value=""/>
             </div>
             {{-- I.1 G17 --}}
             <div class="mb-3 col-md-6">
                 <label for="kota2" class="form-label">Kota</label>
-                <input type="text" class="form-control" id="kota2" name="kota2" placeholder="Kota" value="Palembang"/>
+                <input type="text" class="form-control" id="kota2" name="kota2" placeholder="Kota" value=""/>
             </div>
             {{-- I.1 I17 --}}
             <div class="mb-3 col-md-6">
                 <label for="kode-pos2" class="form-label">Kode Pos</label>
-                <input class="form-control" type="text" id="kode-pos2" name="kode-pos2" placeholder="Kode Pos" value="30119"/>
+                <input class="form-control" type="text" id="kode-pos2" name="kode-pos2" placeholder="Kode Pos" value=""/>
             </div>
             {{-- I.1 G18 --}}
             <div class="mb-3 col-md-6">
                 <label for="telepon2" class="form-label">Telepon</label>
-                <input type="text" class="form-control" id="telepon2" name="telepon2" placeholder="Telepon" value="087894614101"/>
+                <input type="text" class="form-control" id="telepon2" name="telepon2" placeholder="Telepon" value=""/>
             </div>
             {{-- I.1 G19 --}}
             <div class="mb-3 col-md-6">
@@ -369,7 +376,7 @@
             {{-- I.1 I19 --}}
             <div class="mb-3 col-md-6">
                 <label for="email3" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email3" name="email3" placeholder="Email" value="bambang@unsri.ac.id"/>
+                <input type="email" class="form-control" id="email3" name="email3" placeholder="Email" value=""/>
             </div>
             {{-- I.1 I18 --}}
             <div class="mb-3 col-md-6">
@@ -384,13 +391,15 @@
           >
             Reset
           </button>
-          <a
-            href="#"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
+            >Simpan</button
           >
         </div>
       </div>
+      
+      @endforeach
     </form>
     <!-- /Account -->
 </div>
