@@ -145,12 +145,6 @@
         <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
       </a>
     </li>
-    <li class="menu-item">
-      <a href="/" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-      </a>
-    </li>
 </ul>
 @endsection
 

@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Pengalaman Mengajar') }}
+  {{ __('Pelatihan') }}
 @endsection
 
 @section('sidebar')
@@ -24,7 +24,7 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item active open">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
@@ -48,7 +48,7 @@
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/data-pribadi/pelatihan" class="menu-link">
                 <div data-i18n="Pelatihan">Pelatihan</div>
               </a>
@@ -90,7 +90,7 @@
             </div>
           </a>
         </li>
-        <li class="menu-item active">
+        <li class="menu-item">
           <a href="/pengalaman-mengajar" class="menu-link">
             <div data-i18n="Pengalaman Mengajar">
               Pengalaman Mengajar
@@ -207,119 +207,140 @@
                   id="bukti"
                 />
               </div>
-          {{-- IV KOLOM B --}}
-            <div class="mb-3 col-md-6">
-            <label
-              for="nama-perguruan-tinggi"
-              class="form-label"
-              >Nama Perguruan Tinggi/ Lembaga</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="nama-perguruan-tinggi"
-              name="nama-perguruan-tinggi"
-              placeholder="Nama Perguruan Tinggi/ Lembaga"
-              value="Universitas Sriwijaya"
+            {{-- I.5 Kolom B --}}
+            <div class="mb-3">
+                <label for="nama-pendidikan" class="form-label"
+                  >Nama Pendidikan/ Pelatihan</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nama-pendidikan"
+                  name="nama-pendidikan"
+                  placeholder="Nama Pendidikan/ Pelatihan"
+                  value=""
 
-            />
-          </div>
-          {{-- IV KOLOM C --}}
-          <div class="mb-3">
-            <label for="nama-mata-ajaran" class="form-label"
-              >Nama Mata Ajaran & Uraian Singkat yang Diajarkan/ Dikembangkan</label
-            >
-            <textarea
-            name="nama-mata-ajaran"
-            id="nama-mata-ajaran"
-            class="form-control"
-            placeholder="Nama Mata Ajaran & Uraian Singkat yang Diajarkan/ Dikembangkan"
-             rows="5"
-          ></textarea>
-          </div>
-          {{-- IV KOLOM D --}}
-          <div class="mb-3 col-md-6">
-            <label for="lokasi" class="form-label"
-              >Lokasi</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="lokasi"
-              name="lokasi"
-              placeholder="Lokasi"
-              value="Palembang"
+                />
+              </div>
+              {{-- I.5 Kolom C --}}
+              <div class="mb-3 col-md-6">
+                <label for="penyelenggara" class="form-label"
+                  >Penyelenggara</label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="penyelenggara"
+                  name="penyelenggara"
+                  placeholder="Penyelenggara"
+                  value=""
 
-            />
-          </div>
-          {{-- IV KOLOM E --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="periode"
-              >Periode</label
+                />
+              </div>
+              {{-- I.5 Kolom D --}}
+              <div class="mb-3 col-md-6">
+                <label for="lokasi" class="form-label"
+                  >Lokasi</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lokasi"
+                  name="lokasi"
+                  placeholder="Lokasi"
+                  value=""
+
+                />
+              </div>
+              {{-- I.5 Kolom E --}}
+              <div class="mb-3 col-md-6">
+                <label for="negara" class="form-label"
+                  >Negara</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="negara"
+                  name="negara"
+                  placeholder="Negara"
+                  value=""
+
+                />
+              </div>
+              {{-- I.5 Kolom F --}}
+              <div class="mb-3 col-md-6">
+                <label for="bulan-tahun" class="form-label"
+                  >Bulan / Tahun</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bulan-tahun"
+                  name="bulan-tahun"
+                  placeholder="bulan-tahun"
+                  value=""
+
+                />
+              </div>
+          {{-- I.5 Kolom G --}}
+              <div class="mb-3 col-md-6">
+            <label class="form-label" for="tingkat"
+              >Tingkat Materi</label
             >
             <select
-              id="periode"
-              class="select2 form-select"
-
-            >
-              <option value="">Pilih Periode</option>
-              <option value="1-9" selected>1 - 9 Tahun</option>
-              <option value="10-14">10 - 14 Tahun</option>
-              <option value="15-19">15 - 19 Tahun</option>
-              <option value="lebih-dari-20">> 20 Tahun</option>
-            </select>
-          </div>
-          {{-- IV KOLOM F --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="jabatan"
-              >Jabatan pada Perguruan Tinggi/ Lembaga</label
-            >
-            <select
-              id="jabatan"
+              id="tingkat"
               class="select2 form-select"
 
             >
               <option value="">
-                Pilih Jabatan pada Perguruan Tinggi/ Lembaga
+                Pilih Tingkat Materi
               </option>
-              <option value="staf-pengajar" selected>
-                Staf Pengajar
+              <option value="dasar">
+                Tingkat Dasar (Fundamental)
               </option>
-              <option value="pimpinan">Pimpinan</option>
+              <option value="lanjut">
+                Tingkat Lanjut (Advanced)
+              </option>
             </select>
           </div>
-          {{-- IV KOLOM G --}}
+          {{-- I.5 Kolom H --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="sks"
-              >Jumlah Jam/ SKS</label
+            <label for="jumlah-jam" class="form-label"
+              >Jumlah Jam</label
             >
             <select
-              id="sks"
+              id="jumlah-jam"
               class="select2 form-select"
 
             >
-              <option value="">Pilih Jumlah Jam/ SKS</option>
-              <option value="1-sks" selected>
-                1 SKS/ 15 Jam
+              <option value="">
+                Pilih Jumlah Jam
               </option>
-              <option value="2-3-sks">
-                2 - 3 SKS/ 30 - 45 Jam
+              <option value="sampai-dengan-36">
+                Lama Pendidikan s/d 36 Jam
               </option>
-              <option value="4-sks">4 SKS/ 60 Jam</option>
+              <option value="36-100">
+                Lama Pendidikan 36 - 100 Jam
+              </option>
+              <option value="100-240">
+                Lama Pendidikan 100 - 240 Jam
+              </option>
+              <option value="lebih-dari-240">
+                Lama Pendidikan > dari 240 Jam
+              </option>
             </select>
           </div>
-          {{-- IV KOLOM H --}}
+          {{-- I.5 Kolom I --}}
           <div class="mb-3">
             <label for="uraian" class="form-label"
-              >Nama Mata Ajaran atau Uraian Singkat yang Diajarkan/
-              Dikembangkan</label
+              >Uraian Singkat Materi Pendidikan/ Pelatihan, Tingkat Pendidikan, Sertifikat</label
             >
             <textarea
               name="uraian"
               id="uraian"
               class="form-control"
-              placeholder="Nama Mata Ajaran atau Uraian Singkat yang Diajarkan/ Dikembangkan" rows="5"
-
+              placeholder="Uraian Singkat Materi Pendidikan/ Pelatihan, Tingkat Pendidikan, Sertifikat"
+               rows="5"
             ></textarea>
           </div>
         </div>
@@ -820,426 +841,6 @@
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Menjelaskan dan merumuskan kebutuhan perencanaan
-                dan/atau perancangan
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w311"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w311"
-                    >Merundingkan spesifikasi awal atau pedoman
-                    rancangan (design brief) ditinjau dari
-                    keinginan pemberi tugas maupun keterbatasan
-                    kerekayasaan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w312"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w312"
-                    >Melakukan analisis atas kebutuhan rancangan
-                    fungsional</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w313"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w313"
-                    >Memenuhi parameter perancangan seperti
-                    kinerja, keandalan, kemudahan pemeliharaan
-                    dan ergonomik</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w314"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w314"
-                    >Menentukan dampak atas rancangan yang di
-                    akibatkan oleh faktor-faktor produksi,
-                    konstruksi, pemasangan, uji-pakai, implikasi
-                    siklus hidup, dukungan logistik dan
-                    ketrampilan pemakai</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w315"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w315"
-                    >Menentukan kendala yang mungkin ada,
-                    seperti tanggungjawab perdata atas produk,
-                    pengaruh lingkup fisik atas bagian yang
-                    dirancang, atau pengaruh bagian tersebut
-                    terhadap lingkungan, dan kemudian mengambil
-                    langkah tindak-lanjut yang tepat</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w316"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w316"
-                    >Menggunakan bakuan dan spesifikasi
-                    perancangan keinsinyuran dan menyusun
-                    spesifikasi ke-fungsi-an untuk
-                    rancangannya</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Membuat usulan untuk memenuhi kebutuhan
-                perencanaan dan /atau perancangan
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w321"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w321"
-                    >Menggunakan kreatifitas dan inisiatifnya
-                    dalam menyelidiki, menganalisis dan menyusun
-                    konsep-konsep bagi memenuhi tujuan
-                    rancangan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w322"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w322"
-                    >Menganalisis konsep-konsep yang
-                    berkemungkinan menjadi rancangan akhir untuk
-                    mengkaji dampak faktor-faktor seperti
-                    kinerja, keandalan dan kemudahan
-                    pemeliharaan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w323"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w323"
-                    >Menemu-kenali masalah yang mungkin timbul
-                    dan merundingkan kemungkinan perubahan atau
-                    penyesuaian atas pedoman rancangan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w324"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w324"
-                    >Melakukan analisis biaya-manfaat dan
-                    risiko, studi kelayakan dan pembiayaan
-                    siklus hidup untuk menghasilkan suatu
-                    rancangan yang layak dilaksanakan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w325"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w325"
-                    >Menyiapkan dan merekomendasikan pelaksanaan
-                    suatu usulan yang memenuhi persyaratan
-                    pemberi tugas atau pelaksana
-                    manufaktur</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Melaksanakan pekerjaan perencanaan dan/atau
-                perancangan sesuai usulan yang telah dipilih
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w331"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w331"
-                    >Melaksanakan atau mengatur pelaksanaan
-                    pekerjaan perancangan yang cukup
-                    berbobot</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w332"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w332"
-                    >Melaksanakan atau mengatur pelaksanaan
-                    analisis untuk memilih komponen dan bahan
-                    material sesuai rancangan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w333"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w333"
-                    >Menyiapkan dan memeriksa spesifikasi teknis
-                    sesuai rancangan</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Melaksanakan kaji-nilai atas hasil rancangan
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w341"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w341"
-                    >Memaparkan rancangan secara langsung atau
-                    dengan model komputer</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w342"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w342"
-                    >Menyiapkan jadwal pengujian rancangan untuk
-                    uji kinerja dan lingkup fisik</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w343"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w343"
-                    >Mengawasi pengujian rancangan, analisis
-                    hasil pengujian dan mengajukan saran
-                    perbaikan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w344"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w344"
-                    >Mengkaji dampak rancangan pada kondisi
-                    sekeliling</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w345"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w345"
-                    >Memaparkan hasil pengkajian dampak
-                    rancangan pada pihak-pihak terkait</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Menyiapkan dokumen penunjang
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w351"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w351"
-                    >Menyiapkan dokumen penunjang rancangan
-                    untuk produksi atau konstruksi, pemasangan,
-                    operasi, pemeliharaan dan pelatihan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w352"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w352"
-                    >Menyunting dan memeriksa dokumen
-                    pendukung</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Menjaga keutuhan tata identifikasi rancangan
-                sepanjang proses pekerjaan
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w361"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w361"
-                    >Menerapkan tata identifikasi rancangan
-                    dengan cara-cara dokumentasi dan pencatatan
-                    yang tepat</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w362"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w362"
-                    >Menetapkan tatacara pengendalian
-                    dokumentasi dan catatan dalam melakukan
-                    perubahan rancangan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w363"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w363"
-                    >Memastikan bahwa seluruh tata identifikasi
-                    rancangan tetap terjaga sebagai uraian yang
-                    benar sepanjang proses perancangan dan
-                    konstruksi atau manufaktur</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w364"
-                    checked
-                    disabled
-                  />
-                  <label class="form-check-label" for="w364"
-                    >Mengawasi pelaksanaan penggambaran-ulang
-                    rancangan, sesuai dengan kenyataan dalam
-                    pelaksanaan konstruksi (as-built) atau
-                    pelaksanaan produksi
-                    (as-manufactured)</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
                 Menerapkan kaidah-kaidah manajemen atas diri
                 sendiri
               </h6>
@@ -1712,8 +1313,7 @@
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Mengembangkan program pendidikan dan/atau
-                pelatihan keinsinyuran
+                Mengelola sumber-daya keinsinyuran
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -1721,13 +1321,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p511"
+                    id="p1011"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="p511"
-                    >Menemu-kenali kebutuhan pengajaran dan atau
-                    pelatihan</label
+                  <label class="form-check-label" for="p1011"
+                    >Menetapkan dan melaksanakan tujuan dan
+                    prioritas kerja</label
                   >
                 </div>
                 <div class="form-check">
@@ -1735,14 +1335,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p512"
+                    id="p1012"
                     disabled
                   />
-                  <label class="form-check-label" for="p512"
-                    >Merencanakan pengajaran untuk pendidikan
-                    tingkat lanjutan atau rencana pelatihan
-                    keinsinyuran untuk suatu lembaga
-                    pelatihan</label
+                  <label class="form-check-label" for="p1012"
+                    >Merumuskan metoda pendekatan untuk
+                    pengelolaan sumber-daya</label
                   >
                 </div>
                 <div class="form-check">
@@ -1750,12 +1348,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p513"
+                    id="p1013"
                     disabled
                   />
-                  <label class="form-check-label" for="p513"
-                    >Mengembangkan program pelatihan kerja
-                    praktek</label
+                  <label class="form-check-label" for="p1013"
+                    >Melakukan analisis rincian tugas (work
+                    breakdown analysis) sehingga tersedia dasar
+                    bagi perhitungan kebutuhan
+                    sumber-daya</label
                   >
                 </div>
                 <div class="form-check">
@@ -1763,20 +1363,20 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p514"
+                    id="p1014"
                     disabled
                   />
-                  <label class="form-check-label" for="p514"
-                    >Mengembangkan kurikulum, silabus atau
-                    latihan keinsinyuran</label
+                  <label class="form-check-label" for="p1014"
+                    >Membuat perkiraan kebutuhan waktu, biaya,
+                    bahan dan sumber-daya lainnya untuk suatu
+                    pekerjaan</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Melaksanakan program pendidikan dan/atau
-                pelatihan keinsinyuran
+                Mengelola sumber-daya manusia
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -1784,13 +1384,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p521"
+                    id="p1021"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="p521"
-                    >Mengembangkan proses belajar-mengajar untuk
-                    pendidikan dan pelatihan keinsinyuran</label
+                  <label class="form-check-label" for="p1021"
+                    >Mematuhi ketentuan kesehatan dan
+                    keselamatan kerja</label
                   >
                 </div>
                 <div class="form-check">
@@ -1798,13 +1398,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p522"
+                    id="p1022"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="p522"
-                    >Mengembangkan rencana pengembangan
-                    pengalaman kerja</label
+                  <label class="form-check-label" for="p1022"
+                    >Menemu-kenali dan menentukan kebutuhan
+                    pelatihan bagi tenaga kerja teknis di tempat
+                    pekerjaan</label
                   >
                 </div>
                 <div class="form-check">
@@ -1812,13 +1413,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p523"
+                    id="p1023"
                     disabled
                   />
-                  <label class="form-check-label" for="p523"
-                    >Mengelola program dalam mana siswa atau
-                    peserta latihan memperoleh teori
-                    keinsinyuran dan pengalaman praktis</label
+                  <label class="form-check-label" for="p1023"
+                    >Melaksanakan program pengembangan
+                    pengalaman kerja untuk bawahan, termasuk
+                    pelatihan-ulang, penyesuaian pada teknologi
+                    baru dan pengembangan ketrampilan</label
                   >
                 </div>
                 <div class="form-check">
@@ -1826,14 +1428,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p524"
+                    id="p1024"
                     disabled
                   />
-                  <label class="form-check-label" for="p524"
-                    >Melaksanakan secara efektif kegiatan
-                    pengajaran, pengembangan, dan belajar dalam
-                    bentuk yang paling tepat untuk sesuatu
-                    keadaan</label
+                  <label class="form-check-label" for="p1024"
+                    >Mengkaji efektifitas program pelatihan di
+                    tempat kerja</label
                   >
                 </div>
                 <div class="form-check">
@@ -1841,15 +1441,34 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p525"
+                    id="p1025"
                     disabled
                   />
-                  <label class="form-check-label" for="p525"
-                    >Menggunakan secara efektif teknologi
-                    pendidikan dan pelatihan untuk mendukung
-                    pengajaran, pengembangan dan proses belajar
-                    dalam program pendidikan atau pelatihan
-                    keinsinyuran</label
+                  <label class="form-check-label" for="p1025"
+                    >Merumuskan kebutuhan pelatihan tenaga kerja
+                    non-teknis</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Melaksanakan pengelolaan kewira-usahaan,
+                keuangan, dan hukum/kontraktual
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1031"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1031"
+                    >Melakukan tugas kaji-nilai ekonomis atas
+                    pekerjaan yang dilaksanakan</label
                   >
                 </div>
                 <div class="form-check">
@@ -1857,13 +1476,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p526"
+                    id="p1032"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="p526"
-                    >Mengembangkan kandungan khas suatu program
-                    pelatihan keinsinyuran melalui penelitian,
-                    pengkajian, percobaan dan sebagainya</label
+                  <label class="form-check-label" for="p1032"
+                    >Memahami dampak hukum dari tiap pekerjaan
+                    yang dilaksanakan</label
                   >
                 </div>
                 <div class="form-check">
@@ -1871,13 +1490,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p527"
+                    id="p1033"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="p527"
-                    >Menguji peserta pendidikan dan latihan
-                    keinsinyuran secara formatif dan
-                    sumatif</label
+                  <label class="form-check-label" for="p1033"
+                    >Memahami, menafsirkan dan menerapkan
+                    peraturan yang tepat</label
                   >
                 </div>
                 <div class="form-check">
@@ -1885,12 +1504,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p528"
+                    id="p1034"
                     disabled
                   />
-                  <label class="form-check-label" for="p528"
-                    >Menilai kedaya-gunaan program pendidikan
-                    dan atau pelatihan keinsinyuran</label
+                  <label class="form-check-label" for="p1034"
+                    >Menilai kebutuhan pemasaran dan memberikan
+                    saran untuk strategi pemasaran</label
                   >
                 </div>
                 <div class="form-check">
@@ -1898,12 +1517,284 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="p529"
+                    id="p1035"
                     disabled
                   />
-                  <label class="form-check-label" for="p529"
-                    >Mengkaji-ulang program pendidikan dan atau
-                    pelatihan keinsinyuran</label
+                  <label class="form-check-label" for="p1035"
+                    >Mengerjakan tugas pengelolaan risiko</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1036"
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1036"
+                    >Memahami kebutuhan kewira-usahaan suatu
+                    perusahaan dan bertindak sesuai kebutuhan
+                    tersebut dalam hal biaya, waktu dan
+                    faktor-faktor lainnya</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1037"
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1037"
+                    >Mengkaji dan menyiapkan rencana
+                    usaha</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Mengelola keterangan produk (product knowledge)
+                untuk barang/jasa keinsinyuran
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1041"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1041"
+                    >Menyiapkan dokumen, brosur, uraian teknis
+                    dan spesifikasi mengenai produk barang/jasa
+                    keinsinyuran untuk keperluan
+                    pemasaran</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1042"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1042"
+                    >Menyiapkan dokumen, pedoman, buku panduan
+                    untuk pemakaian operasi, pemeliharaan,
+                    penyetelan dan perbaikan atas produk
+                    barang/jasa oleh konsumen</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1043"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1043"
+                    >Melakukan pengamatan atas kebutuhan
+                    pasar/pelanggan masa-depan terhadap
+                    penyempurnaan dan menemu-kenali
+                    perubahan/pembaharuan yang perlu atas produk
+                    barang/jasa</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1044"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1044"
+                    >Memantau dan mengikuti kinerja dan
+                    keandalan produk barang/peralatan dan jasa
+                    yang dipakai pelanggan dan melakukan
+                    perbaikan dan penyempurnaan untuk kepuasan
+                    pelanggan</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Memahami dan menerapkan kaidah-kaidah pemasaran
+                barang/jasa keinsinyuran
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1051"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1051"
+                    >Menyiapkan dan melakukan kajian kebutuhan
+                    pasar akan barang/jasa keinsinyuran yang
+                    hendak dipasarkan</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1052"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1052"
+                    >Menyiapkan strategi dan program pentahapan
+                    pemasaran untuk menarik minat
+                    pasar/pelanggan</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1053"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1053"
+                    >Melakukan promosi dan paparan pengenalan
+                    produk barang/jasa keinsinyuran untuk
+                    meyakinkan pelanggan dan pasar</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1054"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1054"
+                    >Menyiapkan usulan penawaran produk
+                    barang/jasa keinsinyuran secara mandiri atau
+                    bersama tim proposal, meliputi proposal
+                    teknis, komersial dan kontraktual</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1055"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1055"
+                    >Melaksanakan klasifikasi, negosiasi dan
+                    memberikan saran solusi/aplikasi teknis,
+                    penjelasan batasan tanggungjawab
+                    masing-masing untuk meyakinkan pelanggan
+                    sampai terlaksananya transaksi/kontrak
+                    penjualan produk barang/jasa</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Memahami dan menerapkan kaidah-kaidah pelayanan
+                purna-jual
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1061"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1061"
+                    >Merumuskan dan menjelaskan batas syarat
+                    tanggungjawab jaminan kinerja dan perbaikan
+                    kerusakan purna-jual (warranty dan guarantee
+                    fee)</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1062"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1062"
+                    >Melaksanakan pelayanan teknis purna-jual
+                    dan mengatasi masalah teknis, sesuai
+                    tanggungjawab kontraktual</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1063"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1063"
+                    >Melaksanakan pelatihan pengembangan
+                    keahlian tenaga pemakai (operator) dan
+                    pemeliharaan produk</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1064"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1064"
+                    >Memelihara persediaan suku-cadang dan
+                    mengelola sumber daya untuk pelaksanaan
+                    pelayanan purna jual</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="p1065"
+                    checked
+                    disabled
+                  />
+                  <label class="form-check-label" for="p1065"
+                    >Melakukan pemantauan ke pelanggan untuk
+                    meningkatkan kehandalan pemakaian produk dan
+                    kepuasan pelanggan</label
                   >
                 </div>
               </div>
@@ -1912,7 +1803,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="pengalaman-mengajar.html"
+            href="data-pribadi-pelatihan.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -1921,7 +1812,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/pengalaman-mengajar"
+            href="/data-pribadi/pelatihan"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -1934,7 +1825,7 @@
             Reset
           </button>
           <a
-            href="/pengalaman-mengajar"
+            href="/data-pribadi/pelatihan"
             class="btn btn-primary text-white"
             >Simpan</a
           >

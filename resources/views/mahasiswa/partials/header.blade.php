@@ -3,7 +3,7 @@
       <div class="card">
         <div class="d-flex align-items-end row">
           <div class="col-sm-8">
-            <div class="card-body">
+            {{-- <div class="card-body">
               <h5 class="card-title text-primary">
                 Selamat Datang, Bambang! 🎉
               </h5>
@@ -13,6 +13,15 @@
               </p>
               <a href="#" class="btn btn-primary me-2">Upload Excel</a>
               <a href="#" class="btn btn-outline-primary">Unduh Template FAIP</a>
+            </div> --}}
+            <div class="card-body">
+              <h5 class="card-title text-primary">
+                Selamat Datang, Bambang! 🎉
+              </h5>
+              <p>
+                Silakan Lengkapi Data Klaim Pencapaian Anda.
+              </p>
+              <a href="{{ url('profil') }}" class="btn btn-primary me-2">Klaim Pencapaian</a>
             </div>
           </div>
           <div class="col-sm-4 text-center text-sm-left">

@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Seminar') }}
+  {{ __('Karya Temuan') }}
 @endsection
 
 @section('sidebar')
@@ -112,14 +112,14 @@
                 <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
               </a>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/publikasi/seminar" class="menu-link">
                 <div data-i18n="Seminar/ Lokakarya">
                   Seminar/ Lokakarya
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/publikasi/karya-temuan" class="menu-link">
                 <div data-i18n="Karya Temuan">Karya Temuan</div>
               </a>
@@ -207,7 +207,7 @@
                   id="bukti"
                 />
               </div>
-            {{-- V.3 KOLOM B --}}
+            {{-- V.4 KOLOM B --}}
             <div class="mb-3 col-md-6">
                 <label for="bulan-tahun" class="form-label"
                   >Bulan - Tahun</label
@@ -222,77 +222,79 @@
 
                 />
               </div>
-          {{-- V.3 KOLOM C --}}
+          {{-- V.4 KOLOM C --}}
               <div class="mb-3">
-            <label for="nama-seminar" class="form-label"
-              >Nama Seminar/ Lokakarya</label
+            <label for="judul" class="form-label"
+              >Judul/ Nama Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Terbaru</label
             >
             <input
               class="form-control"
               type="text"
-              id="nama-seminar"
-              name="nama-seminar"
-              placeholder="Nama Seminar/ Lokakarya"
-              value="Seminar Satu"
+              id="judul"
+              name="judul"
+              placeholder="Judul/ Nama Krya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru"
+              value=""
 
             />
           </div>
-          {{-- V.3 KOLOM D --}}
+          {{-- V.4 KOLOM D --}}
+          <div class="mb-3">
+            <label for="uraian" class="form-label"
+              >Uraian Singkat Karya Temuan/ Inovasi/
+              Paten</label
+            >
+            <textarea
+              name="uraian"
+              id="uraian"
+              class="form-control"
+              placeholder="Uraian Singkat Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru" rows="5"
+
+            ></textarea>
+          </div>
+          {{-- V.4 KOLOM E --}}
           <div class="mb-3 col-md-6">
-            <label for="nama-penyelenggara" class="form-label"
-              >Nama Penyelenggara</label
+            <label for="nama-media" class="form-label"
+              >Media Publikasi Karya (Kalau Ada)</label
             >
             <input
               class="form-control"
               type="text"
-              id="nama-penyelenggara"
-              name="nama-penyelenggara"
-              placeholder="Nama Penyelenggara"
-              value="Universitas Sriwijaya"
+              id="nama-media"
+              name="nama-media"
+              placeholder="Media Publikasi Karya (Kalau Ada)"
+              value=""
 
             />
           </div>
-          {{-- V.3 KOLOM E --}}
+          {{-- V.4 KOLOM F --}}
           <div class="mb-3 col-md-6">
-            <label for="lokasi" class="form-label"
-              >Lokasi</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="lokasi"
-              name="lokasi"
-              placeholder="Lokasi"
-              value="Palembang"
-
-            />
-          </div>
-          {{-- V.3 KOLOM F --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkatan-seminar"
-              >Seminar/ Lokakarya Tingkat</label
+            <label class="form-label" for="tingkatan-media"
+              >Media Publikasi Tingkat</label
             >
             <select
-              id="tingkatan-seminar"
+              id="tingkatan-media"
               class="select2 form-select"
 
             >
               <option value="">
-                Pilih Seminar/ Lokakarya Tingkat
+                Pilih Media Publikasi Tingkat
               </option>
-              <option value="nasional" selected>
-                Pada Seminar Nasional
+              <option value="lokal">
+                Dipublikasikan di Media Lokal
               </option>
-              <option value="internasional">
-                Pada Seminar Internasional
+              <option value="nasional">
+                Dipublikasikan di Media Nasional
+              </option>
+              <option value="regional-internasional">
+                Dipublikasikan di Media Regional/ Internasional
               </option>
             </select>
           </div>
-          {{-- V.3 KOLOM G --}}
+          {{-- V.4 KOLOM G --}}
           <div class="mb-3 col-md-6">
             <label class="form-label" for="tingkat-kesulitan"
-              >Tingkat Kesulitan dan Manfaatnya Materi Seminar/
-              Lokakarya</label
+              >Tingkat Kesulitan dan Manfaatnya Karya Temuan/
+              Inovasi/ Paten dan Implementasi Tingkat Terbaru</label
             >
             <select
               id="tingkat-kesulitan"
@@ -300,29 +302,17 @@
 
             >
               <option value="">
-                Pilih Tingkat Kesulitan dan Manfaatnya Materi
-                Seminar/ Lokakarya
+                Pilih Tingkat Kesulitan dan Manfaatnya Karya
+                Temuan/ Inovasi/ Paten dan Implementasi
+                Teknologi Baru
               </option>
-              <option value="rendah" selected>Rendah</option>
+              <option value="rendah">Rendah</option>
               <option value="sedang">Sedang</option>
               <option value="tinggi">Tinggi</option>
               <option value="sangat-tinggi">
                 Sangat Tinggi
               </option>
             </select>
-          </div>
-          {{-- V.3 KOLOM H --}}
-          <div class="mb-3">
-            <label for="uraian" class="form-label"
-              >Uraian Singkat Materi Seminar/ Lokakarya</label
-            >
-            <textarea
-              name="uraian"
-              id="uraian"
-              class="form-control"
-              placeholder="Uraian Singkat Materi Seminar/ Lokakarya"
-               rows="5"
-            ></textarea>
           </div>
         </div>
       </div>
@@ -333,8 +323,7 @@
             <h5>Pilih Bakuan Kompetensi</h5>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Melaksanakan pekerjaan yang bersifat
-                kecendekiaan dan beragam
+                Melakukan penelitian
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -342,14 +331,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w211"
+                    id="p611"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w211"
-                    >Menggunakan gagasannya sendiri dalam
-                    mensintesakan pemecahan yang memuaskan atas
-                    masalah keinsinyuran</label
+                  <label class="form-check-label" for="p611"
+                    >Mengidentifikasi kebutuhan
+                    penelitian</label
                   >
                 </div>
                 <div class="form-check">
@@ -357,12 +345,11 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w212"
+                    id="p612"
                     disabled
                   />
-                  <label class="form-check-label" for="w212"
-                    >Menggunakan kearifan yang profesional dalam
-                    membuat keputusan keinsinyuran</label
+                  <label class="form-check-label" for="p612"
+                    >Melakukan kajian pustaka</label
                   >
                 </div>
                 <div class="form-check">
@@ -370,12 +357,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w213"
+                    id="p613"
                     disabled
                   />
-                  <label class="form-check-label" for="w213"
-                    >Melakukan pekerjaan keinsinyuran secara
-                    kreatif dan inovatif</label
+                  <label class="form-check-label" for="p613"
+                    >Melakukan penelitian dasar dan atau
+                    terapan</label
                   >
                 </div>
                 <div class="form-check">
@@ -383,12 +370,11 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w214"
+                    id="p614"
                     disabled
                   />
-                  <label class="form-check-label" for="w214"
-                    >Mengenali dan menanggulangi masalah
-                    keinsinyuran</label
+                  <label class="form-check-label" for="p614"
+                    >Mencari pengetahuan baru</label
                   >
                 </div>
                 <div class="form-check">
@@ -396,37 +382,19 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w215"
+                    id="p615"
                     disabled
                   />
-                  <label class="form-check-label" for="w215"
-                    >Memperluas pengetahuan dalam kejuruan atau
-                    bidang keahlian yang terkait dan memupuk
-                    kerjasama antar kejuruan pada waktu bekerja
-                    dalam lingkungan aneka-kejuruan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w216"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w216"
-                    >Menyelidiki kebutuhan dan memanfaatkan
-                    peluang yang khas terdapat dalam sesuatu
-                    bidang pekerjaan atau bidang kejuruan</label
+                  <label class="form-check-label" for="p615"
+                    >Menemu-kenali dan menyampaikan hasil
+                    penelitian</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Menguasai, memelihara, mengembangkan dan
-                memutakhir-kan keahlian dalam bidang pekerjaan
-                dan kejuruannya
+                Merumuskan konsep pengembangan hasil penelitian
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -434,16 +402,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w221"
+                    id="p621"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w221"
-                    >Menyadari keterbatasan kepakaran dan
-                    pengetahuan dirinya dan menggunakan seluruh
-                    kemampuan untuk mengenali kekurangan diri,
-                    menambah pengetahuan dan mengupayakan
-                    bantuan dari pakar yang tepat</label
+                  <label class="form-check-label" for="p621"
+                    >Menemu-kenali kebutuhan pengembangan</label
                   >
                 </div>
                 <div class="form-check">
@@ -451,15 +415,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w222"
+                    id="p622"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w222"
-                    >Menggunakan kemampuan untuk mencari
-                    informasi sehingga dapat mengikuti
-                    perkembangan teknologi atau kemajuan
-                    lainnya</label
+                  <label class="form-check-label" for="p622"
+                    >Memeriksa konsep-konsep yang mempunyai
+                    kemungkinan untuk dilaksanakan</label
                   >
                 </div>
                 <div class="form-check">
@@ -467,64 +429,20 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w223"
+                    id="p623"
                     disabled
                   />
-                  <label class="form-check-label" for="w223"
-                    >Memperluas dasar pengetahuan dengan membaca
-                    majalah profesional, mengikuti seminar
-                    profesional dan menjalin kerjasama antar
-                    profesional</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w224"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w224"
-                    >Memperdalam dasar pengetahuan secara
-                    sistematik dengan melakukan penelitian dan
-                    percobaan untuk menyelesaikan masalah
-                    keinsinyuran yang khas</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w225"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w225"
-                    >Memanfaatkan setiap pengalaman pekerjaan
-                    untuk mengembangkan
-                    keprofesionalannya</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w226"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w226"
-                    >Melakukan pencatatan mengenai kegiatan
-                    pengembangan keprofesionalannya.</label
+                  <label class="form-check-label" for="p623"
+                    >Memilih konsep yang akan dikembangkan lebih
+                    lanjut</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Memahami dan menerapkan metoda-metoda
-                perekayasaan
+                Menemu-kenali dan mengusahakan sumber daya untuk
+                pengembangan hasil penelitian
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -532,13 +450,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w231"
+                    id="p631"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w231"
-                    >Menemu-kenali (mengidentifikasi) berbagai
-                    penerapan kerekayasaan tepat-guna</label
+                  <label class="form-check-label" for="p631"
+                    >Merumuskan kebutuhan akhir pemakai</label
                   >
                 </div>
                 <div class="form-check">
@@ -546,14 +463,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w232"
+                    id="p632"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w232"
-                    >Mengajukan konsep untuk melaksanakan
-                    penerapan kerekayasaan tepat-guna yang telah
-                    terpilih</label
+                  <label class="form-check-label" for="p632"
+                    >Menyiapkan usulan untuk mencari sumber daya
+                    bagi pengembangan</label
                   >
                 </div>
                 <div class="form-check">
@@ -561,48 +477,22 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w233"
+                    id="p633"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w233"
-                    >Merinci penerapan kerekayasaan tepat-guna
-                    yang dipilih</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w234"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w234"
-                    >Mengendalikan kemutakhiran dokumentasi
-                    hasil-hasil penerapannya</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w235"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w235"
-                    >Mengkaji persyaratan bagi diperolehnya
-                    persetujuan pemberi tugas dan bagi pemenuhan
-                    kebutuhan di masa depan</label
+                  <label class="form-check-label" for="p633"
+                    >Menyiapkan perkiraan biaya untuk
+                    pengembangan, perancangan, produksi atau
+                    konstruksi, dan operasi</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Memahami dan menerapkan kaidah-kaidah penjaminan
-                mutu
+                Melakukan kaji pasar untuk produk hasil
+                penelitian dan pengembangan
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -610,11 +500,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w241"
+                    id="p641"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w241"
-                    >Menerapkan sistem mutu</label
+                  <label class="form-check-label" for="p641"
+                    >Merumuskan ciri-ciri produk yang diinginkan
+                    pasar</label
                   >
                 </div>
                 <div class="form-check">
@@ -622,13 +514,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w242"
+                    id="p642"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w242"
-                    >Mendorong diterimanya kaidah-kaidah
-                    penjaminan mutu oleh rekan sekerja dan
-                    anak-buah</label
+                  <label class="form-check-label" for="p642"
+                    >Mengumpulkan informasi dan membuat
+                    rekomendasi untuk menentukan harga
+                    produk</label
                   >
                 </div>
                 <div class="form-check">
@@ -636,12 +529,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w243"
+                    id="p643"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w243"
-                    >Melaksanakan setiap pekerjaan sesuai dengan
-                    bakuan mutu yang tepat</label
+                  <label class="form-check-label" for="p643"
+                    >Membuat rekomendasi mengenai distribusi
+                    produk</label
                   >
                 </div>
                 <div class="form-check">
@@ -649,20 +543,21 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w244"
+                    id="p644"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w244"
-                    >Menerapkan tatacara kendali mutu dan
-                    penjaminan mutu</label
+                  <label class="form-check-label" for="p644"
+                    >Membuat rekomendasi untuk mempromosikan
+                    produk</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Memilih dan menerapkan penggunaan perangkat
-                perekayasaan dan teknologi yang tepat-guna
+                Mengkomersialkan hasil penelitian dan
+                pengembangan
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -670,13 +565,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w251"
+                    id="p651"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w251"
-                    >Memilih dan menggunakan analisis matematik,
-                    ilmu keinsinyuran, simulasi komputer atau
-                    teknik pemodelan lainnya</label
+                  <label class="form-check-label" for="p651"
+                    >Melakukan kaji-nilai ekonomis atas produk
+                    hasil penelitian dan pengembangan</label
                   >
                 </div>
                 <div class="form-check">
@@ -684,12 +579,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w252"
+                    id="p652"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w252"
-                    >Memilih dan memanfaatkan penerapan sistem
-                    komputer</label
+                  <label class="form-check-label" for="p652"
+                    >Memilih mekanisme yang cocok untuk
+                    memasarkan produk hasil penelitian dan
+                    pengembangan</label
                   >
                 </div>
                 <div class="form-check">
@@ -697,13 +594,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w253"
+                    id="p653"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w253"
-                    >Mengarahkan dan melaksanakan tugas-tugas
-                    pemrograman dan penggunaan perangkat
-                    lunak</label
+                  <label class="form-check-label" for="p653"
+                    >Menyiapkan model peragaan untuk membuktikan
+                    kelayakan teknis dan komersial</label
                   >
                 </div>
                 <div class="form-check">
@@ -711,97 +608,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w254"
+                    id="p654"
+                    checked
                     disabled
                   />
-                  <label class="form-check-label" for="w254"
-                    >Memilih dan menggunakan alat bantu
-                    teknologi dan memantau kinerjanya</label
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="card mt-2">
-              <h6 class="card-header pb-3">
-                Melaksanakan uji-coba, pengukuran dan kaji-nilai
-                (evaluasi)
-              </h6>
-              <div class="card-body pb-3">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w261"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w261"
-                    >Merumuskan tujuan uji-coba</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w262"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w262"
-                    >Menyusun tatacara dan jadwal
-                    uji-coba</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w263"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w263"
-                    >Mengembangkan tatacara dan alat-alat
-                    pengukuran</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w264"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w264"
-                    >Melaksanakan uji-coba dan pengukuran untuk
-                    kerja keinsinyuran yang kritis</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w265"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w265"
-                    >Mengawasi uji-coba dan pengukuran untuk
-                    kerja yang tidak kritis</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w266"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w266"
-                    >Mengkaji-nilai hasil uji-coba dan
-                    pengukuran</label
+                  <label class="form-check-label" for="p654"
+                    >Mengembangkan rencana proyek percontohan
+                    untuk membuktikan kelayakan teknis dan
+                    komersial</label
                   >
                 </div>
               </div>
@@ -810,7 +624,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="publikasi-seminar.html"
+            href="publikasi-temuan.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -819,7 +633,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/publikasi/seminar"
+            href="/publikasi/karya-temuan"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -832,7 +646,7 @@
             Reset
           </button>
           <a
-            href="/publikasi/seminar"
+            href="/publikasi/karya-temuan"
             class="btn btn-primary text-white"
             >Simpan</a
           >

@@ -208,11 +208,11 @@ Route::put('profil/store', [ProfilController::class,'store'])->name('profil.stor
 
 
 //route login mhs, registrasi mhs //
-// Route::get('beranda', [CustomAuthController::class, 'beranda']); 
+// Route::get('beranda', [CustomAuthController::class, 'beranda']);
 // Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-// Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+// Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 // Route::get('register', [CustomAuthController::class, 'register'])->name('register-user');
-// Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+// Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 // Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
@@ -221,36 +221,56 @@ Route::prefix('/data-pribadi')->group(function () {
         return view('mahasiswa.data-pribadi.pendidikan-formal');
     });
 
-    Route::get('/pendidikan-formal/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.pendidikan-formal');
-    });
-
     Route::get('/organisasi', function () {
         return view('mahasiswa.data-pribadi.organisasi');
-    });
-
-    Route::get('/organisasi/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.organisasi');
     });
 
     Route::get('/tanda-penghargaan', function () {
         return view('mahasiswa.data-pribadi.tanda-penghargaan');
     });
 
-    Route::get('/tanda-penghargaan/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');
-    });
-
     Route::get('/pelatihan', function () {
         return view('mahasiswa.data-pribadi.pelatihan');
     });
 
-    Route::get('/pelatihan/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.pelatihan');
-    });
-
     Route::get('/sertifikat', function () {
         return view('mahasiswa.data-pribadi.sertifikat');
+    });
+
+    Route::get('/pendidikan-formal/tambah', function () {
+        return view('mahasiswa.data-pribadi.tambah.pendidikan-formal');
+    });
+
+    Route::get('/organisasi/tambah', function () {
+        return view('mahasiswa.data-pribadi.tambah.organisasi');
+    });
+
+    Route::get('/tanda-penghargaan/tambah', function () {
+        return view('mahasiswa.data-pribadi.tambah.tanda-penghargaan');
+    });
+
+    Route::get('/pelatihan/tambah', function () {
+        return view('mahasiswa.data-pribadi.tambah.pelatihan');
+    });
+
+    Route::get('/sertifikat/tambah', function () {
+        return view('mahasiswa.data-pribadi.tambah.sertifikat');
+    });
+
+    Route::get('/pendidikan-formal/detail', function () {
+        return view('mahasiswa.data-pribadi.detail.pendidikan-formal');
+    });
+
+    Route::get('/organisasi/detail', function () {
+        return view('mahasiswa.data-pribadi.detail.organisasi');
+    });
+
+    Route::get('/tanda-penghargaan/detail', function () {
+        return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');
+    });
+
+    Route::get('/pelatihan/detail', function () {
+        return view('mahasiswa.data-pribadi.detail.pelatihan');
     });
 
     Route::get('/sertifikat/detail', function () {
@@ -264,12 +284,20 @@ Route::prefix('/kode-etik-insinyur')->group(function () {
         return view('mahasiswa.kode-etik-insinyur.referensi');
     });
 
-    Route::get('/referensi/detail', function () {
-        return view('mahasiswa.kode-etik-insinyur.detail.referensi');
-    });
-
     Route::get('/pengertian', function () {
         return view('mahasiswa.kode-etik-insinyur.pengertian');
+    });
+
+    Route::get('/referensi/tambah', function () {
+        return view('mahasiswa.kode-etik-insinyur.tambah.referensi');
+    });
+
+    Route::get('/pengertian/tambah', function () {
+        return view('mahasiswa.kode-etik-insinyur.tambah.pengertian');
+    });
+
+    Route::get('/referensi/detail', function () {
+        return view('mahasiswa.kode-etik-insinyur.detail.referensi');
     });
 
     Route::get('/pengertian/detail', function () {
@@ -282,12 +310,20 @@ Route::get('/kualifikasi-profesional', function () {
     return view('mahasiswa.kualifikasi-profesional');
 });
 
+Route::get('/kualifikasi-profesional/tambah', function () {
+    return view('mahasiswa.tambah.kualifikasi-profesional');
+});
+
 Route::get('/kualifikasi-profesional/detail', function () {
     return view('mahasiswa.detail.kualifikasi-profesional');
 });
 
 Route::get('/pengalaman-mengajar', function () {
     return view('mahasiswa.pengalaman-mengajar');
+});
+
+Route::get('/pengalaman-mengajar/tambah', function () {
+    return view('mahasiswa.tambah.pengalaman-mengajar');
 });
 
 Route::get('/pengalaman-mengajar/detail', function () {
@@ -299,28 +335,44 @@ Route::prefix('/publikasi')->group(function () {
         return view('mahasiswa.publikasi.karya-tulis');
     });
 
-    Route::get('/karya-tulis/detail', function () {
-        return view('mahasiswa.publikasi.detail.karya-tulis');
-    });
-
     Route::get('/makalah', function () {
         return view('mahasiswa.publikasi.makalah');
-    });
-
-    Route::get('/makalah/detail', function () {
-        return view('mahasiswa.publikasi.detail.makalah');
     });
 
     Route::get('/seminar', function () {
         return view('mahasiswa.publikasi.seminar');
     });
 
-    Route::get('/seminar/detail', function () {
-        return view('mahasiswa.publikasi.detail.seminar');
-    });
-
     Route::get('/karya-temuan', function () {
         return view('mahasiswa.publikasi.karya-temuan');
+    });
+
+    Route::get('/karya-tulis/tambah', function () {
+        return view('mahasiswa.publikasi.tambah.karya-tulis');
+    });
+
+    Route::get('/makalah/tambah', function () {
+        return view('mahasiswa.publikasi.tambah.makalah');
+    });
+
+    Route::get('/seminar/tambah', function () {
+        return view('mahasiswa.publikasi.tambah.seminar');
+    });
+
+    Route::get('/karya-temuan/tambah', function () {
+        return view('mahasiswa.publikasi.tambah.karya-temuan');
+    });
+
+    Route::get('/karya-tulis/detail', function () {
+        return view('mahasiswa.publikasi.detail.karya-tulis');
+    });
+
+    Route::get('/makalah/detail', function () {
+        return view('mahasiswa.publikasi.detail.makalah');
+    });
+
+    Route::get('/seminar/detail', function () {
+        return view('mahasiswa.publikasi.detail.seminar');
     });
 
     Route::get('/karya-temuan/detail', function () {
@@ -331,6 +383,10 @@ Route::prefix('/publikasi')->group(function () {
 
 Route::get('/bahasa', function () {
     return view('mahasiswa.bahasa');
+});
+
+Route::get('/bahasa/tambah', function () {
+    return view('mahasiswa.tambah.bahasa');
 });
 
 Route::get('/bahasa/detail', function () {

@@ -233,7 +233,7 @@
               id="nama-instansi"
               name="nama-instansi"
               placeholder="Nama Instansi/ Perusahaan"
-              value="Universitas Sriwijaya"
+              value=""
 
             />
           </div>
@@ -248,7 +248,7 @@
               id="jabatan"
               name="jabatan"
               placeholder="Jabatan/ Tugas"
-              value="Dosen"
+              value=""
 
             />
           </div>
@@ -263,7 +263,7 @@
               id="nama-aktifitas"
               name="nama-aktifitas"
               placeholder="Nama Aktifitas/ Kegiatan/ Proyek"
-              value="Kegiatan Jurusan"
+              value=""
 
             />
           </div>
@@ -278,7 +278,7 @@
               id="pemberi-tugas"
               name="pemberi-tugas"
               placeholder="Pemberi Tugas"
-              value="Ketua Jurusan"
+              value=""
 
             />
           </div>
@@ -293,7 +293,7 @@
               id="lokasi"
               name="lokasi"
               placeholder="Lokasi"
-              value="Palembang"
+              value=""
 
             />
           </div>
@@ -308,7 +308,7 @@
 
             >
               <option value="">Pilih Durasi</option>
-              <option value="1-3" selected>1 - 3 Tahun</option>
+              <option value="1-3">1 - 3 Tahun</option>
               <option value="4-7">4 - 7 Tahun</option>
               <option value="8-10">8 - 10 Tahun</option>
               <option value="lebih-dari-10">> 10 Tahun</option>
@@ -328,7 +328,7 @@
               <option value="">
                 Pilih Posisi Tugas, Jabatan
               </option>
-              <option value="anggota" selected>
+              <option value="anggota">
                 Anggota/ Staff/ Dosen
               </option>
               <option value="supervisor">
@@ -354,7 +354,7 @@
               id="nilai-proyek"
               name="nilai-proyek"
               placeholder="Nilai Proyek"
-              value="10000000"
+              value=""
 
             />
           </div>
@@ -384,7 +384,7 @@
 
             >
               <option value="">Pilih SDM yang Terlibat</option>
-              <option value="sedikit" selected>Sedikit</option>
+              <option value="sedikit">Sedikit</option>
               <option value="sedang">Sedang</option>
               <option value="banyak">Banyak</option>
               <option value="sangat-banyak">
@@ -403,7 +403,7 @@
 
             >
               <option value="">Pilih Tingkat Kesulitan</option>
-              <option value="rendah" selected>Rendah</option>
+              <option value="rendah">Rendah</option>
               <option value="sedang">Sedang</option>
               <option value="tinggi">Tinggi</option>
               <option value="sangat-tinggi">
@@ -422,7 +422,7 @@
 
             >
               <option value="">Pilih Skala Proyek</option>
-              <option value="rendah" selected>Rendah</option>
+              <option value="rendah">Rendah</option>
               <option value="sedang">Sedang</option>
               <option value="tinggi">Tinggi</option>
               <option value="sangat-tinggi">

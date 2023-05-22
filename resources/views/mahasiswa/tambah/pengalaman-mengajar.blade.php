@@ -220,7 +220,7 @@
               id="nama-perguruan-tinggi"
               name="nama-perguruan-tinggi"
               placeholder="Nama Perguruan Tinggi/ Lembaga"
-              value="Universitas Sriwijaya"
+              value=""
 
             />
           </div>
@@ -248,7 +248,7 @@
               id="lokasi"
               name="lokasi"
               placeholder="Lokasi"
-              value="Palembang"
+              value=""
 
             />
           </div>
@@ -263,7 +263,7 @@
 
             >
               <option value="">Pilih Periode</option>
-              <option value="1-9" selected>1 - 9 Tahun</option>
+              <option value="1-9">1 - 9 Tahun</option>
               <option value="10-14">10 - 14 Tahun</option>
               <option value="15-19">15 - 19 Tahun</option>
               <option value="lebih-dari-20">> 20 Tahun</option>
@@ -282,7 +282,7 @@
               <option value="">
                 Pilih Jabatan pada Perguruan Tinggi/ Lembaga
               </option>
-              <option value="staf-pengajar" selected>
+              <option value="staf-pengajar">
                 Staf Pengajar
               </option>
               <option value="pimpinan">Pimpinan</option>
@@ -299,7 +299,7 @@
 
             >
               <option value="">Pilih Jumlah Jam/ SKS</option>
-              <option value="1-sks" selected>
+              <option value="1-sks">
                 1 SKS/ 15 Jam
               </option>
               <option value="2-3-sks">

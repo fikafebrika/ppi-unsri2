@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Seminar') }}
+  {{ __('Pendidikan Formal') }}
 @endsection
 
 @section('sidebar')
@@ -24,12 +24,12 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item active open">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/data-pribadi/pendidikan-formal" class="menu-link">
                 <div data-i18n="Pendidikan Formal">
                   Pendidikan Formal
@@ -97,7 +97,7 @@
             </div>
           </a>
         </li>
-        <li class="menu-item active open">
+        <li class="menu-item">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Publikasi">Publikasi</div>
           </a>
@@ -112,7 +112,7 @@
                 <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
               </a>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/publikasi/seminar" class="menu-link">
                 <div data-i18n="Seminar/ Lokakarya">
                   Seminar/ Lokakarya
@@ -207,122 +207,204 @@
                   id="bukti"
                 />
               </div>
-            {{-- V.3 KOLOM B --}}
+          {{-- I.2 C2 (Untuk S1) --}}
+          {{-- I.2 D2 (Untuk S2) --}}
+          {{-- I.2 E2 (Untuk S3) --}}
             <div class="mb-3 col-md-6">
-                <label for="bulan-tahun" class="form-label"
-                  >Bulan - Tahun</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="bulan-tahun"
-                  name="bulan-tahun"
-                  placeholder="Bulan - Tahun"
-                  value=""
-
-                />
-              </div>
-          {{-- V.3 KOLOM C --}}
-              <div class="mb-3">
-            <label for="nama-seminar" class="form-label"
-              >Nama Seminar/ Lokakarya</label
+            <label class="form-label" for="jenjang"
+              >Jenjang</label
             >
-            <input
-              class="form-control"
-              type="text"
-              id="nama-seminar"
-              name="nama-seminar"
-              placeholder="Nama Seminar/ Lokakarya"
-              value="Seminar Satu"
-
-            />
-          </div>
-          {{-- V.3 KOLOM D --}}
-          <div class="mb-3 col-md-6">
-            <label for="nama-penyelenggara" class="form-label"
-              >Nama Penyelenggara</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="nama-penyelenggara"
-              name="nama-penyelenggara"
-              placeholder="Nama Penyelenggara"
-              value="Universitas Sriwijaya"
-
-            />
-          </div>
-          {{-- V.3 KOLOM E --}}
-          <div class="mb-3 col-md-6">
-            <label for="lokasi" class="form-label"
-              >Lokasi</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="lokasi"
-              name="lokasi"
-              placeholder="Lokasi"
-              value="Palembang"
-
-            />
-          </div>
-          {{-- V.3 KOLOM F --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkatan-seminar"
-              >Seminar/ Lokakarya Tingkat</label
-            >
-            <select
-              id="tingkatan-seminar"
-              class="select2 form-select"
-
-            >
-              <option value="">
-                Pilih Seminar/ Lokakarya Tingkat
-              </option>
-              <option value="nasional" selected>
-                Pada Seminar Nasional
-              </option>
-              <option value="internasional">
-                Pada Seminar Internasional
-              </option>
+            <select id="jenjang" class="select2 form-select">
+                <option value="">Pilih Jenjang</option>
+                <option value="s1">S1</option>
+                <option value="s2">S2</option>
+                <option value="s3">S3</option>
             </select>
           </div>
-          {{-- V.3 KOLOM G --}}
+          {{-- I.2 C3 (Untuk S1) --}}
+          {{-- I.2 D3 (Untuk S2) --}}
+          {{-- I.2 E3 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkat-kesulitan"
-              >Tingkat Kesulitan dan Manfaatnya Materi Seminar/
-              Lokakarya</label
+            <label
+              for="nama-perguruan-tinggi"
+              class="form-label"
+              >Nama Perguruan Tinggi</label
             >
-            <select
-              id="tingkat-kesulitan"
-              class="select2 form-select"
+            <input
+              type="text"
+              class="form-control"
+              id="nama-perguruan-tinggi"
+              name="nama-perguruan-tinggi"
+              placeholder="Nama Perguruan Tinggi"
+              value=""
 
-            >
-              <option value="">
-                Pilih Tingkat Kesulitan dan Manfaatnya Materi
-                Seminar/ Lokakarya
-              </option>
-              <option value="rendah" selected>Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
-                Sangat Tinggi
-              </option>
-            </select>
+            />
           </div>
-          {{-- V.3 KOLOM H --}}
+          {{-- I.2 C4 (Untuk S1) --}}
+          {{-- I.2 D4 (Untuk S2) --}}
+          {{-- I.2 E4 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="fakultas" class="form-label"
+              >Fakultas</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="fakultas"
+              name="fakultas"
+              placeholder="Fakultas"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C5 (Untuk S1) --}}
+          {{-- I.2 D5 (Untuk S2) --}}
+          {{-- I.2 E5 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="jurusan" class="form-label"
+              >Jurusan</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="jurusan"
+              name="jurusan"
+              placeholder="Jurusan"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C6 (Untuk S1) --}}
+          {{-- I.2 D6 (Untuk S2) --}}
+          {{-- I.2 E6 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="kota" class="form-label"
+              >Kota</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="kota"
+              name="kota"
+              placeholder="Kota"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C7 (Untuk S1) --}}
+          {{-- I.2 D7 (Untuk S2) --}}
+          {{-- I.2 E7 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="negara" class="form-label"
+              >Negara</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="negara"
+              name="negara"
+              placeholder="Negara"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C8 (Untuk S1) --}}
+          {{-- I.2 D8 (Untuk S2) --}}
+          {{-- I.2 E8 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="tahun" class="form-label"
+              >Tahun Lulus</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="tahun"
+              name="tahun"
+              placeholder="Tahun Lulus"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C9 (Untuk S1) --}}
+          {{-- I.2 D9 (Untuk S2) --}}
+          {{-- I.2 E9 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="gelar" class="form-label">Gelar</label>
+            <input
+              type="text"
+              class="form-control"
+              id="gelar"
+              name="gelar"
+              placeholder="Gelar"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C10 (Untuk S1) --}}
+          {{-- I.2 D10 (Untuk S2) --}}
+          {{-- I.2 E10 (Untuk S3) --}}
           <div class="mb-3">
-            <label for="uraian" class="form-label"
-              >Uraian Singkat Materi Seminar/ Lokakarya</label
+            <label for="judul-ta" class="form-label"
+              >Judul Tugas Akhir/ Skripsi/ Tesis/
+              Disertasi</label
             >
             <textarea
-              name="uraian"
-              id="uraian"
+              name="judul-ta"
+              id="judul-ta"
               class="form-control"
-              placeholder="Uraian Singkat Materi Seminar/ Lokakarya"
-               rows="5"
-            ></textarea>
+              placeholder="Judul Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
+            ></textarea
+            >
+          </div>
+          {{-- I.2 C11 (Untuk S1) --}}
+          {{-- I.2 D11 (Untuk S2) --}}
+          {{-- I.2 E11 (Untuk S3) --}}
+          <div class="mb-3">
+            <label for="uraian-ta" class="form-label"
+              >Uraian Singkat Tentang Materi Tugas Akhir/
+              Skripsi/ Tesis/ Disertasi</label
+            >
+            <textarea rows="5"
+              name="uraian-ta"
+              id="uraian-ta"
+              class="form-control"
+              placeholder="Uraian Singkat Tentang Materi Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
+            ></textarea
+            >
+          </div>
+          {{-- I.2 C12 (Untuk S1) --}}
+          {{-- I.2 D12 (Untuk S2) --}}
+          {{-- I.2 E12 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="nilai" class="form-label"
+              >Nilai Akademik Rata-rata</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="nilai"
+              name="nilai"
+              placeholder="Nilai Akademik Rata-rata"
+              value=""
+
+            />
+          </div>
+          {{-- I.2 C13 (Untuk S1) --}}
+          {{-- I.2 D13 (Untuk S2) --}}
+          {{-- I.2 E13 (Untuk S3) --}}
+          <div class="mb-3 col-md-6">
+            <label for="judicium" class="form-label"
+              >Judicium</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="judicium"
+              name="judicium"
+              placeholder="Judicium"
+              value=""
+
+            />
           </div>
         </div>
       </div>
@@ -810,7 +892,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="publikasi-seminar.html"
+            href="data-pribadi-formal.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -819,7 +901,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/publikasi/seminar"
+            href="/data-pribadi/pendidikan-formal"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -832,7 +914,7 @@
             Reset
           </button>
           <a
-            href="/publikasi/seminar"
+            href="/data-pribadi/pendidikan-formal"
             class="btn btn-primary text-white"
             >Simpan</a
           >
@@ -841,5 +923,6 @@
     </form>
     <!-- /Account -->
   </div>
+
 @endsection
 

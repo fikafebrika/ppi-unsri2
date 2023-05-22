@@ -218,7 +218,7 @@
                   id="tahun"
                   name="tahun"
                   placeholder="Tahun"
-                  value="2022"
+                  value=""
 
                 />
             </div>
@@ -233,7 +233,7 @@
                   id="penghargaan"
                   name="penghargaan"
                   placeholder="Nama Tanda Penghargaan"
-                  value="Penghargaan Satu"
+                  value=""
 
                 />
             </div>
@@ -248,7 +248,7 @@
                   id="lembaga"
                   name="lembaga"
                   placeholder="Nama Lembaga yang Memberikan"
-                  value="Universitas Sriwijaya"
+                  value=""
 
                 />
             </div>
@@ -263,7 +263,7 @@
                   id="lokasi"
                   name="lokasi"
                   placeholder="Lokasi"
-                  value="Palembang"
+                  value=""
 
                 />
             </div>
@@ -278,7 +278,7 @@
                   id="negara"
                   name="negara"
                   placeholder="Negara"
-                  value="Indonesia"
+                  value=""
 
                 />
             </div>
@@ -298,7 +298,7 @@
                 <option value="pratama">
                     Tingkatan Muda/ Pratama
                 </option>
-                <option value="madya" selected>
+                <option value="madya">
                     Tingkatan Madya
                 </option>
                 <option value="utama">Tingkatan Utama</option>
@@ -315,7 +315,7 @@
 
                 >
                 <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" selected>
+                <option value="lokal">
                     Penghargaan Lokal
                 </option>
                 <option value="nasional">

@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Tanda Penghargaan') }}
+  {{ __('Organisasi') }}
 @endsection
 
 @section('sidebar')
@@ -36,12 +36,12 @@
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/data-pribadi/organisasi" class="menu-link">
                 <div data-i18n="Organisasi">Organisasi</div>
               </a>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
                 <div data-i18n="Tanda Penghargaan">
                   Tanda Penghargaan
@@ -207,152 +207,124 @@
                   id="bukti"
                 />
               </div>
-            {{-- I.4 Kolom B --}}
+            {{-- I.3 Kolom B --}}
             <div class="mb-3 col-md-6">
-                <label for="tahun" class="form-label"
-                  >Tahun</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="tahun"
-                  name="tahun"
-                  placeholder="Tahun"
-                  value="2022"
-
+                <label for="nama-organisasi" class="form-label">Nama Organisasi</label>
+                <input type="text" class="form-control" id="nama-organisasi" name="nama-organisasi" placeholder="Nama Organisasi" value=""
                 />
             </div>
-            {{-- I.4 Kolom C --}}
-            <div class="mb-3">
-                <label for="penghargaan" class="form-label"
-                  >Nama Tanda Penghargaan</label
-                >
-                <input
-                  class="form-control"
-                  type="text"
-                  id="penghargaan"
-                  name="penghargaan"
-                  placeholder="Nama Tanda Penghargaan"
-                  value="Penghargaan Satu"
-
-                />
-            </div>
-            {{-- I.4 Kolom D --}}
+            {{-- I.3 Kolom C --}}
             <div class="mb-3 col-md-6">
-                <label for="lembaga" class="form-label"
-                  >Nama Lembaga yang Memberikan</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lembaga"
-                  name="lembaga"
-                  placeholder="Nama Lembaga yang Memberikan"
-                  value="Universitas Sriwijaya"
-
-                />
-            </div>
-            {{-- I.4 Kolom E --}}
-            <div class="mb-3 col-md-6">
-                <label for="lokasi" class="form-label"
-                  >Lokasi</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lokasi"
-                  name="lokasi"
-                  placeholder="Lokasi"
-                  value="Palembang"
-
-                />
-            </div>
-            {{-- I.4 Kolom F --}}
-            <div class="mb-3 col-md-6">
-                <label for="negara" class="form-label"
-                  >Negara</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="negara"
-                  name="negara"
-                  placeholder="Negara"
-                  value="Indonesia"
-
-                />
-            </div>
-            {{-- I.4 Kolom G --}}
-            <div class="mb-3 col-md-6">
-                <label class="form-label" for="tingkat-penghargaan"
-                >Penghargaan yang Diterima Tingkat</label
-                >
-                <select
-                id="tingkat-penghargaan"
-                class="select2 form-select"
-
-                >
-                <option value="">
-                    Pilih Penghargaan yang Diterima Tingkat
-                </option>
-                <option value="pratama">
-                    Tingkatan Muda/ Pratama
-                </option>
-                <option value="madya" selected>
-                    Tingkatan Madya
-                </option>
-                <option value="utama">Tingkatan Utama</option>
+                <label class="form-label" for="jenis-organisasi">Jenis Organisasi</label>
+                <select id="jenis-organisasi" class="select2 form-select">
+                    <option value="">Pilih Jenis Organisasi</option>
+                    <option value="pii">
+                        Organisasi PII
+                    </option>
+                    <option value="non-pii">
+                        Organisasi Keinsinyuran Non PII
+                    </option>
+                    <option value="non-keinsinyuran">
+                        Organisasi Non Keinsinyuran
+                    </option>
                 </select>
             </div>
-            {{-- I.4 Kolom H --}}
+            {{-- I.3 Kolom D --}}
             <div class="mb-3 col-md-6">
-                <label for="tingkatan-lembaga" class="form-label"
-                >Penghargaan Diberikan Oleh Lembaga</label
-                >
-                <select
-                id="tingkatan-lembaga"
-                class="select2 form-select"
-
-                >
-                <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" selected>
-                    Penghargaan Lokal
-                </option>
-                <option value="nasional">
-                    Penghargaan Nasional
-                </option>
-                <option value="regional">
-                    Penghargaan Regional
-                </option>
-                <option value="internasional">
-                    Penghargaan Internasional
-                </option>
+                <label for="kota" class="form-label">Kota</label>
+                <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota" value=""/>
+            </div>
+            {{-- I.3 Kolom E --}}
+            <div class="mb-3 col-md-6">
+                <label for="negara" class="form-label">Negara</label>
+                <input type="text" class="form-control" id="negara" name="negara" placeholder="Negara" value=""/>
+            </div>
+            {{-- I.3 Kolom F --}}
+            <div class="mb-3 col-md-6">
+                <label for="periode" class="form-label">Periode</label>
+                <input type="text" class="form-control" id="periode" name="periode" placeholder="Periode" value=""/>
+            </div>
+            {{-- I.3 Kolom G --}}
+            <div class="mb-3 col-md-6">
+                <label for="lama-anggota" class="form-label">Sudah Berapa Lama Menjadi Anggota?</label>
+                <select id="lama-anggota" class="select2 form-select">
+                    <option value="">Pilih Sudah Berapa Lama Menjadi Anggota?</option>
+                    <option value="1-5">1 - 5 Tahun</option>
+                    <option value="6-10">6 - 10 Tahun</option>
+                    <option value="11-15">11 - 15 Tahun</option>
+                    <option value="lebih-dari-15">> 15 Tahun</option>
                 </select>
             </div>
-            {{-- I.4 Kolom I --}}
-            <div class="mb-3">
-                <label for="uraian" class="form-label"
-                >Uraian Singkat Tanda Penghargaan</label
-                >
-                <textarea
-                name="uraian"
-                id="uraian"
-                class="form-control"
-                placeholder="Uraian Singkat Tanda Penghargaan"
-                 rows="5"
-                ></textarea>
+            {{-- I.3 Kolom H --}}
+            <div class="mb-3 col-md-6">
+                <label for="jabatan" class="form-label">Jabatan Dalam Organisasi</label>
+                <select id="jabatan" class="select2 form-select">
+                    <option value="">
+                        Pilih Jabatan Dalam Organisasi
+                    </option>
+                    <option value="anggota-biasa">
+                        Anggota Biasa
+                    </option>
+                    <option value="anggota-pengurus">
+                        Anggota Pengurus
+                    </option>
+                    <option value="pimpinan">Pimpinan</option>
+                </select>
             </div>
-            {{-- <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
-                >Upload Bukti Tanda Penghargaan</label
-                >
-                <input
-                class="form-control"
-                type="file"
-                id="bukti"
-                disabled
-                />
-            </div> --}}
+            {{-- I.3 Kolom I --}}
+            <div class="mb-3 col-md-6">
+                <label for="tingkatan" class="form-label">Tingkatan Organisasi</label>
+                <select id="tingkatan" class="select2 form-select">
+                    <option value="">
+                        Pilih Tingkatan Organisasi
+                    </option>
+                    <option value="lokal">
+                        Organisasi Lokal (Bukan Nasional)
+                    </option>
+                    <option value="nasional">
+                        Organisasi Nasional
+                    </option>
+                    <option value="regional">
+                        Organisasi Regional
+                    </option>
+                    <option value="internasional">
+                        Organisasi Internasional
+                    </option>
+                </select>
+            </div>
+            {{-- I.3 Kolom J --}}
+            <div class="mb-3 col-md-6">
+                <label for="lingkup" class="form-label">Lingkup Kegiatan Organisasi</label>
+                <select id="lingkup" class="select2 form-select">
+                    <option value="">
+                        Pilih Lingkup Kegiatan Organisasi
+                    </option>
+                    <option value="asosiasi-profesi">
+                        Asosiasi Profesi
+                    </option>
+                    <option value="lembaga-pemerintah">
+                        Lembaga Pemerintah
+                    </option>
+                    <option value="lembaga-pendidikan">
+                        Lembaga Pendidikan
+                    </option>
+                    <option value="bumn">
+                        Badan Usaha Milik Negara
+                    </option>
+                    <option value="badan-usaha-swasta">
+                        Badan Usaha Swasta
+                    </option>
+                    <option value="organisasi-kemasyarakatan">
+                        Organisasi Kemasyarakatan
+                    </option>
+                    <option value="lain-lain">Lain-lain</option>
+                </select>
+            </div>
+            {{-- I.3 Kolom K --}}
+            <div class="mb-3">
+                <label for="aktifitas" class="form-label">Aktifitas Dalam Organisasi</label>
+                <textarea name="aktifitas" id="aktifitas" class="form-control" placeholder="Aktifitas Dalam Organisasi" rows="5"></textarea>
+            </div>
         </div>
       </div>
       {{-- <hr class="my-0" />
@@ -770,7 +742,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="data-pribadi-penghargaan.html"
+            href="data-pribadi-organisasi.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -779,7 +751,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/data-pribadi/organisasi"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -792,7 +764,7 @@
             Reset
           </button>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/data-pribadi/organisasi"
             class="btn btn-primary text-white"
             >Simpan</a
           >
@@ -801,5 +773,6 @@
     </form>
     <!-- /Account -->
   </div>
+
 @endsection
 

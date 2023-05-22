@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Tanda Penghargaan') }}
+  {{ __('Referensi') }}
 @endsection
 
 @section('sidebar')
@@ -24,7 +24,7 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item active open">
+        <li class="menu-item">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
@@ -41,7 +41,7 @@
                 <div data-i18n="Organisasi">Organisasi</div>
               </a>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
                 <div data-i18n="Tanda Penghargaan">
                   Tanda Penghargaan
@@ -60,12 +60,12 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item active open">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item">
+            <li class="menu-item active">
               <a
                 href="/kode-etik-insinyur/referensi"
                 class="menu-link"
@@ -197,162 +197,77 @@
       <hr class="my-0" /> --}}
       <div class="card-body pb-3">
         <div class="row">
+          {{-- II.1 KOLOM B --}}
             <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
-                  >Upload Bukti</label
-                >
-                <input
-                  class="form-control"
-                  type="file"
-                  id="bukti"
-                />
-              </div>
-            {{-- I.4 Kolom B --}}
-            <div class="mb-3 col-md-6">
-                <label for="tahun" class="form-label"
-                  >Tahun</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="tahun"
-                  name="tahun"
-                  placeholder="Tahun"
-                  value="2022"
+            <label for="nama" class="form-label">Nama</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nama"
+              name="nama"
+              placeholder="Nama"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom C --}}
-            <div class="mb-3">
-                <label for="penghargaan" class="form-label"
-                  >Nama Tanda Penghargaan</label
-                >
-                <input
-                  class="form-control"
-                  type="text"
-                  id="penghargaan"
-                  name="penghargaan"
-                  placeholder="Nama Tanda Penghargaan"
-                  value="Penghargaan Satu"
+            />
+          </div>
+          {{-- II.1 KOLOM C --}}
+          <div class="mb-3">
+            <label for="alamat" class="form-label"
+              >Alamat</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="alamat"
+              name="alamat"
+              placeholder="Alamat"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom D --}}
-            <div class="mb-3 col-md-6">
-                <label for="lembaga" class="form-label"
-                  >Nama Lembaga yang Memberikan</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lembaga"
-                  name="lembaga"
-                  placeholder="Nama Lembaga yang Memberikan"
-                  value="Universitas Sriwijaya"
+            />
+          </div>
+          {{-- II.1 KOLOM D --}}
+          <div class="mb-3 col-md-6">
+            <label for="no-telp" class="form-label"
+              >No. Telepon</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="no-telp"
+              name="no-telp"
+              placeholder="No. Telepon"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom E --}}
-            <div class="mb-3 col-md-6">
-                <label for="lokasi" class="form-label"
-                  >Lokasi</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lokasi"
-                  name="lokasi"
-                  placeholder="Lokasi"
-                  value="Palembang"
+            />
+          </div>
+          {{-- II.1 KOLOM E --}}
+          <div class="mb-3 col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom F --}}
-            <div class="mb-3 col-md-6">
-                <label for="negara" class="form-label"
-                  >Negara</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="negara"
-                  name="negara"
-                  placeholder="Negara"
-                  value="Indonesia"
+            />
+          </div>
+          {{-- II.1 KOLOM F --}}
+          <div class="mb-3 col-md-6">
+            <label class="form-label" for="hubungan"
+              >Hubungan</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="hubungan"
+              name="hubungan"
+              placeholder="Hubungan"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom G --}}
-            <div class="mb-3 col-md-6">
-                <label class="form-label" for="tingkat-penghargaan"
-                >Penghargaan yang Diterima Tingkat</label
-                >
-                <select
-                id="tingkat-penghargaan"
-                class="select2 form-select"
-
-                >
-                <option value="">
-                    Pilih Penghargaan yang Diterima Tingkat
-                </option>
-                <option value="pratama">
-                    Tingkatan Muda/ Pratama
-                </option>
-                <option value="madya" selected>
-                    Tingkatan Madya
-                </option>
-                <option value="utama">Tingkatan Utama</option>
-                </select>
-            </div>
-            {{-- I.4 Kolom H --}}
-            <div class="mb-3 col-md-6">
-                <label for="tingkatan-lembaga" class="form-label"
-                >Penghargaan Diberikan Oleh Lembaga</label
-                >
-                <select
-                id="tingkatan-lembaga"
-                class="select2 form-select"
-
-                >
-                <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" selected>
-                    Penghargaan Lokal
-                </option>
-                <option value="nasional">
-                    Penghargaan Nasional
-                </option>
-                <option value="regional">
-                    Penghargaan Regional
-                </option>
-                <option value="internasional">
-                    Penghargaan Internasional
-                </option>
-                </select>
-            </div>
-            {{-- I.4 Kolom I --}}
-            <div class="mb-3">
-                <label for="uraian" class="form-label"
-                >Uraian Singkat Tanda Penghargaan</label
-                >
-                <textarea
-                name="uraian"
-                id="uraian"
-                class="form-control"
-                placeholder="Uraian Singkat Tanda Penghargaan"
-                 rows="5"
-                ></textarea>
-            </div>
-            {{-- <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
-                >Upload Bukti Tanda Penghargaan</label
-                >
-                <input
-                class="form-control"
-                type="file"
-                id="bukti"
-                disabled
-                />
-            </div> --}}
+            />
+          </div>
         </div>
       </div>
       {{-- <hr class="my-0" />
@@ -770,7 +685,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="data-pribadi-penghargaan.html"
+            href="kode-etik-insinyur-referensi.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -779,7 +694,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/kode-etik-insinyur/referensi"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -792,7 +707,7 @@
             Reset
           </button>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/kode-etik-insinyur/referensi"
             class="btn btn-primary text-white"
             >Simpan</a
           >

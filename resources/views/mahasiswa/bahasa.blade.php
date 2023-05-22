@@ -145,12 +145,6 @@
         <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
       </a>
     </li>
-    <li class="menu-item">
-      <a href="/" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-      </a>
-    </li>
 </ul>
 @endsection
 
@@ -160,6 +154,7 @@
       class="d-flex align-items-center justify-content-between"
     >
       <h5 class="card-header">Bahasa yang Dikuasai</h5>
+      <a href="{{ url('bahasa/tambah') }}" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     <div class="table-responsive mx-3 mb-2 text-center">
       <table class="table table-hover">
@@ -205,12 +200,26 @@
                 >Invalid</span
               >
             </td> --}}
-            <td>
+            {{-- <td>
               <a
                 href="/bahasa/detail"
                 class="btn btn-sm btn-primary"
                 >Detail</a
               >
+            </td> --}}
+            <td>
+                <a href="{{ url('bahasa/detail') }}"
+                ><i class="bx bxs-show me-1" title="Lihat"></i
+                ></a>
+                <a href="{{ url('bahasa/detail') }}"
+                ><i class="bx bx-edit-alt me-1" title="Edit"></i
+                ></a>
+                <a href="#"
+                ><i
+                    class="bx bx-trash me-1 text-danger"
+                    title="Hapus"
+                ></i
+                ></a>
             </td>
           </tr>
           <tr>
@@ -243,12 +252,26 @@
                 >Invalid</span
               >
             </td> --}}
-            <td>
+            {{-- <td>
               <a
                 href="/bahasa/detail"
                 class="btn btn-sm btn-primary"
                 >Detail</a
               >
+            </td> --}}
+            <td>
+                <a href="{{ url('bahasa/detail') }}"
+                ><i class="bx bxs-show me-1" title="Lihat"></i
+                ></a>
+                <a href="{{ url('bahasa/detail') }}"
+                ><i class="bx bx-edit-alt me-1" title="Edit"></i
+                ></a>
+                <a href="#"
+                ><i
+                    class="bx bx-trash me-1 text-danger"
+                    title="Hapus"
+                ></i
+                ></a>
             </td>
           </tr>
         </tbody>

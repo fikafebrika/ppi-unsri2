@@ -1,7 +1,7 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Tanda Penghargaan') }}
+  {{ __('Seminar') }}
 @endsection
 
 @section('sidebar')
@@ -24,7 +24,7 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item active open">
+        <li class="menu-item">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
@@ -41,7 +41,7 @@
                 <div data-i18n="Organisasi">Organisasi</div>
               </a>
             </li>
-            <li class="menu-item active">
+            <li class="menu-item">
               <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
                 <div data-i18n="Tanda Penghargaan">
                   Tanda Penghargaan
@@ -97,7 +97,7 @@
             </div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item active open">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Publikasi">Publikasi</div>
           </a>
@@ -112,7 +112,7 @@
                 <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item active">
               <a href="/publikasi/seminar" class="menu-link">
                 <div data-i18n="Seminar/ Lokakarya">
                   Seminar/ Lokakarya
@@ -207,152 +207,123 @@
                   id="bukti"
                 />
               </div>
-            {{-- I.4 Kolom B --}}
+            {{-- V.3 KOLOM B --}}
             <div class="mb-3 col-md-6">
-                <label for="tahun" class="form-label"
-                  >Tahun</label
+                <label for="bulan-tahun" class="form-label"
+                  >Bulan - Tahun</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  id="tahun"
-                  name="tahun"
-                  placeholder="Tahun"
-                  value="2022"
+                  id="bulan-tahun"
+                  name="bulan-tahun"
+                  placeholder="Bulan - Tahun"
+                  value=""
 
                 />
-            </div>
-            {{-- I.4 Kolom C --}}
-            <div class="mb-3">
-                <label for="penghargaan" class="form-label"
-                  >Nama Tanda Penghargaan</label
-                >
-                <input
-                  class="form-control"
-                  type="text"
-                  id="penghargaan"
-                  name="penghargaan"
-                  placeholder="Nama Tanda Penghargaan"
-                  value="Penghargaan Satu"
+              </div>
+          {{-- V.3 KOLOM C --}}
+              <div class="mb-3">
+            <label for="nama-seminar" class="form-label"
+              >Nama Seminar/ Lokakarya</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="nama-seminar"
+              name="nama-seminar"
+              placeholder="Nama Seminar/ Lokakarya"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom D --}}
-            <div class="mb-3 col-md-6">
-                <label for="lembaga" class="form-label"
-                  >Nama Lembaga yang Memberikan</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lembaga"
-                  name="lembaga"
-                  placeholder="Nama Lembaga yang Memberikan"
-                  value="Universitas Sriwijaya"
+            />
+          </div>
+          {{-- V.3 KOLOM D --}}
+          <div class="mb-3 col-md-6">
+            <label for="nama-penyelenggara" class="form-label"
+              >Nama Penyelenggara</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="nama-penyelenggara"
+              name="nama-penyelenggara"
+              placeholder="Nama Penyelenggara"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom E --}}
-            <div class="mb-3 col-md-6">
-                <label for="lokasi" class="form-label"
-                  >Lokasi</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lokasi"
-                  name="lokasi"
-                  placeholder="Lokasi"
-                  value="Palembang"
+            />
+          </div>
+          {{-- V.3 KOLOM E --}}
+          <div class="mb-3 col-md-6">
+            <label for="lokasi" class="form-label"
+              >Lokasi</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="lokasi"
+              name="lokasi"
+              placeholder="Lokasi"
+              value=""
 
-                />
-            </div>
-            {{-- I.4 Kolom F --}}
-            <div class="mb-3 col-md-6">
-                <label for="negara" class="form-label"
-                  >Negara</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="negara"
-                  name="negara"
-                  placeholder="Negara"
-                  value="Indonesia"
+            />
+          </div>
+          {{-- V.3 KOLOM F --}}
+          <div class="mb-3 col-md-6">
+            <label class="form-label" for="tingkatan-seminar"
+              >Seminar/ Lokakarya Tingkat</label
+            >
+            <select
+              id="tingkatan-seminar"
+              class="select2 form-select"
 
-                />
-            </div>
-            {{-- I.4 Kolom G --}}
-            <div class="mb-3 col-md-6">
-                <label class="form-label" for="tingkat-penghargaan"
-                >Penghargaan yang Diterima Tingkat</label
-                >
-                <select
-                id="tingkat-penghargaan"
-                class="select2 form-select"
+            >
+              <option value="">
+                Pilih Seminar/ Lokakarya Tingkat
+              </option>
+              <option value="nasional">
+                Pada Seminar Nasional
+              </option>
+              <option value="internasional">
+                Pada Seminar Internasional
+              </option>
+            </select>
+          </div>
+          {{-- V.3 KOLOM G --}}
+          <div class="mb-3 col-md-6">
+            <label class="form-label" for="tingkat-kesulitan"
+              >Tingkat Kesulitan dan Manfaatnya Materi Seminar/
+              Lokakarya</label
+            >
+            <select
+              id="tingkat-kesulitan"
+              class="select2 form-select"
 
-                >
-                <option value="">
-                    Pilih Penghargaan yang Diterima Tingkat
-                </option>
-                <option value="pratama">
-                    Tingkatan Muda/ Pratama
-                </option>
-                <option value="madya" selected>
-                    Tingkatan Madya
-                </option>
-                <option value="utama">Tingkatan Utama</option>
-                </select>
-            </div>
-            {{-- I.4 Kolom H --}}
-            <div class="mb-3 col-md-6">
-                <label for="tingkatan-lembaga" class="form-label"
-                >Penghargaan Diberikan Oleh Lembaga</label
-                >
-                <select
-                id="tingkatan-lembaga"
-                class="select2 form-select"
-
-                >
-                <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" selected>
-                    Penghargaan Lokal
-                </option>
-                <option value="nasional">
-                    Penghargaan Nasional
-                </option>
-                <option value="regional">
-                    Penghargaan Regional
-                </option>
-                <option value="internasional">
-                    Penghargaan Internasional
-                </option>
-                </select>
-            </div>
-            {{-- I.4 Kolom I --}}
-            <div class="mb-3">
-                <label for="uraian" class="form-label"
-                >Uraian Singkat Tanda Penghargaan</label
-                >
-                <textarea
-                name="uraian"
-                id="uraian"
-                class="form-control"
-                placeholder="Uraian Singkat Tanda Penghargaan"
-                 rows="5"
-                ></textarea>
-            </div>
-            {{-- <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
-                >Upload Bukti Tanda Penghargaan</label
-                >
-                <input
-                class="form-control"
-                type="file"
-                id="bukti"
-                disabled
-                />
-            </div> --}}
+            >
+              <option value="">
+                Pilih Tingkat Kesulitan dan Manfaatnya Materi
+                Seminar/ Lokakarya
+              </option>
+              <option value="rendah">Rendah</option>
+              <option value="sedang">Sedang</option>
+              <option value="tinggi">Tinggi</option>
+              <option value="sangat-tinggi">
+                Sangat Tinggi
+              </option>
+            </select>
+          </div>
+          {{-- V.3 KOLOM H --}}
+          <div class="mb-3">
+            <label for="uraian" class="form-label"
+              >Uraian Singkat Materi Seminar/ Lokakarya</label
+            >
+            <textarea
+              name="uraian"
+              id="uraian"
+              class="form-control"
+              placeholder="Uraian Singkat Materi Seminar/ Lokakarya"
+               rows="5"
+            ></textarea>
+          </div>
         </div>
       </div>
       {{-- <hr class="my-0" />
@@ -362,10 +333,8 @@
             <h5>Pilih Bakuan Kompetensi</h5>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Mengembangkan dan mewujudkan tanggungjawab
-                kecendekiaan dan kepedulian profesi keinsinyuran
-                kepada bangsa, negara dan komunitas
-                internasional
+                Melaksanakan pekerjaan yang bersifat
+                kecendekiaan dan beragam
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -373,16 +342,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w111"
+                    id="w211"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w111"
-                    >Menyadari tanggungjawab kecendekiaan
-                    Insinyur Profesional bagi memahami dan
-                    menjunjung falsafah dan nilai Pancasila
-                    sebagai falsafah dasar masyarakat bangsa
-                    Indonesia</label
+                  <label class="form-check-label" for="w211"
+                    >Menggunakan gagasannya sendiri dalam
+                    mensintesakan pemecahan yang memuaskan atas
+                    masalah keinsinyuran</label
                   >
                 </div>
                 <div class="form-check">
@@ -390,13 +357,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w112"
+                    id="w212"
                     disabled
                   />
-                  <label class="form-check-label" for="w112"
-                    >Menghayati dan senantiasa berusaha
-                    mengamalkan nilai dan jiwa Pancasila dalam
-                    menjalankan profesi</label
+                  <label class="form-check-label" for="w212"
+                    >Menggunakan kearifan yang profesional dalam
+                    membuat keputusan keinsinyuran</label
                   >
                 </div>
                 <div class="form-check">
@@ -404,14 +370,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w113"
+                    id="w213"
                     disabled
                   />
-                  <label class="form-check-label" for="w113"
-                    >Berpedoman kepada konstitusi dan
-                    perundang-undangan yang berlaku di Negara
-                    Kesatuan Republik Indonesia dalam
-                    menjalankan profesi</label
+                  <label class="form-check-label" for="w213"
+                    >Melakukan pekerjaan keinsinyuran secara
+                    kreatif dan inovatif</label
                   >
                 </div>
                 <div class="form-check">
@@ -419,15 +383,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w114"
+                    id="w214"
                     disabled
                   />
-                  <label class="form-check-label" for="w114"
-                    >Menjunjung rasa kesetiakawanan nasional dan
-                    rasa kepedulian sosial dan berusaha
-                    mendorong kewirausahaan dan kesejahteraan
-                    masyarakat menuju cita-cita Bangsa dan
-                    Negara</label
+                  <label class="form-check-label" for="w214"
+                    >Mengenali dan menanggulangi masalah
+                    keinsinyuran</label
                   >
                 </div>
                 <div class="form-check">
@@ -435,23 +396,37 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w115"
+                    id="w215"
                     disabled
                   />
-                  <label class="form-check-label" for="w115"
-                    >Mengembangkan wawasan kebangsaan yang kuat
-                    dan dengan sadar menumbuhkan kepercayaan
-                    diri membangun kemandirian nasional dalam
-                    profesinya dan dalam mengembangkan kerjasama
-                    di komunitas internasional</label
+                  <label class="form-check-label" for="w215"
+                    >Memperluas pengetahuan dalam kejuruan atau
+                    bidang keahlian yang terkait dan memupuk
+                    kerjasama antar kejuruan pada waktu bekerja
+                    dalam lingkungan aneka-kejuruan</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w216"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w216"
+                    >Menyelidiki kebutuhan dan memanfaatkan
+                    peluang yang khas terdapat dalam sesuatu
+                    bidang pekerjaan atau bidang kejuruan</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Menghayati serta mematuhi Kode Etik Insinyur
-                Indonesia dan tatalaku profesi yang berlaku
+                Menguasai, memelihara, mengembangkan dan
+                memutakhir-kan keahlian dalam bidang pekerjaan
+                dan kejuruannya
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -459,16 +434,16 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w121"
+                    id="w221"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w121"
-                    >Menempatkan tanggungjawab pada
-                    kesejahteraan, kesehatan dan keselamatan
-                    masyarakat di atas tanggungjawabnya kepada
-                    profesi, kepada kepentingan golongan, atau
-                    kepada rekan sesama insinyur</label
+                  <label class="form-check-label" for="w221"
+                    >Menyadari keterbatasan kepakaran dan
+                    pengetahuan dirinya dan menggunakan seluruh
+                    kemampuan untuk mengenali kekurangan diri,
+                    menambah pengetahuan dan mengupayakan
+                    bantuan dari pakar yang tepat</label
                   >
                 </div>
                 <div class="form-check">
@@ -476,14 +451,15 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w122"
+                    id="w222"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w122"
-                    >Bertindak dengan menjunjung tinggi
-                    kehormatan, martabat dan nilai luhur
-                    profesi</label
+                  <label class="form-check-label" for="w222"
+                    >Menggunakan kemampuan untuk mencari
+                    informasi sehingga dapat mengikuti
+                    perkembangan teknologi atau kemajuan
+                    lainnya</label
                   >
                 </div>
                 <div class="form-check">
@@ -491,12 +467,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w123"
+                    id="w223"
                     disabled
                   />
-                  <label class="form-check-label" for="w123"
-                    >Melakukan pekerjaan, hanya dalam batasan
-                    kompetensinya</label
+                  <label class="form-check-label" for="w223"
+                    >Memperluas dasar pengetahuan dengan membaca
+                    majalah profesional, mengikuti seminar
+                    profesional dan menjalin kerjasama antar
+                    profesional</label
                   >
                 </div>
                 <div class="form-check">
@@ -504,13 +482,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w124"
+                    id="w224"
                     disabled
                   />
-                  <label class="form-check-label" for="w124"
-                    >Mengembangkan nama baik berdasarkan
-                    prestasi dan tidak bersaing secara
-                    curang</label
+                  <label class="form-check-label" for="w224"
+                    >Memperdalam dasar pengetahuan secara
+                    sistematik dengan melakukan penelitian dan
+                    percobaan untuk menyelesaikan masalah
+                    keinsinyuran yang khas</label
                   >
                 </div>
                 <div class="form-check">
@@ -518,13 +497,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w125"
+                    id="w225"
                     disabled
                   />
-                  <label class="form-check-label" for="w125"
-                    >Menerapkan kemampuan profesionalnya untuk
-                    kepentingan pemberi kerja keinsinyuran
-                    secara penuh amanah</label
+                  <label class="form-check-label" for="w225"
+                    >Memanfaatkan setiap pengalaman pekerjaan
+                    untuk mengembangkan
+                    keprofesionalannya</label
                   >
                 </div>
                 <div class="form-check">
@@ -532,49 +511,20 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w126"
+                    id="w226"
                     disabled
                   />
-                  <label class="form-check-label" for="w126"
-                    >Memberikan keterangan, pendapat atau
-                    pernyataan secara obyektif berdasarkan
-                    kebenaran dan dalam cakupan
-                    pengetahuannya</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w127"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w127"
-                    >Melakukan pengembangan kemampuan
-                    profesional secara berkelanjutan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w128"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w128"
-                    >Secara aktif membantu dan mendorong rekan
-                    kerjanya untuk memajukan pengetahuan dan
-                    pengalaman mereka</label
+                  <label class="form-check-label" for="w226"
+                    >Melakukan pencatatan mengenai kegiatan
+                    pengembangan keprofesionalannya.</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Memahami, menerapkan, serta mengembangkan
-                wawasan dan kaidah-kaidah kelestarian lingkungan
+                Memahami dan menerapkan metoda-metoda
+                perekayasaan
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -582,14 +532,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w131"
+                    id="w231"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w131"
-                    >Menyadari bahwa saling ketergantungan dan
-                    keaneka-ragaman ekosistem adalah dasar bagi
-                    kelangsungan hidup manusia</label
+                  <label class="form-check-label" for="w231"
+                    >Menemu-kenali (mengidentifikasi) berbagai
+                    penerapan kerekayasaan tepat-guna</label
                   >
                 </div>
                 <div class="form-check">
@@ -597,14 +546,14 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w132"
+                    id="w232"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w132"
-                    >Menyadari keterbatasan daya dukung
-                    lingkungan hidup untuk menyerap perubahan
-                    yang dibuat manusia</label
+                  <label class="form-check-label" for="w232"
+                    >Mengajukan konsep untuk melaksanakan
+                    penerapan kerekayasaan tepat-guna yang telah
+                    terpilih</label
                   >
                 </div>
                 <div class="form-check">
@@ -612,14 +561,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w133"
+                    id="w233"
                     checked
                     disabled
                   />
-                  <label class="form-check-label" for="w133"
-                    >Menggalakkan tindakan keinsinyuran yang
-                    diperlukan untuk memperbaiki, mempertahankan
-                    dan memulihkan lingkungan hidup</label
+                  <label class="form-check-label" for="w233"
+                    >Merinci penerapan kerekayasaan tepat-guna
+                    yang dipilih</label
                   >
                 </div>
                 <div class="form-check">
@@ -627,15 +575,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w134"
+                    id="w234"
                     disabled
                   />
-                  <label class="form-check-label" for="w134"
-                    >Menggalakkan penggunaan yang bijaksana atas
-                    sumber-daya tak terbarukan dengan
-                    memperkecil atau mendaur-ulang limbah dan
-                    mengembangkan sumber-daya alternatif lain
-                    sejauh mungkin</label
+                  <label class="form-check-label" for="w234"
+                    >Mengendalikan kemutakhiran dokumentasi
+                    hasil-hasil penerapannya</label
                   >
                 </div>
                 <div class="form-check">
@@ -643,51 +588,21 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w135"
+                    id="w235"
                     disabled
                   />
-                  <label class="form-check-label" for="w135"
-                    >Berusaha mencapai tujuan pekerjaan
-                    keinsinyurannya dengan penggunaan bahan baku
-                    dan enerji secara hemat dan dengan
-                    menerapkan kaidah pengelolaan lingkungan
-                    berkelanjutan</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w136"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w136"
-                    >Memperhatikan keseluruhan dampak dari
-                    siklus hidup produk dan proyek terhadap
-                    lingkungan hidup</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="w137"
-                    disabled
-                  />
-                  <label class="form-check-label" for="w137"
-                    >Memperhitungkan pengaruh yang mungkin
-                    muncul dari tindakan keinsinyuran terhadap
-                    faktor budaya atau warisan sejarah</label
+                  <label class="form-check-label" for="w235"
+                    >Mengkaji persyaratan bagi diperolehnya
+                    persetujuan pemberi tugas dan bagi pemenuhan
+                    kebutuhan di masa depan</label
                   >
                 </div>
               </div>
             </div>
             <div class="card mt-2">
               <h6 class="card-header pb-3">
-                Mengemban tanggungjawab profesional atas
-                tindakan dan karyanya
+                Memahami dan menerapkan kaidah-kaidah penjaminan
+                mutu
               </h6>
               <div class="card-body pb-3">
                 <div class="form-check">
@@ -695,14 +610,11 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w141"
-                    checked
+                    id="w241"
                     disabled
                   />
-                  <label class="form-check-label" for="w141"
-                    >Memperhitungkan risiko dan tanggung-gugat
-                    (liabilities) profesional, dan sanggup
-                    bertanggungjawab untuk itu</label
+                  <label class="form-check-label" for="w241"
+                    >Menerapkan sistem mutu</label
                   >
                 </div>
                 <div class="form-check">
@@ -710,13 +622,13 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w142"
-                    checked
+                    id="w242"
                     disabled
                   />
-                  <label class="form-check-label" for="w142"
-                    >Menerapkan dengan tepat persyaratan
-                    kesehatan dan keselamatan kerja (K-3)</label
+                  <label class="form-check-label" for="w242"
+                    >Mendorong diterimanya kaidah-kaidah
+                    penjaminan mutu oleh rekan sekerja dan
+                    anak-buah</label
                   >
                 </div>
                 <div class="form-check">
@@ -724,15 +636,12 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w143"
-                    checked
+                    id="w243"
                     disabled
                   />
-                  <label class="form-check-label" for="w143"
-                    >Menyelidiki kebutuhan keselamatan
-                    masyarakat dan bertindak untuk memecahkan
-                    masalah keselamatan yang mungkin
-                    timbul</label
+                  <label class="form-check-label" for="w243"
+                    >Melaksanakan setiap pekerjaan sesuai dengan
+                    bakuan mutu yang tepat</label
                   >
                 </div>
                 <div class="form-check">
@@ -740,14 +649,34 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w144"
-                    checked
+                    id="w244"
                     disabled
                   />
-                  <label class="form-check-label" for="w144"
-                    >Mengambil tindakan pencegahan yang tepat
-                    dalam menangani pekerjaan yang
-                    berbahaya</label
+                  <label class="form-check-label" for="w244"
+                    >Menerapkan tatacara kendali mutu dan
+                    penjaminan mutu</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Memilih dan menerapkan penggunaan perangkat
+                perekayasaan dan teknologi yang tepat-guna
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w251"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w251"
+                    >Memilih dan menggunakan analisis matematik,
+                    ilmu keinsinyuran, simulasi komputer atau
+                    teknik pemodelan lainnya</label
                   >
                 </div>
                 <div class="form-check">
@@ -755,13 +684,124 @@
                     class="form-check-input"
                     type="checkbox"
                     value=""
-                    id="w145"
+                    id="w252"
                     disabled
                   />
-                  <label class="form-check-label" for="w145"
-                    >Memperhatikan kaidah-kaidah pencegahan dan
-                    penanganan bencana alam serta pemulihan
-                    akibatnya</label
+                  <label class="form-check-label" for="w252"
+                    >Memilih dan memanfaatkan penerapan sistem
+                    komputer</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w253"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w253"
+                    >Mengarahkan dan melaksanakan tugas-tugas
+                    pemrograman dan penggunaan perangkat
+                    lunak</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w254"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w254"
+                    >Memilih dan menggunakan alat bantu
+                    teknologi dan memantau kinerjanya</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card mt-2">
+              <h6 class="card-header pb-3">
+                Melaksanakan uji-coba, pengukuran dan kaji-nilai
+                (evaluasi)
+              </h6>
+              <div class="card-body pb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w261"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w261"
+                    >Merumuskan tujuan uji-coba</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w262"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w262"
+                    >Menyusun tatacara dan jadwal
+                    uji-coba</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w263"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w263"
+                    >Mengembangkan tatacara dan alat-alat
+                    pengukuran</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w264"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w264"
+                    >Melaksanakan uji-coba dan pengukuran untuk
+                    kerja keinsinyuran yang kritis</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w265"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w265"
+                    >Mengawasi uji-coba dan pengukuran untuk
+                    kerja yang tidak kritis</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="w266"
+                    disabled
+                  />
+                  <label class="form-check-label" for="w266"
+                    >Mengkaji-nilai hasil uji-coba dan
+                    pengukuran</label
                   >
                 </div>
               </div>
@@ -770,7 +810,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="data-pribadi-penghargaan.html"
+            href="publikasi-seminar.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -779,7 +819,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/publikasi/seminar"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -792,7 +832,7 @@
             Reset
           </button>
           <a
-            href="/data-pribadi/tanda-penghargaan"
+            href="/publikasi/seminar"
             class="btn btn-primary text-white"
             >Simpan</a
           >
