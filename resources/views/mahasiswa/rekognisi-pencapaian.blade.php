@@ -253,9 +253,9 @@
             <td class="text-start">
               <strong>Pendidikan Formal</strong>
             </td>
-            <td>25%</td>
-            <td>0</td>
-            <td>0</td>
+            <td>20%</td>
+            <td>{{ $point }}</td>
+            <td>{{ $nilai_pendidikan_formal }}</td>
           </tr>
           <tr>
             <td class="text-start">

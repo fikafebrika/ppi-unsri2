@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\LoginAdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PendidikanFormalController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RekognisiPencapaianController;
+use App\Http\Controllers\VerifikatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,32 +42,43 @@ Route::prefix('/admin')->group(function () {
         Route::get('/edit', function () {
             return view('admin.verifikator.edit');
         });
-
     });
-
 });
 
 Route::prefix('/verifikator')->group(function () {
-    Route::get('/login', function () {
-        return view('verifikator.auth.login');
-    });
+    // Route::get('/login', function () {
+    //     return view('verifikator.auth.login');
+    // });
+
+
+    Route::get('/login', [LoginAdminController::class, 'index'])->name('login');
+    Route::post('/login', [LoginAdminController::class, 'authenticate'])->name('login');
 
     // Route::get('/register', function () {
     //     return view('verifikator.auth.register');
     // });
 
-    Route::get('/beranda', function () {
-        return view('verifikator.index');
-    });
+    // Route::get('/beranda', function () {
+    //     return view('verifikator.index');
+    // });
+
+    Route::resource('/beranda', VerifikatorController::class)->middleware('auth');
 
     Route::prefix('/data-pribadi')->group(function () {
-        Route::get('/pendidikan-formal', function () {
-            return view('verifikator.data-pribadi.pendidikan-formal');
-        });
 
-        Route::get('/pendidikan-formal/periksa', function () {
-            return view('verifikator.data-pribadi.periksa.pendidikan-formal');
-        });
+        // Route::get('/pendidikan-formal', function () {
+        //     return view('verifikator.data-pribadi.pendidikan-formal');
+        // });
+
+        Route::get('/pendidikan-formal/{id}', [VerifikatorController::class, 'showPendidikanFormal']);
+
+        // Route::get('/pendidikan-formal/periksa', function () {
+        //     return view('verifikator.data-pribadi.periksa.pendidikan-formal');
+        // });
+
+        Route::get('/pendidikan-formal/periksa/{id}/edit', [VerifikatorController::class, 'showDetailPendidikanFormalUser']);
+
+        Route::put('/pendidikan-formal/periksa/{id}/edit', [VerifikatorController::class, 'updateDetailPendidikanFormalUser']);
 
         Route::get('/organisasi', function () {
             return view('verifikator.data-pribadi.organisasi');
@@ -96,7 +111,6 @@ Route::prefix('/verifikator')->group(function () {
         Route::get('/sertifikat/periksa', function () {
             return view('verifikator.data-pribadi.periksa.sertifikat');
         });
-
     });
 
     Route::prefix('/kode-etik-insinyur')->group(function () {
@@ -115,7 +129,6 @@ Route::prefix('/verifikator')->group(function () {
         Route::get('/pengertian/periksa', function () {
             return view('verifikator.kode-etik-insinyur.periksa.pengertian');
         });
-
     });
 
     Route::get('/kualifikasi-profesional', function () {
@@ -166,7 +179,6 @@ Route::prefix('/verifikator')->group(function () {
         Route::get('/karya-temuan/periksa', function () {
             return view('verifikator.publikasi.periksa.karya-temuan');
         });
-
     });
 
     Route::get('/bahasa', function () {
@@ -180,31 +192,22 @@ Route::prefix('/verifikator')->group(function () {
     Route::get('/akun', function () {
         return view('verifikator.akun');
     });
-
-
 });
 
-Route::get('/', function () {
-    return view('mahasiswa.auth.login');
-});
-Route::post('/', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('mahasiswa.auth.register');
-});
-Route::post('/register', [RegisterController::class, 'store'])->name('register.process');
 
-Route::get('/beranda', function () {
-    return view('mahasiswa.index');
-})->middleware('auth');
+
+
+
+
+
 
 
 
 //PROFILE
-Route::get('profil', [ProfilController::class,'index'])->name('profil');
+Route::get('profil', [ProfilController::class, 'index'])->name('profil');
 // Route::get('profil/create', [ProfilController::class,'create'])->name('profil.create');
-Route::put('profil/store', [ProfilController::class,'store'])->name('profil.store');
+Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
 
 
 //route login mhs, registrasi mhs //
@@ -216,10 +219,48 @@ Route::put('profil/store', [ProfilController::class,'store'])->name('profil.stor
 // Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
+
+/**
+ * route untuk login mahasiswa
+ */
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+/**
+ * route untuk register
+ */
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store'])->name('register.process');
+Route::get('/register/checkSlug', [RegisterController::class, 'checkSlug']);
+
+/**
+ * route untuk halaman profil mahasiswa
+ */
+//PROFILE
+Route::get('profil', [ProfilController::class, 'index'])->name('profil');
+// Route::get('profil/create', [ProfilController::class,'create'])->name('profil.create');
+Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
+
+
+Route::get('/rekognisi-pencapaian', [RekognisiPencapaianController::class, 'index']);
+
+// Route::get('/beranda', [RekognisiPencapaianController::class, 'showBeranda']);
+
+/**
+ * route untuk ke halaman beranda
+ */
+Route::get('/beranda', function () {
+    return view('mahasiswa.index');
+})->middleware('auth');
+
 Route::prefix('/data-pribadi')->group(function () {
-    Route::get('/pendidikan-formal', function () {
-        return view('mahasiswa.data-pribadi.pendidikan-formal');
-    });
+    /**
+     * route untuk ke halaman Pendidikan Formal
+     */
+    Route::resource('/pendidikan_formal', PendidikanFormalController::class)->middleware('auth');
+
+
 
     Route::get('/organisasi', function () {
         return view('mahasiswa.data-pribadi.organisasi');
@@ -237,9 +278,6 @@ Route::prefix('/data-pribadi')->group(function () {
         return view('mahasiswa.data-pribadi.sertifikat');
     });
 
-    Route::get('/pendidikan-formal/tambah', function () {
-        return view('mahasiswa.data-pribadi.tambah.pendidikan-formal');
-    });
 
     Route::get('/organisasi/tambah', function () {
         return view('mahasiswa.data-pribadi.tambah.organisasi');
@@ -257,9 +295,6 @@ Route::prefix('/data-pribadi')->group(function () {
         return view('mahasiswa.data-pribadi.tambah.sertifikat');
     });
 
-    Route::get('/pendidikan-formal/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.pendidikan-formal');
-    });
 
     Route::get('/organisasi/detail', function () {
         return view('mahasiswa.data-pribadi.detail.organisasi');
@@ -276,7 +311,6 @@ Route::prefix('/data-pribadi')->group(function () {
     Route::get('/sertifikat/detail', function () {
         return view('mahasiswa.data-pribadi.detail.sertifikat');
     });
-
 });
 
 Route::prefix('/kode-etik-insinyur')->group(function () {
@@ -303,7 +337,6 @@ Route::prefix('/kode-etik-insinyur')->group(function () {
     Route::get('/pengertian/detail', function () {
         return view('mahasiswa.kode-etik-insinyur.detail.pengertian');
     });
-
 });
 
 Route::get('/kualifikasi-profesional', function () {
@@ -378,7 +411,6 @@ Route::prefix('/publikasi')->group(function () {
     Route::get('/karya-temuan/detail', function () {
         return view('mahasiswa.publikasi.detail.karya-temuan');
     });
-
 });
 
 Route::get('/bahasa', function () {
@@ -393,12 +425,8 @@ Route::get('/bahasa/detail', function () {
     return view('mahasiswa.detail.bahasa');
 });
 
-Route::get('/rekognisi-pencapaian', function () {
-    return view('mahasiswa.rekognisi-pencapaian');
-});
+
 
 Route::get('/kartu-hasil-studi', function () {
     return view('mahasiswa.kartu-hasil-studi');
 });
-
-

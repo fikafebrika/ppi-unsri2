@@ -5,147 +5,7 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item active">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
@@ -153,14 +13,10 @@
     <form
       id="formAccountSettings"
       method="POST"
-      action="{{route('profil.store')}}"
-      {{-- onsubmit="return false" --}}
+      action=""
     >
     @csrf
     @method('PUT')
-    @foreach ($data as $item)
-
-
       <h5 class="card-header">Data Profil</h5>
       <div class="card-body">
         <div
@@ -168,7 +24,7 @@
         >
         {{-- Pasfoto Terbaru 3x4 cm pas Register --}}
           <img
-            src="{{url("upload")}}/{{$item->image}}"
+            src="{{ asset('storage/' . $user->image) }}"
             alt="user-avatar"
             class="d-block rounded"
             height="133"
@@ -211,36 +67,37 @@
             <h5>Akun</h5>
             {{-- Nama Lengkap pas Register --}}
             <div class="mb-3 col-md-6">
-                <label for="nama-lengkap" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama-lengkap" name="fullname" placeholder="Nama Lengkap" value="{{$item['name'] }}"/>
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap" value="{{$user->name }}"/>
             </div>
             {{-- No. KTA pas Register --}}
             <div class="mb-3 col-md-6">
-                <label for="no-kta" class="form-label">No. KTA (6 Digit Terakhir)</label>
-                <input type="text" class="form-control" id="no-kta" name="no-kta" placeholder="No. KTA (6 Digit Terakhir)" value="{{$item['nokta'] }}"/>
+                <label for="nokta" class="form-label">No. KTA (6 Digit Terakhir)</label>
+                <input type="text" class="form-control" id="nokta" name="nokta" placeholder="No. KTA (6 Digit Terakhir)" value="{{$user->nokta }}"/>
             </div>
             {{-- Nomor Induk Mahasiswa pas Register --}}
             <div class="mb-3 col-md-6">
-                <label for="nim" class="form-label">Nomor Induk Mahasiswa</label>
-                <input type="text" class="form-control" id="nim" name="nim" placeholder="Nomor Induk Mahasiswa" value="{{$item['nikmhs'] }}"/>
+                <label for="nikmhs" class="form-label">Nomor Induk Mahasiswa</label>
+                <input type="text" class="form-control" id="nikmhs" name="nikmhs" placeholder="Nomor Induk Mahasiswa" value="{{$user->nikmhs }}"/>
             </div>
             {{-- Profesi Utama pas Register --}}
             <div class="mb-3 col-md-6">
-                <label class="form-label" for="profesi-utama">Profesi Utama</label>
-                <select id="profesi-utama" class="select2 form-select">
+                <label class="form-label" for="profesiutama">Profesi Utama</label>
+                <select id="profesiutama" name="profesitama" class="select2 form-select">
                   <option value="">Pilih Profesi Utama</option>
-                  <option value="praktisi" selected>
-                    Praktisi
-                  </option>
-                  <option value="tenaga-pendidik">
-                    Tenaga Pendidikan
-                  </option>
+                  @if ($user->profesiutama === "dosen")
+                    <option value="dosen" selected>Dosen</option>
+                    <option value="praktisi">Praktisi</option>
+                  @else
+                    <option value="dosen" >Dosen</option>
+                    <option value="praktisi" selected>Praktisi</option>
+                  @endif
                 </select>
             </div>
             {{-- Email pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$item->email }}"/>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->email }}"/>
             </div>
         </div>
       </div>
@@ -392,8 +249,6 @@
           >
         </div>
       </div>
-
-      @endforeach
     </form>
     <!-- /Account -->
 </div>

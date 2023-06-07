@@ -5,157 +5,19 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item active">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/data-pribadi/pendidikan_formal"
+      enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
       {{-- <div class="card-body">
         <div class="mb-3 col-md-12">
@@ -201,22 +63,28 @@
                 <label for="bukti" class="form-label"
                   >Upload Bukti</label
                 >
+                {{-- <img class="img-preview img-fluid mb-3 col-sm-5"> --}}
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti') is-invalid @enderror"
                   type="file"
                   id="bukti"
+                  name="bukti"
+                  onchange="previewImage()"
                 />
+                @error('buktir')
+                {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
               </div>
           {{-- I.2 C2 (Untuk S1) --}}
           {{-- I.2 D2 (Untuk S2) --}}
           {{-- I.2 E2 (Untuk S3) --}}
             <div class="mb-3 col-md-6">
             <label class="form-label" for="jenjang"
-              >Jenjang</label
-            >
-            <select id="jenjang" class="select2 form-select">
+              >Jenjang</label>
+            <select id="jenjang" class="select2 form-select" name="jenjang">
                 <option value="">Pilih Jenjang</option>
-                <option value="s1" selected>S1</option>
+                <option value="s1">S1</option>
                 <option value="s2">S2</option>
                 <option value="s3">S3</option>
             </select>
@@ -228,68 +96,71 @@
             <label
               for="nama-perguruan-tinggi"
               class="form-label"
-              >Nama Perguruan Tinggi</label
-            >
+              >Nama Perguruan Tinggi</label>
             <input
               type="text"
-              class="form-control"
-              id="nama-perguruan-tinggi"
-              name="nama-perguruan-tinggi"
+              class="form-control @error('nama-perguruan-tinggi') is-invalid @enderror"
+              id="nama_perguruan_tinggi"
+              name="nama_perguruan_tinggi"
               placeholder="Nama Perguruan Tinggi"
-              value="Universitas Sriwijaya"
-
             />
+            @error('nama-perguruan-tinggi')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C4 (Untuk S1) --}}
           {{-- I.2 D4 (Untuk S2) --}}
           {{-- I.2 E4 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
-            <label for="fakultas" class="form-label"
-              >Fakultas</label
-            >
+            <label for="fakultas" class="form-label">Fakultas</label>
             <input
-              class="form-control"
+              class="form-control @error('fakultas') is-invalid @enderror"
               type="text"
               id="fakultas"
               name="fakultas"
               placeholder="Fakultas"
-              value="Ilmu Komputer"
-
             />
+            @error('fakultas')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C5 (Untuk S1) --}}
           {{-- I.2 D5 (Untuk S2) --}}
           {{-- I.2 E5 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="jurusan" class="form-label"
-              >Jurusan</label
-            >
+              >Jurusan</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('jurusan') is-invalid @enderror"
               id="jurusan"
               name="jurusan"
               placeholder="Jurusan"
-              value="Sistem Informasi"
-
             />
+            @error('jurusan')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C6 (Untuk S1) --}}
           {{-- I.2 D6 (Untuk S2) --}}
           {{-- I.2 E6 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="kota" class="form-label"
-              >Kota</label
-            >
+              >Kota</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('kota') is-invalid @enderror"
               id="kota"
               name="kota"
               placeholder="Kota"
-              value="Palembang"
-
             />
+            @error('kota')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C7 (Untuk S1) --}}
           {{-- I.2 D7 (Untuk S2) --}}
@@ -300,13 +171,15 @@
             >
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('negara') is-invalid @enderror"
               id="negara"
               name="negara"
               placeholder="Negara"
-              value="Indonesia"
-
             />
+            @error('negara')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C8 (Untuk S1) --}}
           {{-- I.2 D8 (Untuk S2) --}}
@@ -317,13 +190,15 @@
             >
             <input
               type="text"
-              class="form-control"
-              id="tahun"
-              name="tahun"
+              class="form-control @error('tahun') is-invalid @enderror"
+              id="tahun_lulus"
+              name="tahun_lulus"
               placeholder="Tahun Lulus"
-              value="2022"
-
             />
+            @error('tahun')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C9 (Untuk S1) --}}
           {{-- I.2 D9 (Untuk S2) --}}
@@ -332,13 +207,15 @@
             <label for="gelar" class="form-label">Gelar</label>
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('gelar') is-invalid @enderror"
               id="gelar"
               name="gelar"
               placeholder="Gelar"
-              value="S.Kom."
-
             />
+            @error('gelar')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C10 (Untuk S1) --}}
           {{-- I.2 D10 (Untuk S2) --}}
@@ -346,16 +223,17 @@
           <div class="mb-3">
             <label for="judul-ta" class="form-label"
               >Judul Tugas Akhir/ Skripsi/ Tesis/
-              Disertasi</label
-            >
+              Disertasi</label>
             <textarea
-              name="judul-ta"
-              id="judul-ta"
-              class="form-control"
+              name="judul"
+              id="judul"
+              class="form-control @error('judul-ta') is-invalid @enderror"
               placeholder="Judul Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
-
-            >Perancangan UI/UX Sistem Kapustakan Kraton</textarea
-            >
+            ></textarea>
+            @error('judul-ta')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C11 (Untuk S1) --}}
           {{-- I.2 D11 (Untuk S2) --}}
@@ -363,50 +241,54 @@
           <div class="mb-3">
             <label for="uraian-ta" class="form-label"
               >Uraian Singkat Tentang Materi Tugas Akhir/
-              Skripsi/ Tesis/ Disertasi</label
-            >
+              Skripsi/ Tesis/ Disertasi</label>
             <textarea rows="5"
-              name="uraian-ta"
-              id="uraian-ta"
-              class="form-control"
+              name="uraian_singkat"
+              id="uraian_singkat"
+              class="form-control @error('uraian-ta') is-invalid @enderror"
               placeholder="Uraian Singkat Tentang Materi Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
-
-            >Melakukan perancangan desain Sistem Kapustakan Kraton dalam bentuk Prototype</textarea
-            >
+            ></textarea>
+            @error('uraian-ta')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C12 (Untuk S1) --}}
           {{-- I.2 D12 (Untuk S2) --}}
           {{-- I.2 E12 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="nilai" class="form-label"
-              >Nilai Akademik Rata-rata</label
-            >
+              >Nilai Akademik Rata-rata</label>
             <input
               type="number"
-              class="form-control"
-              id="nilai"
-              name="nilai"
+              step="any"
+              class="form-control @error('nilai') is-invalid @enderror"
+              id="nilai_akademik"
+              name="nilai_akademik"
               placeholder="Nilai Akademik Rata-rata"
-              value="3.95"
-
             />
+            @error('nilai')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
           {{-- I.2 C13 (Untuk S1) --}}
           {{-- I.2 D13 (Untuk S2) --}}
           {{-- I.2 E13 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="judicium" class="form-label"
-              >Judicium</label
-            >
+              >Judicium</label>
             <input
               type="date"
-              class="form-control"
+              class="form-control  @error('judicium') is-invalid @enderror"
               id="judicium"
               name="judicium"
               placeholder="Judicium"
-              value=""
-
             />
+            @error('judicium')
+            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
+            <p class="text-danger">{{ $message }}</p>
+            @enderror
           </div>
         </div>
       </div>
@@ -903,7 +785,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/data-pribadi/pendidikan-formal"
+            href="/data-pribadi/pendidikan_formal"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -915,16 +797,30 @@
           >
             Reset
           </button>
-          <a
-            href="/data-pribadi/pendidikan-formal"
-            class="btn btn-primary text-white"
-            >Simpan</a
-          >
+          <button class="btn btn-primary text-white" type="submit">
+            Simpan
+          </button>
         </div>
       </div>
     </form>
     <!-- /Account -->
   </div>
+
+  {{-- <script>
+    function previewImage() {
+		const image = document.querySelector('#bukti');
+		const imgpreview = document.querySelector('.img-preview');
+
+		imgpreview.style.display = 'block';
+
+		const oFReader = new FileReader();
+		oFReader.readAsDataURL(image.files[0]);
+
+		oFReader.onload = function(oFREvent) {
+			imgpreview.src = oFREvent.target.result;
+		}
+	}
+  </script> --}}
 
 @endsection
 
