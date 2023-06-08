@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PendidikanFormal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PendidikanFormalController extends Controller
 {
@@ -41,7 +42,7 @@ class PendidikanFormalController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'bukti' => 'image|file|max:1024',
+            'bukti' => 'mimes:pdf|max:2048', // Hanya menerima file dengan ekstensi .pdf dan ukuran maksimum 2MB
             'jenjang' => 'required',
             'nama_perguruan_tinggi' => 'required|max:255',
             'fakultas' => 'required|max:255',
@@ -58,7 +59,7 @@ class PendidikanFormalController extends Controller
 
         if ($request->file('bukti')) {
             //simpan gambarnya 
-            $validatedData['bukti'] = $request->file('bukti')->store('bukti-images');
+            $validatedData['bukti'] = $request->file('bukti')->store('bukti-file');
         }
 
         $validatedData['user_id'] = auth()->user()->id;
@@ -94,6 +95,9 @@ class PendidikanFormalController extends Controller
     public function edit(PendidikanFormal $pendidikanFormal)
     {
         //
+        return view('mahasiswa.data-pribadi.pendidikan_formal.edit', [
+            'pendidikan_formal_user' => $pendidikanFormal
+        ]);
     }
 
     /**
@@ -106,6 +110,37 @@ class PendidikanFormalController extends Controller
     public function update(Request $request, PendidikanFormal $pendidikanFormal)
     {
         //
+        $rules = [
+            'bukti' => 'mimes:pdf|max:2048', // Hanya menerima file dengan ekstensi .pdf dan ukuran maksimum 2MB
+            'jenjang' => 'required',
+            'nama_perguruan_tinggi' => 'required|max:255',
+            'fakultas' => 'required|max:255',
+            'jurusan' => 'required|max:255',
+            'kota' => 'required|max:255',
+            'negara' => 'required|max:255',
+            'tahun_lulus' => 'required|max:255',
+            'gelar' => 'required|max:255',
+            'judul' => 'required',
+            'uraian_singkat' => 'required',
+            'nilai_akademik' => 'required',
+            'judicium' => 'required',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('bukti')) {
+            //kalau gambar lamanya ada
+            if ($request->oldbukti) {
+                Storage::delete($request->oldbukti);
+            }
+            $validatedData['bukti'] = $request->file('bukti')->store('bukti-file');
+        }
+
+        $validatedData['user_id'] = auth()->user()->id;
+
+        $pendidikanFormal->update($validatedData);
+
+        return redirect('/data-pribadi/pendidikan_formal')->with('success', 'Pendidikan Formal has been updated!');
     }
 
     /**
@@ -117,5 +152,12 @@ class PendidikanFormalController extends Controller
     public function destroy(PendidikanFormal $pendidikanFormal)
     {
         //
+        if ($pendidikanFormal->bukti) {
+            Storage::delete($pendidikanFormal->bukti);
+        }
+
+        PendidikanFormal::destroy($pendidikanFormal->id);
+
+        return redirect('/data-pribadi/pendidikan_formal')->with('success', 'Post has been deleted!');
     }
 }

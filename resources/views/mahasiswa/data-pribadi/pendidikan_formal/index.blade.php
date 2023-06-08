@@ -17,11 +17,13 @@
       <a href="/data-pribadi/pendidikan_formal/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
+    
+    @if ($pendidikan_formal_users->count())
     <div class="table-responsive mx-3 mb-2 text-center">
       <table class="table table-hover">
         <thead class="align-middle">
@@ -84,15 +86,14 @@
                 <a href="/data-pribadi/pendidikan_formal/{{ $pendidikan_formal_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
                 ></a>
-                <a href="{{ url('data-pribadi/pendidikan-formal/detail') }}"
+                <a href="/data-pribadi/pendidikan_formal/{{ $pendidikan_formal_user->id }}/edit"
                 ><i class="bx bx-edit-alt me-1" title="Edit"></i
                 ></a>
-                <a href="#"
-                ><i
-                    class="bx bx-trash me-1 text-danger"
-                    title="Hapus"
-                ></i
-                ></a>
+                <form action="/data-pribadi/pendidikan_formal/{{ $pendidikan_formal_user->id }}" method="POST" class="d-inline">
+                  @method('delete')
+						      @csrf
+                  <button class="bx bx-trash me-1 text-danger border-0 " title="Hapus" onclick="return confirm('Are you sure ?')"></button>
+                </form>
             </td>
           </tr>
           @endforeach
@@ -135,6 +136,10 @@
         </div>
       </div>
     </div>
+    @else
+      <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+    @endif
+    
   </div>
 @endsection
 

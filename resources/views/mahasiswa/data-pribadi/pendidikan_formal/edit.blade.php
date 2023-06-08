@@ -10,160 +10,181 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+    <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      action="/data-pribadi/pendidikan_formal"
+      action="/data-pribadi/pendidikan_formal/{{ $pendidikan_formal_user->id }}"
       enctype="multipart/form-data"
-    >
-    @csrf
+      >
+      @method('put')
+      @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
+      <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
-            >Hasil Validasi</label
-          >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
+          <label class="form-label" for="status_validasi">Hasil Validasi</label>
+            @if ($pendidikan_formal_user->status_validasi === "valid")
             <option value="valid" class="text-success fw-bold" selected>
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
-          </select>
+            @elseif($pendidikan_formal_user->status_validasi === "invalid")
+            <option value="invalid" class="text-danger fw-bold">
+              INVALID (*Bila ada kesalahan pada pencapaian
+              mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            @elseif($pendidikan_formal_user->status_validasi === "pending")
+            <option value="" class="text-warning fw-bold">
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option>  
+            @endif
+          {{-- <select
+            id="status_validasi"
+            name="status_validasi"
+            class="select2 form-select bg-white" disabled>
+            @if ($pendidikan_formal_user->status_validasi === "valid")
+            <option value="valid" class="text-success fw-bold" selected>
+              VALID (*Bila semua pencapaian mahasiswa telah
+              sesuai)
+            </option>
+            @elseif($pendidikan_formal_user->status_validasi === "invalid")
+            <option value="invalid" class="text-danger fw-bold">
+              INVALID (*Bila ada kesalahan pada pencapaian
+              mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            @elseif($pendidikan_formal_user->status_validasi === "pending")
+            <option value="" class="text-warning fw-bold">
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option>  
+            @endif
+          </select> --}}
         </div>
         <div class="mb-3 col-md-12">
           <label
             for="catatan-verifikator"
             class="form-label text-danger"
-            >Catatan Tim Verifikator</label
-          >
+            >Catatan Tim Verifikator</label>
           <textarea
             id="catatan-verifikator"
             class="form-control bg-white" disabled
-            placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
+            placeholder="Tidak ada catatan"
             rows="5"
-          >Tidak Ada</textarea>
+          >{{ $pendidikan_formal_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> --}}
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label for="bukti" class="form-label"
                   >Upload Bukti</label>
-                <div id="pdf-preview"></div>
+                  <input type="hidden" name="oldbukti" value="{{ $pendidikan_formal_user->bukti }}">
+                @if ($pendidikan_formal_user->bukti)
+                <iframe  id="pdf-preview" src="{{ asset('storage/' . $pendidikan_formal_user->bukti) }}" width="100%" height="500px"></iframe>
+                @else
+                <p>Tidak ada file PDF yang diunggah.</p>
+                @endif
+                {{-- <div id="pdf-preview"></div> --}}
                 <input
                   class="form-control @error('bukti') is-invalid @enderror"
                   type="file"
                   id="bukti"
-                  name="bukti"
-                  onchange="previewPDF(this)"
-                />
-                @error('bukti')
+                  name="bukti"/>
+              </div>
+              @error('bukti')
                 <div class="invalid-feedback"> {{ $message }}</div>
                 {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
-              </div>
           {{-- I.2 C2 (Untuk S1) --}}
           {{-- I.2 D2 (Untuk S2) --}}
           {{-- I.2 E2 (Untuk S3) --}}
             <div class="mb-3 col-md-6">
             <label class="form-label" for="jenjang"
               >Jenjang</label>
-            <select id="jenjang" class="select2 form-select" name="jenjang">
+                <select  id="jenjang" class="select2 form-select" name="jenjang">
                 <option value="">Pilih Jenjang</option>
-                <option value="S1" {{ old('jenjang') == "S1" ? ' selected' : '' }}>S1</option>
-                <option value="S2" {{ old('jenjang') == "S2" ? ' selected' : '' }}>S2</option>
-                <option value="S3" {{ old('jenjang') == "S3" ? ' selected' : '' }}>S3</option>
-            </select>
+                <option value="S1" {{ old('jenjang', $pendidikan_formal_user->jenjang) == "S1" ? ' selected' : '' }}>S1</option>
+                <option value="S2" {{ old('jenjang', $pendidikan_formal_user->jenjan) == "S2" ? ' selected' : '' }}>S2</option>
+                <option value="S3" {{ old('jenjang', $pendidikan_formal_user->jenjan) == "S3" ? ' selected' : '' }}>S3</option>
+                </select>
           </div>
           {{-- I.2 C3 (Untuk S1) --}}
           {{-- I.2 D3 (Untuk S2) --}}
           {{-- I.2 E3 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label
-              for="nama-perguruan-tinggi"
+              for="nama_perguruan_tinggi"
               class="form-label"
-              >Nama Perguruan Tinggi</label>
+              >Nama Perguruan Tinggi</label
+            >
             <input
               type="text"
               class="form-control @error('nama_perguruan_tinggi') is-invalid @enderror"
               id="nama_perguruan_tinggi"
               name="nama_perguruan_tinggi"
               placeholder="Nama Perguruan Tinggi"
-              value="{{ old('nama_perguruan_tinggi') }}"
+              value="{{ old('nama_perguruan_tinggi', $pendidikan_formal_user->nama_perguruan_tinggi) }}"
             />
             @error('nama_perguruan_tinggi')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C4 (Untuk S1) --}}
           {{-- I.2 D4 (Untuk S2) --}}
           {{-- I.2 E4 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
-            <label for="fakultas" class="form-label">Fakultas</label>
+            <label for="fakultas" class="form-label"
+              >Fakultas</label
+            >
             <input
               class="form-control @error('fakultas') is-invalid @enderror"
               type="text"
               id="fakultas"
               name="fakultas"
               placeholder="Fakultas"
-              value="{{ old('fakultas') }}"
+              value="{{ old('fakultas', $pendidikan_formal_user->fakultas) }}"
             />
             @error('fakultas')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C5 (Untuk S1) --}}
           {{-- I.2 D5 (Untuk S2) --}}
           {{-- I.2 E5 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="jurusan" class="form-label"
-              >Jurusan</label>
+              >Jurusan</label
+            >
             <input
               type="text"
               class="form-control @error('jurusan') is-invalid @enderror"
               id="jurusan"
               name="jurusan"
               placeholder="Jurusan"
-              value="{{ old('jurusan') }}"
+              value="{{ old('jurusan', $pendidikan_formal_user->jurusan) }}"
             />
             @error('jurusan')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C6 (Untuk S1) --}}
           {{-- I.2 D6 (Untuk S2) --}}
           {{-- I.2 E6 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="kota" class="form-label"
-              >Kota</label>
+              >Kota</label
+            >
             <input
               type="text"
               class="form-control @error('kota') is-invalid @enderror"
               id="kota"
               name="kota"
               placeholder="Kota"
-              value="{{ old('kota') }}"
+              value="{{ old('kota', $pendidikan_formal_user->kota) }}"
             />
             @error('kota')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C7 (Untuk S1) --}}
           {{-- I.2 D7 (Untuk S2) --}}
@@ -178,12 +199,11 @@
               id="negara"
               name="negara"
               placeholder="Negara"
-              value="{{ old('negara') }}"
+              value="{{ old('negara', $pendidikan_formal_user->negara) }}"
             />
             @error('negara')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C8 (Untuk S1) --}}
           {{-- I.2 D8 (Untuk S2) --}}
@@ -197,13 +217,12 @@
               class="form-control @error('tahun_lulus') is-invalid @enderror"
               id="tahun_lulus"
               name="tahun_lulus"
-              value="{{ old('tahun_lulus') }}"
               placeholder="Tahun Lulus"
+              value="{{ old('tahun_lulus', $pendidikan_formal_user->tahun_lulus) }}"
             />
             @error('tahun_lulus')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C9 (Untuk S1) --}}
           {{-- I.2 D9 (Untuk S2) --}}
@@ -215,13 +234,12 @@
               class="form-control @error('gelar') is-invalid @enderror"
               id="gelar"
               name="gelar"
-              value="{{ old('gelar') }}"
               placeholder="Gelar"
+              value="{{ old('gelar', $pendidikan_formal_user->gelar) }}"
             />
             @error('gelar')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C10 (Untuk S1) --}}
           {{-- I.2 D10 (Untuk S2) --}}
@@ -229,18 +247,18 @@
           <div class="mb-3">
             <label for="judul" class="form-label"
               >Judul Tugas Akhir/ Skripsi/ Tesis/
-              Disertasi</label>
+              Disertasi</label
+            >
             <textarea
               name="judul"
               id="judul"
-              value="{{ old('judul') }}"
               class="form-control @error('judul') is-invalid @enderror"
               placeholder="Judul Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
-            ></textarea>
+            >{{ old('judul', $pendidikan_formal_user->judul) }}</textarea
+            >
             @error('judul')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C11 (Untuk S1) --}}
           {{-- I.2 D11 (Untuk S2) --}}
@@ -248,57 +266,57 @@
           <div class="mb-3">
             <label for="uraian_singkat" class="form-label"
               >Uraian Singkat Tentang Materi Tugas Akhir/
-              Skripsi/ Tesis/ Disertasi</label>
+              Skripsi/ Tesis/ Disertasi</label
+            >
             <textarea rows="5"
               name="uraian_singkat"
               id="uraian_singkat"
-              value="{{ old('uraian_singkat') }}"
               class="form-control @error('uraian_singkat') is-invalid @enderror"
               placeholder="Uraian Singkat Tentang Materi Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
-            ></textarea>
+            >{{ old('uraian_singkat', $pendidikan_formal_user->uraian_singkat) }}</textarea
+            >
             @error('uraian_singkat')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C12 (Untuk S1) --}}
           {{-- I.2 D12 (Untuk S2) --}}
           {{-- I.2 E12 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="nilai_akademik" class="form-label"
-              >Nilai Akademik Rata-rata</label>
+              >Nilai Akademik Rata-rata</label
+            >
             <input
               type="number"
               step="any"
               class="form-control @error('nilai_akademik') is-invalid @enderror"
               id="nilai_akademik"
               name="nilai_akademik"
-              value="{{ old('nilai_akademik') }}"
               placeholder="Nilai Akademik Rata-rata"
+              value="{{ old('nilai_akademik', $pendidikan_formal_user->nilai_akademik) }}"
             />
-            @error('nilai')
-            <div class="invalid-feedback"> {{ $message }}</div>
-            {{-- <p class="text-danger">{{ $message }}</p> --}}
-            @enderror
+            @error('nilai_akademik')
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
           {{-- I.2 C13 (Untuk S1) --}}
           {{-- I.2 D13 (Untuk S2) --}}
           {{-- I.2 E13 (Untuk S3) --}}
           <div class="mb-3 col-md-6">
             <label for="judicium" class="form-label"
-              >Judicium</label>
+              >Judicium</label
+            >
             <input
               type="date"
-              class="form-control  @error('judicium') is-invalid @enderror"
+              class="form-control @error('judicium') is-invalid @enderror"
               id="judicium"
               name="judicium"
-              value="{{ old('judicium') }}"
               placeholder="Judicium"
+              value="{{ old('judicium', $pendidikan_formal_user->judicium) }}"
             />
             @error('judicium')
-            {{-- <div class="invalid-feedback"> {{ $message }}</div> --}}
-            <p class="text-danger">{{ $message }}</p>
-            @enderror
+			<div class="invalid-feedback"> {{ $message }}</div>
+			@enderror
           </div>
         </div>
       </div>
@@ -807,33 +825,30 @@
           >
             Reset
           </button>
-          <button class="btn btn-primary text-white" type="submit">
-            Simpan
-          </button>
+          <button
+            type="submit"
+            class="btn btn-primary text-white"
+            >Simpan</button>
         </div>
       </div>
     </form>
     <!-- /Account -->
   </div>
-
   <script>
-    function previewPDF(input) {
-        const file = input.files[0];
-        const reader = new FileReader();
-        
-        reader.onloadend = function () {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
-        }
-        
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = '';
-        }
-    }
-  </script>
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti');
 
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
+  </script>
 @endsection
 
