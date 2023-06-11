@@ -17,12 +17,12 @@
       action="/data-pribadi/organisasi/{{ $organisasi_user->id }}"
       enctype="multipart/form-data"
     >
-    @method('put')
       @csrf
+      @method('PUT')
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
       <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="status-validasi"
+          <label class="form-label" for="status_validasi"
             >Hasil Validasi</label
           >
           @if ($organisasi_user->status_validasi === "valid")
@@ -36,7 +36,7 @@
             mahasiswa atau ada pencapaian yang tidak sesuai)
           </option>
           @elseif($organisasi_user->status_validasi === "pending")
-          <option value="" class="text-warning fw-bold">
+          <option value="pending" class="text-warning fw-bold">
             Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
           </option>  
           @endif
@@ -62,7 +62,7 @@
                 <label for="bukti_organisasi" class="form-label"
                   >Upload Bukti</label
                 >
-                <input type="hidden" name="oldbukti" value="{{ $organisasi_user->bukti_organisasi }}">
+                <input type="hidden" name="oldbuktiorganisasi" value="{{ $organisasi_user->bukti_organisasi }}">
                 @if ($organisasi_user->bukti_organisasi)
                 <iframe  id="pdf-preview" src="{{ asset('storage/' . $organisasi_user->bukti_organisasi) }}" width="100%" height="500px"></iframe>
                 @else
@@ -94,11 +94,18 @@
             {{-- I.3 Kolom C --}}
             <div class="mb-3 col-md-6">
                 <label class="form-label" for="jenis_organisasi">Jenis Organisasi</label>
-                <input type="text" class="form-control @error('jenis_organisasi') is-invalid @enderror" id="jenis_organisasi" name="jenis_organisasi" placeholder="Jenis Organisasi" value="{{ old('jenis_organisasi', $organisasi_user->jenis_organisasi) }}"/>
-                @error('jenis_organisasi')
-                <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
-                @enderror
+                <select id="jenis_organisasi" name="jenis_organisasi" class="select2 form-select">
+                  <option value="">Pilih Jenis Organisasi</option>
+                  <option value="pii" {{ old('jenis_organisasi', $organisasi_user->jenis_organisasi) == "pii" ? ' selected' : '' }}>
+                      Organisasi PII
+                  </option>
+                  <option value="non-pii"{{ old('jenis_organisasi', $organisasi_user->jenis_organisasi) == "non-pii" ? ' selected' : '' }}>
+                      Organisasi Keinsinyuran Non PII
+                  </option>
+                  <option value="non-keinsinyuran" {{ old('jenis_organisasi', $organisasi_user->jenis_organisasi) == "non-keinsinyuran" ? ' selected' : '' }}>
+                      Organisasi Non Keinsinyuran
+                  </option>
+              </select>
             </div>
             {{-- I.3 Kolom D --}}
             <div class="mb-3 col-md-6">
@@ -161,20 +168,16 @@
                     <option value="">
                         Pilih Jabatan Dalam Organisasi
                     </option>
-                    <option value="anggota-biasa" {{ old('jabatan', $organisasi_user->tingkatan_organisasi) == "anggota-biasa" ? ' selected' : '' }}>
+                    <option value="anggota-biasa" {{ old('jabatan', $organisasi_user->jabatan) == "anggota-biasa" ? ' selected' : '' }}>
                         Anggota Biasa
                     </option>
-                    <option value="anggota-pengurus" {{ old('jabatan', $organisasi_user->tingkatan_organisasi) == "anggota-pengurus" ? ' selected' : '' }}>
+                    <option value="anggota-pengurus" {{ old('jabatan', $organisasi_user->jabatan) == "anggota-pengurus" ? ' selected' : '' }}>
                         Anggota Pengurus
                     </option>
-                    <option value="pimpinan" {{ old('jabatan', $organisasi_user->tingkatan_organisasi) == "pimpinan" ? ' selected' : '' }}>
+                    <option value="pimpinan" {{ old('jabatan', $organisasi_user->jabatan) == "pimpinan" ? ' selected' : '' }}>
                         Pimpinan
                     </option>
                 </select>
-                @error('jabatan')
-                <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
-                @enderror
             </div>
             {{-- I.3 Kolom I --}}
             <div class="mb-3 col-md-6">
@@ -680,10 +683,7 @@
           >
             Reset
           </button>
-          <button
-          type="submit"
-            class="btn btn-primary text-white"
-            >Simpan</button
+          <button type="submit" class="btn btn-primary text-white">Simpan</button
           >
         </div>
       </div>

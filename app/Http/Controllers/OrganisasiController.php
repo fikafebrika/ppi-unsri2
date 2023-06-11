@@ -107,15 +107,15 @@ class OrganisasiController extends Controller
     public function update(Request $request, Organisasi $organisasi)
     {
         //
-
+        // dd($request->file('bukti_organisasi'));
 
         $rules = [
             'bukti_organisasi' => 'mimes:pdf|max:2048', // Hanya menerima file dengan ekstensi .pdf dan ukuran maksimum 2MB
             'nama_organisasi' => 'required',
             'jenis_organisasi' => 'required',
-            'kota' => 'required|max:255',
-            'negara' => 'required|max:255',
-            'periode' => 'required|max:255',
+            'kota' => 'required',
+            'negara' => 'required',
+            'periode' => 'required',
             'lama_anggota' => 'required',
             'jabatan' => 'required',
             'tingkatan_organisasi' => 'required',
@@ -123,19 +123,25 @@ class OrganisasiController extends Controller
             'aktifitas' => 'required',
         ];
 
+        // dd($request->validate($rules));
+
         $validatedData = $request->validate($rules);
 
-        if ($request->file('bukti_file_organisasi')) {
+        // $organisasi->nama_organisasi = $request->input('nama_organisasi');
+
+        if ($request->file('bukti_organisasi')) {
             //kalau gambar lamanya ada
-            if ($request->bukti_organisasi) {
-                Storage::delete($request->bukti_organisasi);
+            if ($request->oldbuktiorganisasi) {
+                Storage::delete($request->oldbuktiorganisasi);
             }
-            $validatedData['bukti_organisasi'] = $request->file('bukti_file_organisasi')->store('bukti-file-organisasi');
+            $validatedData['bukti_organisasi'] = $request->file('bukti_organisasi')->store('bukti-file-organisasi');
         }
 
-        $validatedData['user_id'] = auth()->user()->id;
 
+        $validatedData['user_id'] = auth()->user()->id;
         $organisasi->update($validatedData);
+
+        // $organisasi->save();
 
         return redirect('/data-pribadi/organisasi')->with('success', 'Organisasi has been updated!');
     }

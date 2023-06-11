@@ -5,157 +5,19 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item active">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+    <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/data-pribadi/tanda-penghargaan"
+      enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
       {{-- <div class="card-body">
         <div class="mb-3 col-md-12">
@@ -198,14 +60,22 @@
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
+                <label for="bukti_penghargaan" class="form-label"
                   >Upload Bukti</label
                 >
+                <div id="pdf-preview"></div>
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti_penghargaan') is-invalid @enderror"
                   type="file"
-                  id="bukti"
+                  id="bukti_penghargaan"
+                  name="bukti_penghargaan"
+                  value="{{ old('bukti_penghargaan') }}"
+                  onchange="previewPDF(this)"
                 />
+                @error('bukti_penghargaan')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
               </div>
             {{-- I.4 Kolom B --}}
             <div class="mb-3 col-md-6">
@@ -214,43 +84,54 @@
                 >
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control @error('tahun') is-invalid @enderror"
                   id="tahun"
                   name="tahun"
                   placeholder="Tahun"
-                  value=""
-
+                  value="{{ old('tahun') }}"
                 />
+                @error('tahun')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- I.4 Kolom C --}}
             <div class="mb-3">
-                <label for="penghargaan" class="form-label"
+                <label for="nama_penghargaan" class="form-label"
                   >Nama Tanda Penghargaan</label
                 >
                 <input
-                  class="form-control"
+                  class="form-control @error('nama_penghargaan') is-invalid @enderror"
                   type="text"
-                  id="penghargaan"
-                  name="penghargaan"
+                  id="nama_penghargaan"
+                  name="nama_penghargaan"
                   placeholder="Nama Tanda Penghargaan"
-                  value=""
+                  value="{{ old('nama_penghargaan') }}"
 
                 />
+                @error('nama_penghargaan')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- I.4 Kolom D --}}
             <div class="mb-3 col-md-6">
-                <label for="lembaga" class="form-label"
+                <label for="nama_lembaga_pemberi" class="form-label"
                   >Nama Lembaga yang Memberikan</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  id="lembaga"
-                  name="lembaga"
+                  class="form-control @error('nama_lembaga_pemberi') is-invalid @enderror"
+                  id="nama_lembaga_pemberi"
+                  name="nama_lembaga_pemberi"
                   placeholder="Nama Lembaga yang Memberikan"
-                  value=""
+                  value="{{ old('nama_lembaga_pemberi') }}"
 
                 />
+                @error('nama_lembaga_pemberi')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- I.4 Kolom E --}}
             <div class="mb-3 col-md-6">
@@ -259,13 +140,17 @@
                 >
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control @error('lokasi') is-invalid @enderror"
                   id="lokasi"
                   name="lokasi"
                   placeholder="Lokasi"
-                  value=""
+                  value="{{ old('lokasi') }}"
 
                 />
+                @error('lokasi')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- I.4 Kolom F --}}
             <div class="mb-3 col-md-6">
@@ -274,57 +159,63 @@
                 >
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control @error('negara') is-invalid @enderror"
                   id="negara"
                   name="negara"
                   placeholder="Negara"
-                  value=""
+                  value="{{ old('negara') }}"
 
                 />
+                @error('negara')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- I.4 Kolom G --}}
             <div class="mb-3 col-md-6">
-                <label class="form-label" for="tingkat-penghargaan"
+                <label class="form-label" for="tingkat_penghargaan"
                 >Penghargaan yang Diterima Tingkat</label
                 >
                 <select
-                id="tingkat-penghargaan"
+                id="tingkat_penghargaan"
+                name="tingkat_penghargaan"
                 class="select2 form-select"
-
                 >
                 <option value="">
                     Pilih Penghargaan yang Diterima Tingkat
                 </option>
-                <option value="pratama">
+                <option value="pratama" {{ old('tingkat_penghargaan') == "pratama" ? ' selected' : '' }}>
                     Tingkatan Muda/ Pratama
                 </option>
-                <option value="madya">
+                <option value="madya" {{ old('tingkat_penghargaan') == "madya" ? ' selected' : '' }}>
                     Tingkatan Madya
                 </option>
-                <option value="utama">Tingkatan Utama</option>
+                <option value="utama" {{ old('tingkat_penghargaan') == "utama" ? ' selected' : '' }}>
+                    Tingkatan Utama
+                </option>
                 </select>
             </div>
             {{-- I.4 Kolom H --}}
             <div class="mb-3 col-md-6">
-                <label for="tingkatan-lembaga" class="form-label"
+                <label for="tingkatan_lembaga" class="form-label"
                 >Penghargaan Diberikan Oleh Lembaga</label
                 >
                 <select
-                id="tingkatan-lembaga"
+                id="tingkatan_lembaga"
+                name="tingkatan_lembaga"
                 class="select2 form-select"
-
                 >
                 <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal">
+                <option value="lokal" {{ old('tingkatan_lembaga') == "lokal" ? ' selected' : '' }}>
                     Penghargaan Lokal
                 </option>
-                <option value="nasional">
+                <option value="nasional" {{ old('tingkatan_lembaga') == "nasional" ? ' selected' : '' }}>
                     Penghargaan Nasional
                 </option>
-                <option value="regional">
+                <option value="regional" {{ old('tingkatan_lembaga') == "regional" ? ' selected' : '' }}>
                     Penghargaan Regional
                 </option>
-                <option value="internasional">
+                <option value="internasional" {{ old('tingkatan_lembaga') == "internasional" ? ' selected' : '' }}>
                     Penghargaan Internasional
                 </option>
                 </select>
@@ -337,10 +228,15 @@
                 <textarea
                 name="uraian"
                 id="uraian"
-                class="form-control"
+                class="form-control @error('uraian') is-invalid @enderror"
                 placeholder="Uraian Singkat Tanda Penghargaan"
-                 rows="5"
-                ></textarea>
+                rows="5"
+              
+                >{{ old('uraian') }}</textarea>
+                @error('uraian')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                {{-- <p class="text-danger">{{ $message }}</p> --}}
+                @enderror
             </div>
             {{-- <div class="mb-3 col-md-6">
                 <label for="bukti" class="form-label"
@@ -791,15 +687,33 @@
           >
             Reset
           </button>
-          <a
-            href="/data-pribadi/tanda-penghargaan"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
+            >Simpan</button
           >
         </div>
       </div>
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    function previewPDF(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = function () {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = '';
+        }
+    }
+  </script>
 @endsection
 

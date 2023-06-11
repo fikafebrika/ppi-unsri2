@@ -6,11 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\PendidikanFormalController;
+use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\VerifikatorController;
-
+use App\Models\Penghargaan;
 
 /*
 |--------------------------------------------------------------------------
@@ -268,17 +269,19 @@ Route::prefix('/data-pribadi')->group(function () {
     Route::resource('/organisasi', OrganisasiController::class)->middleware('auth');
 
 
-    // Route::get('/organisasi/detail', function () {
-    //     return view('mahasiswa.data-pribadi.detail.organisasi');
+    Route::resource('/tanda-penghargaan', PenghargaanController::class)->middleware('auth');
+
+    // Route::get('/tanda-penghargaan', function () {
+    //     return view('mahasiswa.data-pribadi.tanda-penghargaan');
     // });
 
-    // Route::get('/organisasi/tambah', function () {
-    //     return view('mahasiswa.data-pribadi.tambah.organisasi');
+    // Route::get('/tanda-penghargaan/tambah', function () {
+    //     return view('mahasiswa.data-pribadi.tambah.tanda-penghargaan');
     // });
 
-    Route::get('/tanda-penghargaan', function () {
-        return view('mahasiswa.data-pribadi.tanda-penghargaan');
-    });
+    // Route::get('/tanda-penghargaan/detail', function () {
+    //     return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');
+    // });
 
     Route::get('/pelatihan', function () {
         return view('mahasiswa.data-pribadi.pelatihan');
@@ -291,9 +294,7 @@ Route::prefix('/data-pribadi')->group(function () {
 
 
 
-    Route::get('/tanda-penghargaan/tambah', function () {
-        return view('mahasiswa.data-pribadi.tambah.tanda-penghargaan');
-    });
+
 
     Route::get('/pelatihan/tambah', function () {
         return view('mahasiswa.data-pribadi.tambah.pelatihan');
@@ -306,9 +307,7 @@ Route::prefix('/data-pribadi')->group(function () {
 
 
 
-    Route::get('/tanda-penghargaan/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');
-    });
+
 
     Route::get('/pelatihan/detail', function () {
         return view('mahasiswa.data-pribadi.detail.pelatihan');

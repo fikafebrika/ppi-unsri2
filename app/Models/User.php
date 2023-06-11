@@ -59,4 +59,10 @@ class User extends Authenticatable
         //satu user bisa mempunya banyak organisasi
         return $this->hasMany(Organisasi::class);
     }
+
+    public function penghargaan()
+    {
+        //satu user bisa mempunya banyak penghargaan
+        return $this->hasMany(Penghargaan::class);
+    }
 }

@@ -41,6 +41,7 @@ class PendidikanFormalController extends Controller
     public function store(Request $request)
     {
         //
+
         $validatedData = $request->validate([
             'bukti' => 'mimes:pdf|max:2048', // Hanya menerima file dengan ekstensi .pdf dan ukuran maksimum 2MB
             'jenjang' => 'required',
