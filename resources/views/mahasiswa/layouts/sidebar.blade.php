@@ -17,19 +17,19 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item active open">
+        <li class="menu-item open {{ Request::is('data-pribadi/*') ? 'active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item {{ Request::is('data-pribadi/pendidikan_formal/*') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::is('data-pribadi/pendidikan_formal') ? 'active' : '' }}">
               <a href="/data-pribadi/pendidikan_formal" class="menu-link">
                 <div data-i18n="Pendidikan Formal">
                   Pendidikan Formal
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item  {{ Request::is('data-pribadi/organisasi/*') ? 'active' : '' }}">
               <a href="/data-pribadi/organisasi" class="menu-link">
                 <div data-i18n="Organisasi">Organisasi</div>
               </a>

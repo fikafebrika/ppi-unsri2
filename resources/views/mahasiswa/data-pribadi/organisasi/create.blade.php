@@ -5,226 +5,59 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item active">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+    <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/data-pribadi/organisasi"
+       enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
-      {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
-        <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
-            >Hasil Validasi</label
-          >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-          </select>
-        </div>
-        <div class="mb-3 col-md-12">
-          <label
-            for="catatan-verifikator"
-            class="form-label text-danger"
-            >Catatan Tim Verifikator</label
-          >
-          <textarea
-            id="catatan-verifikator"
-            class="form-control bg-white" disabled
-            placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
-            rows="5"
-          >Tidak Ada</textarea>
-        </div>
-      </div>
-      <hr class="my-0" /> --}}
+    @csrf
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label for="bukti" class="form-label"
                   >Upload Bukti</label
                 >
+                <div id="pdf-preview"></div>
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti_organisasi') is-invalid @enderror"
                   type="file"
-                  id="bukti"
+                  id="bukti_organisasi"
+                  name="bukti_organisasi"
+                  value="{{ old('bukti_organisasi') }} "
+                  onchange="previewPDF(this)"
                 />
+                @error('bukti_organisasi')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
               </div>
             {{-- I.3 Kolom B --}}
             <div class="mb-3 col-md-6">
-                <label for="nama-organisasi" class="form-label">Nama Organisasi</label>
-                <input type="text" class="form-control" id="nama-organisasi" name="nama-organisasi" placeholder="Nama Organisasi" value="Universitas Sriwijaya"
+                <label for="nama_organisasi" class="form-label">Nama Organisasi</label>
+                <input type="text" class="form-control @error('nama_organisasi') is-invalid @enderror" id="nama_organisasi" name="nama_organisasi" placeholder="Nama Organisasi" value="{{ old('nama_organisasi') }} "
                 />
+                @error('title')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.3 Kolom C --}}
             <div class="mb-3 col-md-6">
-                <label class="form-label" for="jenis-organisasi">Jenis Organisasi</label>
-                <select id="jenis-organisasi" class="select2 form-select">
+                <label class="form-label" for="jenis_organisasi">Jenis Organisasi</label>
+                <select id="jenis_organisasi" name="jenis_organisasi" class="select2 form-select">
                     <option value="">Pilih Jenis Organisasi</option>
-                    <option value="pii" selected>
+                    <option value="pii" {{ old('jenis_organisasi') == "pii" ? ' selected' : '' }}>
                         Organisasi PII
                     </option>
-                    <option value="non-pii">
+                    <option value="non-pii" {{ old('jenis_organisasi') == "non-pii" ? ' selected' : '' }}>
                         Organisasi Keinsinyuran Non PII
                     </option>
-                    <option value="non-keinsinyuran">
+                    <option value="non-keinsinyuran" {{ old('jenis_organisasi') == "non-keinsinyuran" ? ' selected' : '' }}>
                         Organisasi Non Keinsinyuran
                     </option>
                 </select>
@@ -232,98 +65,110 @@
             {{-- I.3 Kolom D --}}
             <div class="mb-3 col-md-6">
                 <label for="kota" class="form-label">Kota</label>
-                <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota" value="Palembang"/>
+                <input type="text" class="form-control @error('kota') is-invalid @enderror" id="kota" name="kota" placeholder="Kota" value="{{ old('kota') }} "/>
+                @error('kota')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.3 Kolom E --}}
             <div class="mb-3 col-md-6">
                 <label for="negara" class="form-label">Negara</label>
-                <input type="text" class="form-control" id="negara" name="negara" placeholder="Negara" value="Indonesia"/>
+                <input type="text" class="form-control @error('negara') is-invalid @enderror" id="negara" name="negara" placeholder="Negara" value="{{ old('negara') }} "/>
+                @error('negara')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.3 Kolom F --}}
             <div class="mb-3 col-md-6">
                 <label for="periode" class="form-label">Periode</label>
-                <input type="text" class="form-control" id="periode" name="periode" placeholder="Periode" value=""/>
+                <input type="text" class="form-control @error('periode') is-invalid @enderror" id="periode" name="periode" placeholder="Periode" value="{{ old('periode') }} "/>
+                @error('periode')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.3 Kolom G --}}
             <div class="mb-3 col-md-6">
-                <label for="lama-anggota" class="form-label">Sudah Berapa Lama Menjadi Anggota?</label>
-                <select id="lama-anggota" class="select2 form-select">
+                <label for="lama_anggota" class="form-label">Sudah Berapa Lama Menjadi Anggota?</label>
+                <select id="lama_anggota" name="lama_anggota" class="select2 form-select">
                     <option value="">Pilih Sudah Berapa Lama Menjadi Anggota?</option>
-                    <option value="1-5" selected>1 - 5 Tahun</option>
-                    <option value="6-10">6 - 10 Tahun</option>
-                    <option value="11-15">11 - 15 Tahun</option>
-                    <option value="lebih-dari-15">> 15 Tahun</option>
+                    <option value="1-5" {{ old('lama_anggota') == "1-5" ? ' selected' : '' }} >1 - 5 Tahun</option>
+                    <option value="6-10" {{ old('lama_anggota') == "6-10" ? ' selected' : '' }}>6 - 10 Tahun</option>
+                    <option value="11-15" {{ old('lama_anggota') == "11-15" ? ' selected' : '' }}>11 - 15 Tahun</option>
+                    <option value="lebih-dari-15" {{ old('lama_anggota') == "lebih-dari-15" ? ' selected' : '' }}>> 15 Tahun</option>
                 </select>
             </div>
             {{-- I.3 Kolom H --}}
             <div class="mb-3 col-md-6">
                 <label for="jabatan" class="form-label">Jabatan Dalam Organisasi</label>
-                <select id="jabatan" class="select2 form-select">
+                <select id="jabatan" name="jabatan" class="select2 form-select">
                     <option value="">
                         Pilih Jabatan Dalam Organisasi
                     </option>
-                    <option value="anggota-biasa" selected>
+                    <option value="anggota-biasa" {{ old('jabatan') == "anggota-biasa" ? ' selected' : '' }}>
                         Anggota Biasa
                     </option>
-                    <option value="anggota-pengurus">
+                    <option value="anggota-pengurus" {{ old('jabatan') == "anggota-pengurus" ? ' selected' : '' }}>
                         Anggota Pengurus
                     </option>
-                    <option value="pimpinan">Pimpinan</option>
+                    <option value="pimpinan" {{ old('jabatan') == "pimpinan" ? ' selected' : '' }}>Pimpinan</option>
                 </select>
             </div>
             {{-- I.3 Kolom I --}}
             <div class="mb-3 col-md-6">
-                <label for="tingkatan" class="form-label">Tingkatan Organisasi</label>
-                <select id="tingkatan" class="select2 form-select">
+                <label for="tingkatan_organisasi" class="form-label">Tingkatan Organisasi</label>
+                <select id="tingkatan_organisasi" name="tingkatan_organisasi" class="select2 form-select">
                     <option value="">
                         Pilih Tingkatan Organisasi
                     </option>
-                    <option value="lokal" selected>
+                    <option value="lokal" {{ old('tingkatan_organisasi') == "lokal" ? ' selected' : '' }}>
                         Organisasi Lokal (Bukan Nasional)
                     </option>
-                    <option value="nasional">
+                    <option value="nasional" {{ old('tingkatan_organisasi') == "nasional" ? ' selected' : '' }}>
                         Organisasi Nasional
                     </option>
-                    <option value="regional">
+                    <option value="regional" {{ old('tingkatan_organisasi') == "regional" ? ' selected' : '' }}>
                         Organisasi Regional
                     </option>
-                    <option value="internasional">
+                    <option value="internasional" {{ old('tingkatan_organisasi') == "internasional" ? ' selected' : '' }}>
                         Organisasi Internasional
                     </option>
                 </select>
             </div>
             {{-- I.3 Kolom J --}}
             <div class="mb-3 col-md-6">
-                <label for="lingkup" class="form-label">Lingkup Kegiatan Organisasi</label>
-                <select id="lingkup" class="select2 form-select">
+                <label for="lingkup_organisasi" class="form-label">Lingkup Kegiatan Organisasi</label>
+                <select id="lingkup_organisasi" name="lingkup_organisasi" class="select2 form-select">
                     <option value="">
                         Pilih Lingkup Kegiatan Organisasi
                     </option>
-                    <option value="asosiasi-profesi" selected>
+                    <option value="asosiasi-profesi" {{ old('lingkup_organisasi') == "asosiasi-profesi" ? ' selected' : '' }}>
                         Asosiasi Profesi
                     </option>
-                    <option value="lembaga-pemerintah">
+                    <option value="lembaga-pemerintah" {{ old('lingkup_organisasi') == "lembaga-pemerintah" ? ' selected' : '' }}>
                         Lembaga Pemerintah
                     </option>
-                    <option value="lembaga-pendidikan">
+                    <option value="lembaga-pendidikan" {{ old('lingkup_organisasi') == "lembaga-pendidikan" ? ' selected' : '' }}>
                         Lembaga Pendidikan
                     </option>
-                    <option value="bumn">
+                    <option value="bumn" {{ old('lingkup_organisasi') == "bumn" ? ' selected' : '' }}>
                         Badan Usaha Milik Negara
                     </option>
-                    <option value="badan-usaha-swasta">
+                    <option value="badan-usaha-swasta" {{ old('lingkup_organisasi') == "badan-usaha-swasta" ? ' selected' : '' }}>
                         Badan Usaha Swasta
                     </option>
-                    <option value="organisasi-kemasyarakatan">
+                    <option value="organisasi-kemasyarakatan" {{ old('lingkup_organisasi') == "organisasi-kemasyarakatan" ? ' selected' : '' }}>
                         Organisasi Kemasyarakatan
                     </option>
-                    <option value="lain-lain">Lain-lain</option>
+                    <option value="lain-lain" {{ old('lingkup_organisasi') == "lain-lain" ? ' selected' : '' }}>Lain-lain</option>
                 </select>
             </div>
             {{-- I.3 Kolom K --}}
             <div class="mb-3">
                 <label for="aktifitas" class="form-label">Aktifitas Dalam Organisasi</label>
-                <textarea name="aktifitas" id="aktifitas" class="form-control" placeholder="Aktifitas Dalam Organisasi" rows="5"></textarea>
+                <textarea name="aktifitas" id="aktifitas" class="form-control @error('aktifitas') is-invalid @enderror" placeholder="Aktifitas Dalam Organisasi" rows="5">{{ old('aktifitas') }}</textarea>
+                @error('aktifitas')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
         </div>
       </div>
@@ -763,16 +608,34 @@
           >
             Reset
           </button>
-          <a
-            href="/data-pribadi/organisasi"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
-          >
+            >Simpan</button>
         </div>
       </div>
     </form>
     <!-- /Account -->
   </div>
+
+  <script>
+    function previewPDF(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = function () {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = '';
+        }
+    }
+  </script>
 
 @endsection
 

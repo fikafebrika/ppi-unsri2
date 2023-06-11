@@ -78,7 +78,7 @@
             <div class="mb-3 col-md-6">
                 <label for="bukti" class="form-label"
                   >Upload Bukti</label>
-                  <input type="hidden" name="oldbukti" value="{{ $pendidikan_formal_user->bukti }}">
+                <input type="hidden" name="oldbukti" value="{{ $pendidikan_formal_user->bukti }}">
                 @if ($pendidikan_formal_user->bukti)
                 <iframe  id="pdf-preview" src="{{ asset('storage/' . $pendidikan_formal_user->bukti) }}" width="100%" height="500px"></iframe>
                 @else
@@ -90,11 +90,12 @@
                   type="file"
                   id="bukti"
                   name="bukti"/>
-              </div>
-              @error('bukti')
+                   @error('bukti')
                 <div class="invalid-feedback"> {{ $message }}</div>
                 {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
+              </div>
+             
           {{-- I.2 C2 (Untuk S1) --}}
           {{-- I.2 D2 (Untuk S2) --}}
           {{-- I.2 E2 (Untuk S3) --}}

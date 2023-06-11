@@ -4,11 +4,13 @@ use App\Http\Controllers\LoginAdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\PendidikanFormalController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\VerifikatorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -260,11 +262,19 @@ Route::prefix('/data-pribadi')->group(function () {
      */
     Route::resource('/pendidikan_formal', PendidikanFormalController::class)->middleware('auth');
 
+    /**
+     * Route untuk ke halaman organisasi
+     */
+    Route::resource('/organisasi', OrganisasiController::class)->middleware('auth');
 
 
-    Route::get('/organisasi', function () {
-        return view('mahasiswa.data-pribadi.organisasi');
-    });
+    // Route::get('/organisasi/detail', function () {
+    //     return view('mahasiswa.data-pribadi.detail.organisasi');
+    // });
+
+    // Route::get('/organisasi/tambah', function () {
+    //     return view('mahasiswa.data-pribadi.tambah.organisasi');
+    // });
 
     Route::get('/tanda-penghargaan', function () {
         return view('mahasiswa.data-pribadi.tanda-penghargaan');
@@ -279,9 +289,7 @@ Route::prefix('/data-pribadi')->group(function () {
     });
 
 
-    Route::get('/organisasi/tambah', function () {
-        return view('mahasiswa.data-pribadi.tambah.organisasi');
-    });
+
 
     Route::get('/tanda-penghargaan/tambah', function () {
         return view('mahasiswa.data-pribadi.tambah.tanda-penghargaan');
@@ -296,9 +304,7 @@ Route::prefix('/data-pribadi')->group(function () {
     });
 
 
-    Route::get('/organisasi/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.organisasi');
-    });
+
 
     Route::get('/tanda-penghargaan/detail', function () {
         return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');

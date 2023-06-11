@@ -53,4 +53,10 @@ class User extends Authenticatable
         //satu user bisa mempunya banyak pendidikan formal
         return $this->hasMany(PendidikanFormal::class);
     }
+
+    public function organisasi()
+    {
+        //satu user bisa mempunya banyak organisasi
+        return $this->hasMany(Organisasi::class);
+    }
 }
