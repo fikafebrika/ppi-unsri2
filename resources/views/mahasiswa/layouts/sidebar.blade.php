@@ -41,12 +41,12 @@
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('data-pribadi/pelatihan*') ? 'active' : '' }}">
               <a href="/data-pribadi/pelatihan" class="menu-link">
                 <div data-i18n="Pelatihan">Pelatihan</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('data-pribadi/sertifikat*') ? 'active' : '' }}">
               <a href="/data-pribadi/sertifikat" class="menu-link">
                 <div data-i18n="Sertifikat">Sertifikat</div>
               </a>

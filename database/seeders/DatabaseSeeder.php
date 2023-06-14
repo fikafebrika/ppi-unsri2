@@ -29,8 +29,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Admin::create([
+            'nama_lengkap' => 'Admin',
+            'nomor_induk_pegawai' => '123456',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
+            'role' => 'admin'
         ]);
     }
 }

@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penghargaans', function (Blueprint $table) {
+        Schema::create('pelatihans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('bukti_penghargaan');
-            $table->string('tahun');
-            $table->string('nama_penghargaan');
-            $table->string('nama_lembaga_pemberi');
+            $table->string('bukti_pelatihan');
+            $table->string('nama_pendidikan');
+            $table->string('penyelenggara');
             $table->string('lokasi');
             $table->string('negara');
-            $table->string('tingkat_penghargaan');
-            $table->string('jabatan');
-            $table->string('tingkatan_lembaga');
-            $table->string('uraian');
+            $table->string('bulan_tahun');
+            $table->string('tingkat_materi');
+            $table->string('jumlah_jam');
+            $table->text('uraian');
             $table->string('status_validasi')->default('pending');
             $table->text('catatan_verifikator')->nullable();
             $table->timestamps();
@@ -39,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penghargaans');
+        Schema::dropIfExists('pelatihans');
     }
 };

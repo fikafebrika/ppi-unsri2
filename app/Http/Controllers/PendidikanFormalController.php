@@ -96,6 +96,7 @@ class PendidikanFormalController extends Controller
     public function edit(PendidikanFormal $pendidikanFormal)
     {
         //
+        // dd($pendidikanFormal);
         return view('mahasiswa.data-pribadi.pendidikan_formal.edit', [
             'pendidikan_formal_user' => $pendidikanFormal
         ]);

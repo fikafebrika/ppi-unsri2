@@ -5,11 +5,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PendidikanFormalController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekognisiPencapaianController;
+use App\Http\Controllers\SertifikatController;
+use App\Http\Controllers\TandaPenghargaanController;
 use App\Http\Controllers\VerifikatorController;
 use App\Models\Penghargaan;
 
@@ -268,54 +271,11 @@ Route::prefix('/data-pribadi')->group(function () {
      */
     Route::resource('/organisasi', OrganisasiController::class)->middleware('auth');
 
+    Route::resource('/tanda-penghargaan', TandaPenghargaanController::class)->middleware('auth');
 
-    Route::resource('/tanda-penghargaan', PenghargaanController::class)->middleware('auth');
+    Route::resource('/pelatihan', PelatihanController::class)->middleware('auth');
 
-    // Route::get('/tanda-penghargaan', function () {
-    //     return view('mahasiswa.data-pribadi.tanda-penghargaan');
-    // });
-
-    // Route::get('/tanda-penghargaan/tambah', function () {
-    //     return view('mahasiswa.data-pribadi.tambah.tanda-penghargaan');
-    // });
-
-    // Route::get('/tanda-penghargaan/detail', function () {
-    //     return view('mahasiswa.data-pribadi.detail.tanda-penghargaan');
-    // });
-
-    Route::get('/pelatihan', function () {
-        return view('mahasiswa.data-pribadi.pelatihan');
-    });
-
-    Route::get('/sertifikat', function () {
-        return view('mahasiswa.data-pribadi.sertifikat');
-    });
-
-
-
-
-
-
-    Route::get('/pelatihan/tambah', function () {
-        return view('mahasiswa.data-pribadi.tambah.pelatihan');
-    });
-
-    Route::get('/sertifikat/tambah', function () {
-        return view('mahasiswa.data-pribadi.tambah.sertifikat');
-    });
-
-
-
-
-
-
-    Route::get('/pelatihan/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.pelatihan');
-    });
-
-    Route::get('/sertifikat/detail', function () {
-        return view('mahasiswa.data-pribadi.detail.sertifikat');
-    });
+    Route::resource('/sertifikat', SertifikatController::class)->middleware('auth');
 });
 
 Route::prefix('/kode-etik-insinyur')->group(function () {

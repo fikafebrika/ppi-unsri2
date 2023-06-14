@@ -65,4 +65,16 @@ class User extends Authenticatable
         //satu user bisa mempunya banyak penghargaan
         return $this->hasMany(Penghargaan::class);
     }
+
+    public function pelatihan()
+    {
+        //satu user bisa mempunyai banyak pelatihan
+        return $this->hasMany(Pelatihan::class);
+    }
+
+    public function sertifikat()
+    {
+        //satu user bisa mempunyai banyak sertifikat
+        return $this->hasMany(Sertifikat::class);
+    }
 }

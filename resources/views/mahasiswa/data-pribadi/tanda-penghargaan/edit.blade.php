@@ -10,71 +10,75 @@
 
 @section('content')
 <div class="card">
-    <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      action="/data-pribadi/tanda-penghargaan"
+      action="/data-pribadi/tanda-penghargaan/{{ $penghargaan_user->id }}"
       enctype="multipart/form-data"
     >
-    @csrf
+    @method('put')
+      @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
+    <div class="card-body">
         <div class="mb-3 col-md-12">
           <label class="form-label" for="hasil-validasi"
-            >Hasil Validasi</label
-          >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
+            >{{ $penghargaan_user->status_validasi }}</label>
+
+            @if ($penghargaan_user->status_validasi === "valid")
             <option value="valid" class="text-success fw-bold" selected>
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
-          </select>
+            @elseif($penghargaan_user->status_validasi === "invalid")
+            <option value="invalid" class="text-danger fw-bold" selected>
+                INVALID (*Bila ada kesalahan pada pencapaian
+                mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            @elseif($penghargaan_user->status_validasi === "pending")
+            <option value="" class="text-warning fw-bold" selected>
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option>  
+            @endif
+
+            
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control bg-white" disabled
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          >Tidak Ada</textarea>
+          >{{ $penghargaan_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> --}}
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
                 <label for="bukti_penghargaan" class="form-label"
                   >Upload Bukti</label
                 >
-                <div id="pdf-preview"></div>
+                <input type="hidden" name="oldbuktipenghargaan" value="{{ $penghargaan_user->bukti_penghargaan }}">
+                @if ($penghargaan_user->bukti_penghargaan)
+                <iframe  id="pdf-preview" src="{{ asset('storage/' . $penghargaan_user->bukti_penghargaan) }}" width="100%" height="500px"></iframe>
+                @else
+                <p>Tidak ada file PDF yang diunggah.</p>
+                @endif
                 <input
                   class="form-control @error('bukti_penghargaan') is-invalid @enderror"
                   type="file"
                   id="bukti_penghargaan"
                   name="bukti_penghargaan"
-                  value="{{ old('bukti_penghargaan') }}"
-                  onchange="previewPDF(this)"
                 />
                 @error('bukti_penghargaan')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
               </div>
             {{-- I.4 Kolom B --}}
@@ -88,11 +92,11 @@
                   id="tahun"
                   name="tahun"
                   placeholder="Tahun"
-                  value="{{ old('tahun') }}"
+                  value="{{ old('tahun', $penghargaan_user->tahun) }}"
+
                 />
                 @error('tahun')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- I.4 Kolom C --}}
@@ -106,12 +110,11 @@
                   id="nama_penghargaan"
                   name="nama_penghargaan"
                   placeholder="Nama Tanda Penghargaan"
-                  value="{{ old('nama_penghargaan') }}"
+                  value="{{ old('nama_penghargaan', $penghargaan_user->nama_penghargaan) }}"
 
                 />
                 @error('nama_penghargaan')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- I.4 Kolom D --}}
@@ -125,12 +128,11 @@
                   id="nama_lembaga_pemberi"
                   name="nama_lembaga_pemberi"
                   placeholder="Nama Lembaga yang Memberikan"
-                  value="{{ old('nama_lembaga_pemberi') }}"
+                  value="{{ old('nama_lembaga_pemberi', $penghargaan_user->nama_lembaga_pemberi) }}"
 
                 />
                 @error('nama_lembaga_pemberi')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- I.4 Kolom E --}}
@@ -144,12 +146,11 @@
                   id="lokasi"
                   name="lokasi"
                   placeholder="Lokasi"
-                  value="{{ old('lokasi') }}"
+                  value="{{ old('lokasi', $penghargaan_user->lokasi) }}"
 
                 />
                 @error('lokasi')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- I.4 Kolom F --}}
@@ -163,12 +164,11 @@
                   id="negara"
                   name="negara"
                   placeholder="Negara"
-                  value="{{ old('negara') }}"
+                  value="{{ old('negara', $penghargaan_user->negara) }}"
 
                 />
                 @error('negara')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- I.4 Kolom G --}}
@@ -180,18 +180,20 @@
                 id="tingkat_penghargaan"
                 name="tingkat_penghargaan"
                 class="select2 form-select"
+
                 >
                 <option value="">
                     Pilih Penghargaan yang Diterima Tingkat
                 </option>
-                <option value="pratama" {{ old('tingkat_penghargaan') == "pratama" ? ' selected' : '' }}>
-                    Tingkatan Muda/ Pratama
+
+                <option value="pratama" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "pratama" ? ' selected' : '' }}>
+                  Tingkatan Muda/ Pratama
                 </option>
-                <option value="madya" {{ old('tingkat_penghargaan') == "madya" ? ' selected' : '' }}>
-                    Tingkatan Madya
+                <option value="madya" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "madya" ? ' selected' : '' }}>
+                  Tingkatan Madya
                 </option>
-                <option value="utama" {{ old('tingkat_penghargaan') == "utama" ? ' selected' : '' }}>
-                    Tingkatan Utama
+                <option value="utama" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "utama" ? ' selected' : '' }}>
+                  Tingkatan Utama
                 </option>
                 </select>
             </div>
@@ -204,20 +206,24 @@
                 id="tingkatan_lembaga"
                 name="tingkatan_lembaga"
                 class="select2 form-select"
+
                 >
                 <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" {{ old('tingkatan_lembaga') == "lokal" ? ' selected' : '' }}>
-                    Penghargaan Lokal
+
+
+                <option value="lokal" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "lokal" ? ' selected' : '' }}>
+                  Penghargaan Lokal
                 </option>
-                <option value="nasional" {{ old('tingkatan_lembaga') == "nasional" ? ' selected' : '' }}>
-                    Penghargaan Nasional
+                <option value="nasional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "nasional" ? ' selected' : '' }}>
+                  Penghargaan Nasional
                 </option>
-                <option value="regional" {{ old('tingkatan_lembaga') == "regional" ? ' selected' : '' }}>
-                    Penghargaan Regional
+                <option value="regional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "regional" ? ' selected' : '' }}>
+                  Penghargaan Regional
                 </option>
-                <option value="internasional" {{ old('tingkatan_lembaga') == "internasional" ? ' selected' : '' }}>
-                    Penghargaan Internasional
+                <option value="internasional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "internasional" ? ' selected' : '' }}>
+                  Penghargaan Internasional
                 </option>
+
                 </select>
             </div>
             {{-- I.4 Kolom I --}}
@@ -226,16 +232,14 @@
                 >Uraian Singkat Tanda Penghargaan</label
                 >
                 <textarea
-                id="uraian"
                 name="uraian"
+                id="uraian"
                 class="form-control @error('uraian') is-invalid @enderror"
                 placeholder="Uraian Singkat Tanda Penghargaan"
-                rows="5"
-              
-                >{{ old('uraian') }}</textarea>
+                 rows="5"
+                >{{ old('uraian', $penghargaan_user->uraian) }}</textarea>
                 @error('uraian')
                 <div class="invalid-feedback"> {{ $message }}</div>
-                {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
             </div>
             {{-- <div class="mb-3 col-md-6">
@@ -698,22 +702,20 @@
     <!-- /Account -->
   </div>
   <script>
-    function previewPDF(input) {
-        const file = input.files[0];
-        const reader = new FileReader();
-        
-        reader.onloadend = function () {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
-        }
-        
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            const pdfPreview = document.getElementById('pdf-preview');
-            pdfPreview.innerHTML = '';
-        }
-    }
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti_penghargaan');
+
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
   </script>
 @endsection
 

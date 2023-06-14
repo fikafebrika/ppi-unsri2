@@ -127,8 +127,8 @@
               value="{{ old('nama_perguruan_tinggi', $pendidikan_formal_user->nama_perguruan_tinggi) }}"
             />
             @error('nama_perguruan_tinggi')
-			<div class="invalid-feedback"> {{ $message }}</div>
-			@enderror
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- I.2 C4 (Untuk S1) --}}
           {{-- I.2 D4 (Untuk S2) --}}
@@ -258,8 +258,8 @@
             >{{ old('judul', $pendidikan_formal_user->judul) }}</textarea
             >
             @error('judul')
-			<div class="invalid-feedback"> {{ $message }}</div>
-			@enderror
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- I.2 C11 (Untuk S1) --}}
           {{-- I.2 D11 (Untuk S2) --}}

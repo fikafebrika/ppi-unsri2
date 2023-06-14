@@ -174,7 +174,7 @@
                     <option value="anggota-pengurus" {{ old('jabatan', $organisasi_user->jabatan) == "anggota-pengurus" ? ' selected' : '' }}>
                         Anggota Pengurus
                     </option>
-                    <option value="pimpinan" {{ old('jabatan', $organisasi_user->jabatan) == "pimpinan" ? ' selected' : '' }}>
+                    <option value="pimpinan" {{ old('jabatan', $organisasi_user->jabatan  ) == "pimpinan" ? ' selected' : '' }}>
                         Pimpinan
                     </option>
                 </select>
