@@ -150,35 +150,36 @@
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/kode-etik-insinyur/pengertian/{{ $pengertian_user->id }}"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @method('put')
+      @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
+      <div class="card-body">
         <div class="mb-3 col-md-12">
           <label class="form-label" for="hasil-validasi"
             >Hasil Validasi</label
           >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-          </select>
+          @if ($pengertian_user->status_validasi ==="valid")
+          <option value="valid" class="text-success fw-bold" selected>
+            VALID (*Bila semua pencapaian mahasiswa telah
+            sesuai)
+          </option>
+          @elseif($pengertian_user->status_validasi ==="invalid")
+          <option value="invalid" class="text-danger fw-bold">
+            INVALID (*Bila ada kesalahan pada pencapaian
+            mahasiswa atau ada pencapaian yang tidak sesuai)
+          </option>
+          @elseif($pengertian_user->status_validasi ==="pending")
+          <option value="" class="text-warning fw-bold">
+            Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+          </option> 
+          @endif
+        
         </div>
         <div class="mb-3 col-md-12">
           <label
@@ -191,10 +192,10 @@
             class="form-control bg-white" disabled
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          >Tidak Ada</textarea>
+          >{{ $pengertian_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> --}}
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
           {{-- II.2 KOLOM A --}}
@@ -211,7 +212,7 @@
               id="pengertian"
               cols="30"
               rows="10"
-            ></textarea
+            >{{ old('pengertian', $pengertian_user->pengertian) }}</textarea
             >
           </div>
         </div>
@@ -652,10 +653,10 @@
           >
             Reset
           </button>
-          <a
-            href="/kode-etik-insinyur/pengertian"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
+            >Simpan</button
           >
         </div>
       </div>

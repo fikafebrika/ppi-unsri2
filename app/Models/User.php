@@ -83,4 +83,9 @@ class User extends Authenticatable
         //satu user bisa mempunyai banyak referensi
         return $this->hasMany(Referensit::class);
     }
+
+    public function pengertian()
+    {
+        return $this->hasMany(Pengertian::class);
+    }
 }
