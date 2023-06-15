@@ -6,7 +6,7 @@
         <div data-i18n="Beranda">Beranda</div>
       </a>
     </li>
-    <li class="menu-item active open">
+    <li class="menu-item open">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
         <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
@@ -17,7 +17,7 @@
             <div data-i18n="Profil">Profil</div>
           </a>
         </li>
-        <li class="menu-item open {{ Request::is('data-pribadi*') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('data-pribadi*') ? 'open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Data Pribadi">Data Pribadi</div>
           </a>
@@ -53,12 +53,12 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('kode-etik-insinyur') ? 'open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('kode-etik-insinyur/referensi*') ? 'active' : '' }}">
               <a
                 href="/kode-etik-insinyur/referensi"
                 class="menu-link"
@@ -66,7 +66,7 @@
                 <div data-i18n="Referensi">Referensi</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('kode-etik-insinyur/pengertian*') ? 'active' : '' }}">
               <a
                 href="/kode-etik-insinyur/pengertian"
                 class="menu-link"

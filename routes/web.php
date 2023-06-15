@@ -9,6 +9,7 @@ use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PendidikanFormalController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\SertifikatController;
@@ -279,25 +280,33 @@ Route::prefix('/data-pribadi')->group(function () {
 });
 
 Route::prefix('/kode-etik-insinyur')->group(function () {
-    Route::get('/referensi', function () {
-        return view('mahasiswa.kode-etik-insinyur.referensi');
-    });
+
+
+    Route::resource('/referensi', ReferensiController::class)->middleware('auth');
+
+    // Route::get('/referensi', function () {
+    //     return view('mahasiswa.kode-etik-insinyur.referensi');
+    // });
+
+    // Route::get('/referensi/tambah', function () {
+    //     return view('mahasiswa.kode-etik-insinyur.tambah.referensi');
+    // });
+
+    // Route::get('/referensi/detail', function () {
+    //     return view('mahasiswa.kode-etik-insinyur.detail.referensi');
+    // });
 
     Route::get('/pengertian', function () {
         return view('mahasiswa.kode-etik-insinyur.pengertian');
     });
 
-    Route::get('/referensi/tambah', function () {
-        return view('mahasiswa.kode-etik-insinyur.tambah.referensi');
-    });
+
 
     Route::get('/pengertian/tambah', function () {
         return view('mahasiswa.kode-etik-insinyur.tambah.pengertian');
     });
 
-    Route::get('/referensi/detail', function () {
-        return view('mahasiswa.kode-etik-insinyur.detail.referensi');
-    });
+
 
     Route::get('/pengertian/detail', function () {
         return view('mahasiswa.kode-etik-insinyur.detail.pengertian');

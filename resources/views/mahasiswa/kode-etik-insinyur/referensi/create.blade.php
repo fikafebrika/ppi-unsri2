@@ -5,253 +5,91 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item active">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+    <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/kode-etik-insinyur/referensi"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
-      {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
-        <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
-            >Hasil Validasi</label
-          >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-          </select>
-        </div>
-        <div class="mb-3 col-md-12">
-          <label
-            for="catatan-verifikator"
-            class="form-label text-danger"
-            >Catatan Tim Verifikator</label
-          >
-          <textarea
-            id="catatan-verifikator"
-            class="form-control bg-white" disabled
-            placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
-            rows="5"
-          >Tidak Ada</textarea>
-        </div>
-      </div>
-      <hr class="my-0" /> --}}
+    @csrf
       <div class="card-body pb-3">
         <div class="row">
           {{-- II.1 KOLOM B --}}
             <div class="mb-3 col-md-6">
-            <label for="nama" class="form-label">Nama</label>
+            <label for="nama_referensi" class="form-label">Nama</label>
             <input
               type="text"
-              class="form-control"
-              id="nama"
-              name="nama"
+              class="form-control @error('nama_referensi') is-invalid @enderror"
+              id="nama_referensi"
+              name="nama_referensi"
               placeholder="Nama"
-              value=""
+              value="{{ old('nama_referensi') }}"
 
             />
+            @error('nama_referensi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            {{-- <p class="text-danger">{{ $message }}</p> --}}
+            @enderror
           </div>
           {{-- II.1 KOLOM C --}}
           <div class="mb-3">
-            <label for="alamat" class="form-label"
+            <label for="alamat_referensi" class="form-label"
               >Alamat</label
             >
             <input
-              class="form-control"
+              class="form-control @error('alamat_referensi') is-invalid @enderror"
               type="text"
-              id="alamat"
-              name="alamat"
+              id="alamat_referensi"
+              name="alamat_referensi"
               placeholder="Alamat"
-              value=""
+              value="{{ old('alamat_referensi') }}"
 
             />
+            @error('alamat_referensi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            {{-- <p class="text-danger">{{ $message }}</p> --}}
+            @enderror
           </div>
           {{-- II.1 KOLOM D --}}
           <div class="mb-3 col-md-6">
-            <label for="no-telp" class="form-label"
+            <label for="no_telp_referensi" class="form-label"
               >No. Telepon</label
             >
             <input
               type="text"
-              class="form-control"
-              id="no-telp"
-              name="no-telp"
+              class="form-control @error('no_telp_referensi') is-invalid @enderror"
+              id="no_telp_referensi"
+              name="no_telp_referensi"
               placeholder="No. Telepon"
-              value=""
+              value="{{ old('no_telp_referensi') }}"
 
             />
+            @error('no_telp_referensi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            {{-- <p class="text-danger">{{ $message }}</p> --}}
+            @enderror
           </div>
           {{-- II.1 KOLOM E --}}
           <div class="mb-3 col-md-6">
-            <label for="email" class="form-label">Email</label>
+            <label for="email_referensi" class="form-label">Email</label>
             <input
               type="text"
-              class="form-control"
-              id="email"
-              name="email"
+              class="form-control @error('email_referensi') is-invalid @enderror"
+              id="email_referensi"
+              name="email_referensi"
               placeholder="Email"
-              value=""
+              value="{{ old('email_referensi') }}"
 
             />
+            @error('email_referensi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            {{-- <p class="text-danger">{{ $message }}</p> --}}
+            @enderror
           </div>
           {{-- II.1 KOLOM F --}}
           <div class="mb-3 col-md-6">
@@ -260,13 +98,17 @@
             >
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('hubungan') is-invalid @enderror"
               id="hubungan"
               name="hubungan"
               placeholder="Hubungan"
-              value=""
+              value="{{ old('hubungan') }}"
 
             />
+            @error('hubungan')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            {{-- <p class="text-danger">{{ $message }}</p> --}}
+            @enderror
           </div>
         </div>
       </div>
@@ -706,10 +548,10 @@
           >
             Reset
           </button>
-          <a
-            href="/kode-etik-insinyur/referensi"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
+            >Simpan</button
           >
         </div>
       </div>

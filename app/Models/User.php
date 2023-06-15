@@ -63,7 +63,7 @@ class User extends Authenticatable
     public function penghargaan()
     {
         //satu user bisa mempunya banyak penghargaan
-        return $this->hasMany(Penghargaan::class);
+        return $this->hasMany(TandaPenghargaan::class);
     }
 
     public function pelatihan()
@@ -76,5 +76,11 @@ class User extends Authenticatable
     {
         //satu user bisa mempunyai banyak sertifikat
         return $this->hasMany(Sertifikat::class);
+    }
+
+    public function referensi()
+    {
+        //satu user bisa mempunyai banyak referensi
+        return $this->hasMany(Referensit::class);
     }
 }
