@@ -134,8 +134,8 @@ class KualifikasiProfesionalController extends Controller
 
         if ($request->file('bukti_kualifikasi_profesional')) {
             //kalau gambar lamanya ada
-            if ($request->oldbuktikualifikasiprofesional) {
-                Storage::delete($request->oldbuktikualifikasiprofesional);
+            if ($request->oldBuktiKualifikasiProfesional) {
+                Storage::delete($request->oldBuktiKualifikasiProfesionall);
             }
             $validatedData['bukti_kualifikasi_profesional'] = $request->file('bukti_kualifikasi_profesional')->store('bukti-kualifikasi-professional');
         }

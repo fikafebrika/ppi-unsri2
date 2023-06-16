@@ -150,35 +150,37 @@
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/pengalaman-mengajar/{{ $pengalaman_mengajar_user->id }}"
+      enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @method('put')
+      @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
+      <div class="card-body">
         <div class="mb-3 col-md-12">
           <label class="form-label" for="hasil-validasi"
             >Hasil Validasi</label
           >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-          </select>
+          @if ($pengalaman_mengajar_user->status_validasi === "valid")
+          <option value="valid" class="text-success fw-bold" selected>
+            VALID (*Bila semua pencapaian mahasiswa telah
+            sesuai)
+          </option>
+          @elseif($pengalaman_mengajar_user->status_validasi === "invalid")
+          <option value="invalid" class="text-danger fw-bold">
+            INVALID (*Bila ada kesalahan pada pencapaian
+            mahasiswa atau ada pencapaian yang tidak sesuai)
+          </option>
+          @elseif($pengalaman_mengajar_user->status_validasi === "pending")
+          <option value="" class="text-warning fw-bold">
+            Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+          </option> 
+          @endif
+
         </div>
         <div class="mb-3 col-md-12">
           <label
@@ -191,51 +193,69 @@
             class="form-control bg-white" disabled
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          >Tidak Ada</textarea>
+          >{{ $pengalaman_mengajar_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> --}}
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
+                <label for="bukti_pengalaman_mengajar" class="form-label"
                   >Upload Bukti</label
                 >
+                <input type="hidden" name="oldBuktiPengalamanMengajar" value="{{ $pengalaman_mengajar_user->bukti_pengalaman_mengajar }}">
+                @if ($pengalaman_mengajar_user->bukti_pengalaman_mengajar)
+                <iframe  id="pdf-preview" src="{{ asset('storage/' . $pengalaman_mengajar_user->bukti_pengalaman_mengajar) }}" width="100%" height="500px"></iframe>
+                @else
+                <p>Tidak ada file PDF yang diunggah.</p>
+                @endif
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti_pengalaman_mengajar') is-invalid @enderror"
                   type="file"
-                  id="bukti"
+                  id="bukti_pengalaman_mengajar"
+                  name="bukti_pengalaman_mengajar"
+                  disabled
                 />
+                @error('bukti_pengalaman_mengajar')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
               </div>
           {{-- IV KOLOM B --}}
             <div class="mb-3 col-md-6">
             <label
-              for="nama-perguruan-tinggi"
+              for="nama_perguruan_tinggi"
               class="form-label"
               >Nama Perguruan Tinggi/ Lembaga</label
             >
             <input
-              class="form-control"
+              class="form-control @error('nama_perguruan_tinggi') is-invalid @enderror"
               type="text"
-              id="nama-perguruan-tinggi"
-              name="nama-perguruan-tinggi"
+              id="nama_perguruan_tinggi"
+              name="nama_perguruan_tinggi"
               placeholder="Nama Perguruan Tinggi/ Lembaga"
-              value="Universitas Sriwijaya"
-
+              value="{{  $pengalaman_mengajar_user->nama_perguruan_tinggi }}"
+              disabled
             />
+            @error('nama_perguruan_tinggi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- IV KOLOM C --}}
           <div class="mb-3">
-            <label for="nama-mata-ajaran" class="form-label"
+            <label for="nama_mata_ajaran" class="form-label"
               >Nama Mata Ajaran & Uraian Singkat yang Diajarkan/ Dikembangkan</label
             >
             <textarea
-            name="nama-mata-ajaran"
-            id="nama-mata-ajaran"
-            class="form-control"
+            name="nama_mata_ajaran"
+            id="nama_mata_ajaran"
+            class="form-control @error('nama_mata_ajaran') is-invalid @enderror"
             placeholder="Nama Mata Ajaran & Uraian Singkat yang Diajarkan/ Dikembangkan"
              rows="5"
-          ></textarea>
+             disabled
+          >{{  $pengalaman_mengajar_user->nama_mata_ajaran }}</textarea>
+            @error('nama_mata_ajaran')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- IV KOLOM D --}}
           <div class="mb-3 col-md-6">
@@ -244,13 +264,16 @@
             >
             <input
               type="text"
-              class="form-control"
+              class="form-control @error('lokasi') is-invalid @enderror"
               id="lokasi"
               name="lokasi"
               placeholder="Lokasi"
-              value="Palembang"
-
+              value="{{  $pengalaman_mengajar_user->lokasi }}"
+              disabled
             />
+            @error('lokasi')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- IV KOLOM E --}}
           <div class="mb-3 col-md-6">
@@ -259,14 +282,24 @@
             >
             <select
               id="periode"
+              name="periode"
               class="select2 form-select"
-
+              disabled
             >
               <option value="">Pilih Periode</option>
-              <option value="1-9" selected>1 - 9 Tahun</option>
-              <option value="10-14">10 - 14 Tahun</option>
-              <option value="15-19">15 - 19 Tahun</option>
-              <option value="lebih-dari-20">> 20 Tahun</option>
+              <option value="1-9" {{ old('periode', $pengalaman_mengajar_user->periode) == "1-9" ? ' selected' : '' }}>
+                1 - 9 Tahun
+              </option>
+              <option value="10-14" {{ old('periode', $pengalaman_mengajar_user->periode) == "10-14" ? ' selected' : '' }}>
+                10 - 14 Tahun
+              </option>
+              <option value="15-19" {{ old('periode', $pengalaman_mengajar_user->periode) == "15-19" ? ' selected' : '' }}>
+                15 - 19 Tahun
+              </option>
+              <option value="lebih-dari-20" {{ old('periode', $pengalaman_mengajar_user->periode) == "lebih-dari-20" ? ' selected' : '' }}>
+                > 20 Tahun
+              </option>
+
             </select>
           </div>
           {{-- IV KOLOM F --}}
@@ -276,16 +309,20 @@
             >
             <select
               id="jabatan"
+              name="jabatan"
               class="select2 form-select"
-
+              disabled
             >
               <option value="">
                 Pilih Jabatan pada Perguruan Tinggi/ Lembaga
               </option>
-              <option value="staf-pengajar" selected>
+              <option value="staf-pengajar" {{ old('jabatan', $pengalaman_mengajar_user->jabatan) == "staf-pengajar" ? ' selected' : '' }}>
                 Staf Pengajar
               </option>
-              <option value="pimpinan">Pimpinan</option>
+              <option value="pimpinan" {{ old('jabatan', $pengalaman_mengajar_user->jabatan) == "pimpinan" ? ' selected' : '' }}>
+                Pimpinan
+              </option>
+
             </select>
           </div>
           {{-- IV KOLOM G --}}
@@ -295,17 +332,21 @@
             >
             <select
               id="sks"
+              name="sks"
               class="select2 form-select"
-
+              disabled
             >
               <option value="">Pilih Jumlah Jam/ SKS</option>
-              <option value="1-sks" selected>
+              <option value="1-sks" {{ old('sks', $pengalaman_mengajar_user->sks) == "1-sks" ? ' selected' : '' }}>
                 1 SKS/ 15 Jam
               </option>
-              <option value="2-3-sks">
+              <option value="2-3-sks" {{ old('sks', $pengalaman_mengajar_user->sks) == "2-3-sks" ? ' selected' : '' }}>
                 2 - 3 SKS/ 30 - 45 Jam
               </option>
-              <option value="4-sks">4 SKS/ 60 Jam</option>
+              <option value="4-sks" {{ old('sks', $pengalaman_mengajar_user->sks) == "4-sks" ? ' selected' : '' }}>
+                4 SKS/ 60 Jam
+              </option>
+
             </select>
           </div>
           {{-- IV KOLOM H --}}
@@ -317,10 +358,14 @@
             <textarea
               name="uraian"
               id="uraian"
-              class="form-control"
-              placeholder="Nama Mata Ajaran atau Uraian Singkat yang Diajarkan/ Dikembangkan" rows="5"
-
-            ></textarea>
+              class="form-control @error('uraian') is-invalid @enderror"
+              placeholder="Nama Mata Ajaran atau Uraian Singkat yang Diajarkan/ Dikembangkan" 
+              rows="5"
+              disabled
+            >{{  $pengalaman_mengajar_user->uraian }}</textarea>
+            @error('uraian')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -1934,7 +1979,7 @@
             Reset
           </button>
           <a
-            href="/pengalaman-mengajar"
+          href="/pengalaman-mengajar"
             class="btn btn-primary text-white"
             >Simpan</a
           >
@@ -1943,5 +1988,21 @@
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti_pengalaman_mengajar');
+
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
+  </script>
 @endsection
 

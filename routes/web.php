@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PendidikanFormalController;
+use App\Http\Controllers\PengalamanMengajarController;
 use App\Http\Controllers\PengertianController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\ProfilController;
@@ -289,31 +290,20 @@ Route::prefix('/kode-etik-insinyur')->group(function () {
     Route::resource('/pengertian', PengertianController::class)->middleware('auth');
 });
 
-// Route::get('/kualifikasi-profesional', function () {
-//     return view('mahasiswa.kualifikasi-profesional');
-// });
-
 Route::resource('/kualifikasi-profesional', KualifikasiProfesionalController::class)->middleware('auth');
 
-// Route::get('/kualifikasi-profesional/tambah', function () {
-//     return view('mahasiswa.tambah.kualifikasi-profesional');
+Route::resource('/pengalaman-mengajar', PengalamanMengajarController::class)->middleware('auth');
+// Route::get('/pengalaman-mengajar', function () {
+//     return view('mahasiswa.pengalaman-mengajar');
 // });
 
-// Route::get('/kualifikasi-profesional/detail', function () {
-//     return view('mahasiswa.detail.kualifikasi-profesional');
+// Route::get('/pengalaman-mengajar/tambah', function () {
+//     return view('mahasiswa.tambah.pengalaman-mengajar');
 // });
 
-Route::get('/pengalaman-mengajar', function () {
-    return view('mahasiswa.pengalaman-mengajar');
-});
-
-Route::get('/pengalaman-mengajar/tambah', function () {
-    return view('mahasiswa.tambah.pengalaman-mengajar');
-});
-
-Route::get('/pengalaman-mengajar/detail', function () {
-    return view('mahasiswa.detail.pengalaman-mengajar');
-});
+// Route::get('/pengalaman-mengajar/detail', function () {
+//     return view('mahasiswa.detail.pengalaman-mengajar');
+// });
 
 Route::prefix('/publikasi')->group(function () {
     Route::get('/karya-tulis', function () {

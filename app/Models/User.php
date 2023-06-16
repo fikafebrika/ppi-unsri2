@@ -93,4 +93,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(KualifikasiProfesional::class);
     }
+
+    public function pengalamanMengajar()
+    {
+        return $this->hasMany(PengalamanMengajar::class);
+    }
 }

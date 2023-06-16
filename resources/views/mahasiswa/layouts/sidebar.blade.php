@@ -76,14 +76,14 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('kualifikasi-profesional*') ? 'active' : '' }}">
           <a href="/kualifikasi-profesional" class="menu-link">
             <div data-i18n="Kualifikasi Profesional">
               Kualifikasi Profesional
             </div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('pengalaman-mengajar*') ? 'active' : '' }}">
           <a href="/pengalaman-mengajar" class="menu-link">
             <div data-i18n="Pengalaman Mengajar">
               Pengalaman Mengajar
