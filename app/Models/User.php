@@ -88,4 +88,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pengertian::class);
     }
+
+    public function kualifikasiProfesional()
+    {
+        return $this->hasMany(KualifikasiProfesional::class);
+    }
 }
