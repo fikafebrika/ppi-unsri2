@@ -1,184 +1,46 @@
 @extends('mahasiswa.layout')
 
 @section('pageHeading')
-  {{ __('Makalah') }}
+  {{ __('Bahasa') }}
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item active">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/bahasa/{{ $bahasa_user->id }}"
+      enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @method('put')
+      @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
-      {{-- <div class="card-body">
+      <div class="card-body">
         <div class="mb-3 col-md-12">
           <label class="form-label" for="hasil-validasi"
             >Hasil Validasi</label
           >
-          <select
-            id="hasil-validasi"
-            class="select2 form-select bg-white" disabled
-          >
-            <option value="">
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-          </select>
+          @if ($bahasa_user->status_validasi === "valid")
+          <option value="valid" class="text-success fw-bold" selected>
+            VALID (*Bila semua pencapaian mahasiswa telah
+            sesuai)
+          </option>
+          @elseif($bahasa_user->status_validasi === "invalid")
+          <option value="invalid" class="text-danger fw-bold">
+            INVALID (*Bila ada kesalahan pada pencapaian
+            mahasiswa atau ada pencapaian yang tidak sesuai)
+          </option>
+          @elseif($bahasa_user->status_validasi === "pending")
+          <option value="" class="text-warning fw-bold">
+            Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+          </option> 
+          @endif
+
         </div>
         <div class="mb-3 col-md-12">
           <label
@@ -191,153 +53,132 @@
             class="form-control bg-white" disabled
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          >Tidak Ada</textarea>
+          >{{ $bahasa_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> --}}
+      <hr class="my-0" /> 
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
+                <label for="bukti_bahasa" class="form-label"
                   >Upload Bukti</label
                 >
+                <input type="hidden" name="oldBuktiBahasa" value="{{ $bahasa_user->bukti_bahasa }}">
+                @if ($bahasa_user->bukti_bahasa)
+                <iframe  id="pdf-preview" src="{{ asset('storage/' . $bahasa_user->bukti_bahasa) }}" width="100%" height="500px"></iframe>
+                @else
+                <p>Tidak ada file PDF yang diunggah.</p>
+                @endif
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti_bahasa') is-invalid @enderror"
                   type="file"
-                  id="bukti"
+                  id="bukti_bahasa"
+                  name="bukti_bahasa"
+                  disabled
                 />
+                @error('bukti_bahasa')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
               </div>
-            {{-- V.2 KOLOM B --}}
+          {{-- VI KOLOM B --}}
             <div class="mb-3 col-md-6">
-                <label for="bulan-tahun" class="form-label"
-                  >Bulan - Tahun</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="bulan-tahun"
-                  name="bulan-tahun"
-                  placeholder="Bulan - Tahun"
-                  value=""
-
-                />
-              </div>
-          {{-- V.2 KOLOM C --}}
-              <div class="mb-3">
-            <label for="judul" class="form-label"
-              >Judul Makalah/ Tulisan</label
+            <label for="nama_bahasa" class="form-label"
+              >Nama Bahasa</label
             >
             <input
-              class="form-control"
+              class="form-control @error('nama_bahasa') is-invalid @enderror"
               type="text"
-              id="judul"
-              name="judul"
-              placeholder="Judul Makalah/ Tulisan"
-              value=""
+              id="nama_bahasa"
+              name="nama_bahasa"
+              placeholder="Nama Bahasa"
+              disabled
+              value="{{  $bahasa_user->nama_bahasa }}"
 
             />
+            @error('nama_bahasa')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
-          {{-- V.2 KOLOM D --}}
+          {{-- VI KOLOM C --}}
           <div class="mb-3 col-md-6">
-            <label for="nama-seminar" class="form-label"
-              >Nama Seminar/ Lokakarya</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="nama-seminar"
-              name="nama-seminar"
-              placeholder="Nama Seminar/ Lokakarya"
-              value=""
-
-            />
-          </div>
-          {{-- V.2 KOLOM E --}}
-          <div class="mb-3 col-md-6">
-            <label for="penyelenggara" class="form-label"
-              >Penyelenggara</label
-            >
-            <input
-              class="form-control"
-              type="text"
-              id="penyelenggara"
-              name="penyelenggara"
-              placeholder="Penyelenggara"
-              value=""
-
-            />
-          </div>
-          {{-- V.2 KOLOM F --}}
-          <div class="mb-3 col-md-6">
-            <label for="lokasi" class="form-label"
-              >Lokasi</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="lokasi"
-              name="lokasi"
-              placeholder="Lokasi"
-              value=""
-
-            />
-          </div>
-          {{-- V.2 KOLOM G --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkatan-seminar"
-              >Seminar/ Lokakarya Tingkat</label
+            <label class="form-label" for="jenis_bahasa"
+              >Jenis Bahasa</label
             >
             <select
-              id="tingkatan-seminar"
+              id="jenis_bahasa"
+              name="jenis_bahasa"
               class="select2 form-select"
-
+              disabled
             >
-              <option value="">
-                Pilih Seminar/ Lokakarya Tingkat
+              <option value="">Pilih Jenis Bahasa</option>
+              <option value="daerah" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "daerah" ? ' selected' : '' }}>
+                Bahasa Daerah
               </option>
-              <option value="nasional">
-                Pada Seminar Nasional
+              <option value="nasional" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "nasional" ? ' selected' : '' }}>
+                Bahasa Nasional
               </option>
-              <option value="internasional">
-                Pada Seminar Internasional
+              <option value="asing-internasional" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "asing-internasional" ? ' selected' : '' }}>
+                Bahasa Asing/ Internasional
+              </option>
+
+            
+            </select>
+          </div>
+          {{-- VI KOLOM D --}}
+          <div class="mb-3 col-md-6">
+            <label class="form-label" for="kemampuan"
+              >Kemampuan Verbal Aktif/ Pasif</label
+            >
+            <select
+              id="kemampuan"
+              name="kemampuan"
+              class="select2 form-select"
+              disabled
+            >
+              <option value="">Pilih Kemampuan Verbal Aktif/ Pasif</option>
+              <option value="pasif" {{ old('kemampuan', $bahasa_user->kemampuan) == "pasif" ? ' selected' : '' }}>
+                Pasif, Tertulis
+              </option>
+              <option value="aktif" {{ old('kemampuan', $bahasa_user->kemampuan) == "aktif" ? ' selected' : '' }}>
+                Aktif, Tertulis/ Lisan
               </option>
             </select>
           </div>
-          {{-- V.2 KOLOM H --}}
+          {{-- VI KOLOM E --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkat-kesulitan"
-              >Tingkat Kesulitan dan Manfaatnya Materi Seminar/
-              Lokakarya</label
+            <label class="form-label" for="jenis_tulisan"
+              >Jenis Tulisan yang Mampu Disusun</label
             >
-            <select
-              id="tingkat-kesulitan"
-              class="select2 form-select"
-
-            >
-              <option value="">
-                Pilih Tingkat Kesulitan dan Manfaatnya Materi
-                Seminar/ Lokakarya
-              </option>
-              <option value="rendah">Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
-                Sangat Tinggi
-              </option>
-            </select>
+            <input
+            class="form-control @error('jenis_tulisan') is-invalid @enderror"
+            type="text"
+            id="jenis_tulisan"
+            name="jenis_tulisan"
+            placeholder="Jenis Tulisan yang Mampu Disusun"
+            value="{{  $bahasa_user->jenis_tulisan }}"
+            disabled
+          />
+          @error('jenis_tulisan')
+          <div class="invalid-feedback"> {{ $message }}</div>
+          @enderror
           </div>
-          {{-- V.2 KOLOM I --}}
-          <div class="mb-3">
-            <label for="uraian" class="form-label"
-              >Uraian Singkat Materi Makalah/ Tulisan</label
+          {{-- VI KOLOM F --}}
+          <div class="mb-3 col-md-6">
+            <label for="nilai" class="form-label"
+              >Nilai Toefl atau yang Sejenisnya</label
             >
-            <textarea
-              name="uraian"
-              id="uraian"
-              class="form-control"
-              placeholder="Uraian Singkat Materi Makalah/ Tulisan"
-               rows="5"
-            ></textarea>
+            <input
+              class="form-control @error('nilai') is-invalid @enderror"
+              type="text"
+              id="nilai"
+              name="nilai"
+              placeholder="Nilai Toefl atau yang Sejenisnya"
+              value="{{  $bahasa_user->nilai }}"
+              disabled
+            />
+            @error('nilai')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -822,7 +663,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="publikasi-makalah.html"
+            href="bahasa.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -831,7 +672,7 @@
       <div class="d-flex justify-content-between m-4 mt-0">
         <div>
           <a
-            href="/publikasi/makalah"
+            href="/bahasa"
             class="btn btn-secondary"
             >Kembali</a
           >
@@ -844,7 +685,7 @@
             Reset
           </button>
           <a
-            href="/publikasi/makalah"
+            href="/bahasa"
             class="btn btn-primary text-white"
             >Simpan</a
           >
@@ -853,5 +694,21 @@
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti_bahasa');
+
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
+  </script>
 @endsection
 

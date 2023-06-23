@@ -5,157 +5,19 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item active open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item active open">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item active">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
 <div class="card">
+    <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/publikasi/karya-temuan"
+      enctype="multipart/form-data"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
       {{-- Hasil Validasi Ditampilkan, ketika data pencapaian, statusnya dah valid atau invalid --}}
       {{-- <div class="card-body">
         <div class="mb-3 col-md-12">
@@ -198,44 +60,56 @@
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
-                <label for="bukti" class="form-label"
+                <label for="bukti_karya_temuan" class="form-label"
                   >Upload Bukti</label
                 >
+                <div id="pdf-preview"></div>
                 <input
-                  class="form-control"
+                  class="form-control @error('bukti_karya_temuan') is-invalid @enderror"
                   type="file"
-                  id="bukti"
+                  id="bukti_karya_temuan"
+                  name="bukti_karya_temuan"
+                  onchange="previewPDF(this)"
                 />
+                @error('bukti_karya_temuan')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
               </div>
             {{-- V.4 KOLOM B --}}
             <div class="mb-3 col-md-6">
-                <label for="bulan-tahun" class="form-label"
+                <label for="bulan_tahun" class="form-label"
                   >Bulan - Tahun</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  id="bulan-tahun"
-                  name="bulan-tahun"
+                  class="form-control @error('bulan_tahun') is-invalid @enderror"
+                  id="bulan_tahun"
+                  name="bulan_tahun"
                   placeholder="Bulan - Tahun"
-                  value=""
+                  value="{{ old('bulan_tahun') }}"
 
                 />
+                @error('bulan_tahun')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
               </div>
           {{-- V.4 KOLOM C --}}
               <div class="mb-3">
-            <label for="judul" class="form-label"
+            <label for="judul_karya_temuan" class="form-label"
               >Judul/ Nama Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Terbaru</label
             >
             <input
-              class="form-control"
+              class="form-control @error('judul_karya_temuan') is-invalid @enderror"
               type="text"
-              id="judul"
-              name="judul"
+              id="judul_karya_temuan"
+              name="judul_karya_temuan"
               placeholder="Judul/ Nama Krya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru"
-              value=""
+              value="{{ old('judul_karya_temuan') }}"
 
             />
+            @error('judul_karya_temuan')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- V.4 KOLOM D --}}
           <div class="mb-3">
@@ -246,58 +120,67 @@
             <textarea
               name="uraian"
               id="uraian"
-              class="form-control"
+              class="form-control @error('uraian') is-invalid @enderror"
               placeholder="Uraian Singkat Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru" rows="5"
 
-            ></textarea>
+            >{{ old('uraian') }}</textarea>
+            @error('uraian')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- V.4 KOLOM E --}}
           <div class="mb-3 col-md-6">
-            <label for="nama-media" class="form-label"
+            <label for="nama_media" class="form-label"
               >Media Publikasi Karya (Kalau Ada)</label
             >
             <input
-              class="form-control"
+              class="form-control @error('nama_media') is-invalid @enderror"
               type="text"
-              id="nama-media"
-              name="nama-media"
+              id="nama_media"
+              name="nama_media"
               placeholder="Media Publikasi Karya (Kalau Ada)"
-              value=""
+              value="{{ old('nama_media') }}"
 
             />
+            @error('nama_media')
+            <div class="invalid-feedback"> {{ $message }}</div>
+            @enderror
           </div>
           {{-- V.4 KOLOM F --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkatan-media"
+            <label class="form-label" for="tingkatan_media"
               >Media Publikasi Tingkat</label
             >
             <select
-              id="tingkatan-media"
+              id="tingkatan_media"
+              name="tingkatan_media"
               class="select2 form-select"
 
             >
               <option value="">
                 Pilih Media Publikasi Tingkat
               </option>
-              <option value="lokal">
+              <option value="lokal" {{ old('tingkatan_media') == "lokal" ? ' selected' : '' }}>
                 Dipublikasikan di Media Lokal
               </option>
-              <option value="nasional">
-                Dipublikasikan di Media Nasional
+              <option value="nasional" {{ old('tingkatan_media') == "nasional" ? ' selected' : '' }}>
+                Dipublikasikan di Media Nasiona
               </option>
-              <option value="regional-internasional">
+              <option value="regional-internasional" {{ old('tingkatan_media') == "regional-internasional" ? ' selected' : '' }}>
                 Dipublikasikan di Media Regional/ Internasional
               </option>
+
             </select>
           </div>
           {{-- V.4 KOLOM G --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkat-kesulitan"
+            <label class="form-label" for="tingkat_kesulitan"
               >Tingkat Kesulitan dan Manfaatnya Karya Temuan/
               Inovasi/ Paten dan Implementasi Tingkat Terbaru</label
             >
             <select
-              id="tingkat-kesulitan"
+              id="tingkat_kesulitan"
+              name="tingkat_kesulitan"
               class="select2 form-select"
 
             >
@@ -306,10 +189,16 @@
                 Temuan/ Inovasi/ Paten dan Implementasi
                 Teknologi Baru
               </option>
-              <option value="rendah">Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
+              <option value="rendah" {{ old('tingkat_kesulitan') == "rendah" ? ' selected' : '' }}>
+                Rendah
+              </option>
+              <option value="sedang" {{ old('tingkat_kesulitan') == "sedang" ? ' selected' : '' }}>
+                Sedang
+              </option>
+              <option value="tinggi" {{ old('tingkat_kesulitan') == "tinggi" ? ' selected' : '' }}>
+                Tinggi
+              </option>
+              <option value="sangat-tinggi" {{ old('tingkat_kesulitan') == "sangat-tinggi" ? ' selected' : '' }}>
                 Sangat Tinggi
               </option>
             </select>
@@ -645,15 +534,33 @@
           >
             Reset
           </button>
-          <a
-            href="/publikasi/karya-temuan"
+          <button
+            type="submit"
             class="btn btn-primary text-white"
-            >Simpan</a
+            >Simpan</button
           >
         </div>
       </div>
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    function previewPDF(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        
+        reader.onloadend = function () {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
+        }
+        
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            const pdfPreview = document.getElementById('pdf-preview');
+            pdfPreview.innerHTML = '';
+        }
+    }
+  </script>
 @endsection
 

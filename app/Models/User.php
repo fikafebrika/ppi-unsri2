@@ -98,4 +98,29 @@ class User extends Authenticatable
     {
         return $this->hasMany(PengalamanMengajar::class);
     }
+
+    public function seminar()
+    {
+        return $this->hasMany(Seminar::class);
+    }
+
+    public function makalah()
+    {
+        return $this->hasMany(Makalah::class);
+    }
+
+    public function karya()
+    {
+        return $this->hasMany(Karya::class);
+    }
+
+    public function karyaTemuan()
+    {
+        return $this->hasMany(KaryaTemuan::class);
+    }
+
+    public function bahasa()
+    {
+        return $this->hasMany(Bahasa::class);
+    }
 }

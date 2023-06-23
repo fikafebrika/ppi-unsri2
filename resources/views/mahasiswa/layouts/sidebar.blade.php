@@ -90,49 +90,49 @@
             </div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item  {{ Request::is('publikasi*') ? 'open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Publikasi">Publikasi</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
+            <li class="menu-item {{ Request::is('publikasi/karya*') ? 'active' : '' }}">
+              <a href="/publikasi/karya" class="menu-link">
                 <div data-i18n="Karya Tulis">Karya Tulis</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('publikasi/makalah*') ? 'active' : '' }}">
               <a href="/publikasi/makalah" class="menu-link">
                 <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('publikasi/seminar*') ? 'active' : '' }}">
               <a href="/publikasi/seminar" class="menu-link">
                 <div data-i18n="Seminar/ Lokakarya">
                   Seminar/ Lokakarya
                 </div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Request::is('publikasi/karya-temuan*') ? 'active' : '' }}">
               <a href="/publikasi/karya-temuan" class="menu-link">
                 <div data-i18n="Karya Temuan">Karya Temuan</div>
               </a>
             </li>
           </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('bahasa*') ? 'active' : '' }}">
           <a href="/bahasa" class="menu-link">
             <div data-i18n="Bahasa">Bahasa</div>
           </a>
         </li>
       </ul>
     </li>
-    <li class="menu-item">
+    <li class="menu-item {{ Request::is('rekognisi-pencapaian*') ? 'active' : '' }}">
       <a href="/rekognisi-pencapaian" class="menu-link">
         <i class="menu-icon tf-icons bx bx-dock-top"></i>
         <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
       </a>
     </li>
-    <li class="menu-item">
+    <li class="menu-item {{ Request::is('kartu-hasil-studi*') ? 'active' : '' }}">
       <a href="/kartu-hasil-studi" class="menu-link">
         <i class="menu-icon tf-icons bx bx-file"></i>
         <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>

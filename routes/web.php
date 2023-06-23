@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\AcademicWritingController;
+use App\Http\Controllers\BahasaController;
+use App\Http\Controllers\KaryaController;
+use App\Http\Controllers\KaryaTemuanController;
+use App\Http\Controllers\KaryaTulisController;
 use App\Http\Controllers\KualifikasiProfesionalController;
 use App\Http\Controllers\LoginAdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MakalahController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PendidikanFormalController;
@@ -15,9 +21,12 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekognisiPencapaianController;
+use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
 use App\Http\Controllers\VerifikatorController;
+use App\Models\Karya;
+use App\Models\KaryaTemuan;
 use App\Models\Penghargaan;
 
 /*
@@ -205,15 +214,6 @@ Route::prefix('/verifikator')->group(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
 //PROFILE
 Route::get('profil', [ProfilController::class, 'index'])->name('profil');
 // Route::get('profil/create', [ProfilController::class,'create'])->name('profil.create');
@@ -293,80 +293,23 @@ Route::prefix('/kode-etik-insinyur')->group(function () {
 Route::resource('/kualifikasi-profesional', KualifikasiProfesionalController::class)->middleware('auth');
 
 Route::resource('/pengalaman-mengajar', PengalamanMengajarController::class)->middleware('auth');
-// Route::get('/pengalaman-mengajar', function () {
-//     return view('mahasiswa.pengalaman-mengajar');
-// });
 
-// Route::get('/pengalaman-mengajar/tambah', function () {
-//     return view('mahasiswa.tambah.pengalaman-mengajar');
-// });
-
-// Route::get('/pengalaman-mengajar/detail', function () {
-//     return view('mahasiswa.detail.pengalaman-mengajar');
-// });
 
 Route::prefix('/publikasi')->group(function () {
-    Route::get('/karya-tulis', function () {
-        return view('mahasiswa.publikasi.karya-tulis');
-    });
 
-    Route::get('/makalah', function () {
-        return view('mahasiswa.publikasi.makalah');
-    });
+    Route::resource('/karya', KaryaController::class)->middleware('auth');
 
-    Route::get('/seminar', function () {
-        return view('mahasiswa.publikasi.seminar');
-    });
 
-    Route::get('/karya-temuan', function () {
-        return view('mahasiswa.publikasi.karya-temuan');
-    });
+    Route::resource('/makalah', MakalahController::class)->middleware('auth');
 
-    Route::get('/karya-tulis/tambah', function () {
-        return view('mahasiswa.publikasi.tambah.karya-tulis');
-    });
 
-    Route::get('/makalah/tambah', function () {
-        return view('mahasiswa.publikasi.tambah.makalah');
-    });
+    Route::resource('/seminar', SeminarController::class)->middleware('auth');
 
-    Route::get('/seminar/tambah', function () {
-        return view('mahasiswa.publikasi.tambah.seminar');
-    });
 
-    Route::get('/karya-temuan/tambah', function () {
-        return view('mahasiswa.publikasi.tambah.karya-temuan');
-    });
-
-    Route::get('/karya-tulis/detail', function () {
-        return view('mahasiswa.publikasi.detail.karya-tulis');
-    });
-
-    Route::get('/makalah/detail', function () {
-        return view('mahasiswa.publikasi.detail.makalah');
-    });
-
-    Route::get('/seminar/detail', function () {
-        return view('mahasiswa.publikasi.detail.seminar');
-    });
-
-    Route::get('/karya-temuan/detail', function () {
-        return view('mahasiswa.publikasi.detail.karya-temuan');
-    });
+    Route::resource('/karya-temuan', KaryaTemuanController::class)->middleware('auth');
 });
 
-Route::get('/bahasa', function () {
-    return view('mahasiswa.bahasa');
-});
-
-Route::get('/bahasa/tambah', function () {
-    return view('mahasiswa.tambah.bahasa');
-});
-
-Route::get('/bahasa/detail', function () {
-    return view('mahasiswa.detail.bahasa');
-});
-
+Route::resource('/bahasa', BahasaController::class)->middleware('auth');
 
 
 Route::get('/kartu-hasil-studi', function () {
