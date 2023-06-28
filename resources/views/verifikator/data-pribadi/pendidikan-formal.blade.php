@@ -148,156 +148,62 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($pendidikan_formal as $p) 
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $loop->iteration }}</th>
             {{-- I.2 C2 --}}
-            <td><strong>S1</strong></td>
+            <td><strong>{{ $p->jenjang }}</strong></td>
             {{-- I.2 C3 --}}
-            <td>Universitas Sriwijaya</td>
+            <td>{{ $p->nama_perguruan_tinggi }}</td>
             {{-- I.2 C4 --}}
-            <td>Ilmu Komputer</td>
+            <td>{{ $p->fakultas }}</td>
             {{-- I.2 C5 --}}
-            <td>Sistem Informasi</td>
+            <td>{{ $p->jurusan }}</td>
             {{-- I.2 C6 --}}
-            <td>Palembang</td>
-
+            <td>{{ $p->kota }}</td>
+            
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-            <td>Belum Ada</td>
+            
+            @if ($p->bukti)
+                <td><img src="{{ asset('storage/' . $p->bukti) }}" alt="{{ $p->jenjang }}" class="img-fluid" width="100px"></td>
+                @else
+                <td>Belum Ada</td>
+            @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
-
+            
             {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
             <td>
-                <span class="badge bg-label-warning me-1"
-                  >Pending</span
-                >
-              </td>
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
-              {{-- <td>
-                <span class="badge bg-label-success me-1"
-                  >Valid</span
-                >
-              </td> --}}
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
-              {{-- <td>
-                <span class="badge bg-label-danger me-1"
-                  >Invalid</span
-                >
-              </td> --}}
+              <span class="badge bg-label-warning me-1">{{ $p->status_validasi }}</span>
+            </td>
+            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
+            {{-- <td>
+              <span class="badge bg-label-success me-1"
+              >Valid</span
+              >
+            </td> --}}
+            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
+            {{-- <td>
+              <span class="badge bg-label-danger me-1"
+              >Invalid</span
+              >
+            </td> --}}
 
             {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-            <td></td>
+            <td>admin@gmail.com</td>
             {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
             {{-- <td>Verifikator Satu</td> --}}
-
-              <td>
+            
+            <td>
               <a
-                href="/verifikator/data-pribadi/pendidikan-formal/periksa"
-                class="btn btn-sm btn-primary"
-                >Periksa</a
+              href="/verifikator/data-pribadi/pendidikan-formal/periksa/{{ $p->id }}/edit"
+              class="btn btn-sm btn-primary"
+              >Periksa</a
               >
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            {{-- I.2 D2 --}}
-            <td><strong>S2</strong></td>
-            {{-- I.2 D3 --}}
-            <td>Universitas Sriwijaya</td>
-            {{-- I.2 D4 --}}
-            <td>Ilmu Komputer</td>
-            {{-- I.2 D5 --}}
-            <td>Sistem Informasi</td>
-            {{-- I.2 D6 --}}
-            <td>Palembang</td>
-
-            {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-            <td>Belum Ada</td>
-            {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
-            {{-- <td>Ada</td> --}}
-
-            {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
-            <td>
-                <span class="badge bg-label-warning me-1"
-                  >Pending</span
-                >
-              </td>
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
-              {{-- <td>
-                <span class="badge bg-label-success me-1"
-                  >Valid</span
-                >
-              </td> --}}
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
-              {{-- <td>
-                <span class="badge bg-label-danger me-1"
-                  >Invalid</span
-                >
-              </td> --}}
-
-            {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-            <td></td>
-            {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
-            {{-- <td>Verifikator Satu</td> --}}
-
-              <td>
-              <a
-                href="/verifikator/data-pribadi/pendidikan-formal/periksa"
-                class="btn btn-sm btn-primary"
-                >Periksa</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            {{-- I.2 E2 --}}
-            <td><strong>S3</strong></td>
-            {{-- I.2 E3 --}}
-            <td>Universitas Sriwijaya</td>
-            {{-- I.2 E4 --}}
-            <td>Ilmu Komputer</td>
-            {{-- I.2 E5 --}}
-            <td>Sistem Informasi</td>
-            {{-- I.2 E6 --}}
-            <td>Palembang</td>
-
-            {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-            <td>Belum Ada</td>
-            {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
-            {{-- <td>Ada</td> --}}
-
-            {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
-            <td>
-                <span class="badge bg-label-warning me-1"
-                  >Pending</span
-                >
-              </td>
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
-              {{-- <td>
-                <span class="badge bg-label-success me-1"
-                  >Valid</span
-                >
-              </td> --}}
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
-              {{-- <td>
-                <span class="badge bg-label-danger me-1"
-                  >Invalid</span
-                >
-              </td> --}}
-
-            {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-            <td></td>
-            {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
-            {{-- <td>Verifikator Satu</td> --}}
-
-              <td>
-              <a
-                href="/verifikator/data-pribadi/pendidikan-formal/periksa"
-                class="btn btn-sm btn-primary"
-                >Periksa</a
-              >
-            </td>
-          </tr>
+          
+          @endforeach
         </tbody>
       </table>
       <div class="d-flex justify-content-between mt-3 mx-1">

@@ -42,50 +42,30 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($users as $user)
                 <tr>
                     <td class="text-lg-start">
                         <img
-                            src="{{asset('verifikator/assets/img/avatars/1.png')}}"
+                            src="{{ asset('storage/' . $user->image) }}"
                             alt=""
                             class="rounded me-lg-2 my-2"
                             width="90"
                             height="120"
                         />
-                        <strong>Bambang Pamungkas</strong>
+                        <strong>{{ $user->name }}</strong>
                     </td>
-                    <td>924160</td>
-                    <td>Teknik Informatika</td>
-                    <td>Praktisi</td>
+                    <td>{{ $user->nokta }}</td>
+                    <td>{{ $user->jurusan }}</td>
+                    <td>{{ $user->profesiutama }}</td>
                     <td>
                         <a
-                            href="/verifikator/data-pribadi/pendidikan-formal"
+                            href="/verifikator/data-pribadi/pendidikan-formal/{{ $user->id }}"
                             class="btn btn-primary"
                             >Verifikasi</a
                         >
                     </td>
                 </tr>
-                <tr>
-                    <td class="text-lg-start">
-                        <img
-                            src="{{asset('verifikator/assets/img/avatars/1.png')}}"
-                            alt=""
-                            class="rounded me-lg-2 my-2"
-                            width="90"
-                            height="120"
-                        />
-                        <strong>Bambang Pamungkas</strong>
-                    </td>
-                    <td>924160</td>
-                    <td>Teknik Informatika</td>
-                    <td>Praktisi</td>
-                    <td>
-                        <a
-                            href="/verifikator/data-pribadi/pendidikan-formal"
-                            class="btn btn-primary"
-                            >Verifikasi</a
-                        >
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
         <div class="d-flex justify-content-between mt-3 mx-1">

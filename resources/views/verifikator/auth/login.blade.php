@@ -24,7 +24,15 @@
     <h4 class="mb-2">Program Profesi Insinyur UNSRI</h4>
     <p>Silakan Login</p>
 
-    <form id="formAuthentication" class="mb-3" action="/verifikator/beranda" method="">
+    @if (session()->has('loginError'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ session('loginError') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    <form id="formAuthentication" class="mb-3" action="/verifikator/login" method="POST">
+      @csrf
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" autofocus />

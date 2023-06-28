@@ -30,7 +30,7 @@
           </a>
           <ul class="menu-sub ps-2">
             <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
+              <a href="/data-pribadi/pendidikan_formal" class="menu-link">
                 <div data-i18n="Pendidikan Formal">
                   Pendidikan Formal
                 </div>
@@ -134,7 +134,7 @@
       </ul>
     </li>
     <li class="menu-item">
-      <a href="/rekognisi-pencapaian" class="menu-link">
+      <a href="/rekognisi-pencapaian/" class="menu-link">
         <i class="menu-icon tf-icons bx bx-dock-top"></i>
         <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
       </a>
