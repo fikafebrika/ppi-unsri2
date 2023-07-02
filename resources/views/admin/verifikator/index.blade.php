@@ -55,7 +55,7 @@
                     <td>{{ $verifikator->email }}</td>
                       <td>
                       <a
-                        href="/admin/verifikator/edit"
+                        href="/admin/verifikator/{{ $verifikator->id }}/edit"
                         class="btn btn-sm btn-primary"
                         >Detail</a>
                         <form action="/admin/verifikator/{{ $verifikator->id }}" method="post" class="d-inline">

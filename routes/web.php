@@ -26,6 +26,7 @@ use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
+use App\Http\Controllers\VerifikatorAdminController;
 use App\Http\Controllers\VerifikatorController;
 
 
@@ -49,7 +50,7 @@ Route::prefix('/admin')->group(function () {
         return view('admin.index');
     });
 
-    Route::resource('/verifikator', AdminVerifikatorController::class);
+    Route::resource('/verifikator', VerifikatorAdminController::class);
 
 
     // Route::prefix('/verifikator')->group(function () {

@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\UserAdmin;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -28,12 +29,12 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt('123456')
         // ]);
 
-        Admin::create([
+        UserAdmin::create([
             'nama_lengkap' => 'Admin',
             'nomor_induk_pegawai' => '123456',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
-            'role' => '1'
+            'is_admin' => 1
         ]);
     }
 }

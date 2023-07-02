@@ -14,41 +14,50 @@
       <div class="order-3 order-md-2">
         <div class="col-12">
             <div class="card">
+              <h5 class="card-header">Edit Verifikator</h5>
                 <form
                   id="formAccountSettings"
                   method="POST"
-                  onsubmit="return false"
+                  action="/admin/verifikator/{{ $verifikator->id }}"
                 >
-                  <h5 class="card-header">Edit Verifikator</h5>
+                @method('put')
+                @csrf
                   <div class="card-body pb-3">
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label
-                          for="nama-lengkap"
+                          for="nama_lengkap"
                           class="form-label"
                           >Nama Lengkap</label
                         >
                         <input
                           type="text"
-                          class="form-control"
-                          id="nama-lengkap"
-                          name="nama-lengkap"
-                          placeholder="Nama Lengkap" value="Verifikator Satu"
+                          class="form-control @error('nama_pelatihan') is-invalid @enderror"
+                          id="nama_lengkap"
+                          name="nama_lengkap"
+                          value="{{ old('nama_lengkap', $verifikator->nama_lengkap) }}"
                         />
+                        @error('nama_lengkap')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
-                          for="nip"
+                          for="nomor_induk_pegawai"
                           class="form-label"
                           >Nomor Induk Pegawai</label
                         >
                         <input
                           type="text"
-                          class="form-control"
-                          id="nip"
-                          name="nip"
-                          placeholder="Nomor Induk Pegawai" value="1234567890"
+                          class="form-control @error('nama_pelatihan') is-invalid @enderror"
+                          id="nomor_induk_pegawai"
+                          name="nomor_induk_pegawai"
+                          placeholder="Nomor Induk Pegawai"
+                          value="{{ old('nomor_induk_pegawai', $verifikator->nomor_induk_pegawai) }}"
                         />
+                        @error('nomor_induk_pegawai')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
@@ -58,11 +67,15 @@
                         >
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control @error('nama_pelatihan') is-invalid @enderror"
                           id="email"
                           name="email"
-                          placeholder="Email" value="verifikatorsatu@gmail.com"
+                          placeholder="Email"
+                          value="{{ old('email', $verifikator->email) }}"
                         />
+                        @error('email')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
@@ -71,12 +84,16 @@
                           >Password</label
                         >
                         <input
-                          type="text"
-                          class="form-control"
+                          type="password"
+                          class="form-control @error('password') is-invalid @enderror"
                           id="password"
                           name="password"
-                          placeholder="Password" value="pass123"
+                          placeholder="Password" 
+                          value="{{ old('password', $verifikator->password) }}"
                         />
+                        @error('password')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -95,10 +112,10 @@
                       >
                         Reset
                       </button>
-                      <a
-                        href="/admin/verifikator"
+                      <button
+                        type="submit"
                         class="btn btn-primary text-white"
-                        >Simpan</a
+                        >Simpan</button
                       >
                     </div>
                   </div>

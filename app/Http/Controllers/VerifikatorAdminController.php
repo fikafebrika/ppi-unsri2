@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\UserAdmin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class AdminVerifikatorController extends Controller
+class VerifikatorAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,7 @@ class AdminVerifikatorController extends Controller
     {
         //
         return view("admin.verifikator.index", [
-            //cari post yang user_idnya sama dengan id user yang sedang login
-            // "sertifikat_users" => Sertifikat::where('user_id', auth()->user()->id)->get()
-            "verifikators" => Admin::all()
+            "verifikators" => UserAdmin::all()
         ]);
     }
 
@@ -49,7 +48,8 @@ class AdminVerifikatorController extends Controller
             'password' => 'required',
         ]);
 
-        Admin::create($validatedData);
+        $validatedData['password'] = Hash::make($request->password);
+        UserAdmin::create($validatedData);
 
         // $request->user()->pendidikanFormal()->create($validatedData);
 
@@ -59,10 +59,10 @@ class AdminVerifikatorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\UserAdmin  $userAdmin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(UserAdmin $userAdmin)
     {
         //
         return view('admin.verifikator.edit');
@@ -71,23 +71,25 @@ class AdminVerifikatorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\UserAdmin  $userAdmin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(UserAdmin $userAdmin)
     {
         //
-        return view('admin.verifikator.edit');
+        return view('admin.verifikator.edit', [
+            "verifikator" => $userAdmin
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\UserAdmin  $userAdmin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, UserAdmin $userAdmin)
     {
         //
         $rules = [
@@ -100,7 +102,7 @@ class AdminVerifikatorController extends Controller
         $validatedData = $request->validate($rules);
 
 
-        $admin->update($validatedData);
+        $userAdmin->update($validatedData);
 
         return redirect('/admin/verifikator')->with('success', 'verifikator has been updated!');
     }
@@ -108,14 +110,14 @@ class AdminVerifikatorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\UserAdmin  $userAdmin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(UserAdmin $userAdmin)
     {
         //
-        dd($admin);
-        Admin::destroy($admin->id);
+        // dd($userAdmin);
+        UserAdmin::destroy($userAdmin->id);
 
         return redirect('/admin/verifikator')->with('success', 'verifikator has been deleted!');
     }
