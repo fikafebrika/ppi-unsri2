@@ -5,24 +5,7 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/admin/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active">
-    <a href="/admin/verifikator" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Daftar Verifikator">Daftar Verifikator</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/admin/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('admin.partials.sidebar')
 @endsection
 
 @section('content')
@@ -31,41 +14,50 @@
       <div class="order-3 order-md-2">
         <div class="col-12">
             <div class="card">
+              <h5 class="card-header">Tambah Verifikator</h5>
                 <form
                   id="formAccountSettings"
                   method="POST"
-                  onsubmit="return false"
+                  action="/admin/verifikator"
                 >
-                  <h5 class="card-header">Tambah Verifikator</h5>
+                @csrf
                   <div class="card-body pb-3">
                     <div class="row">
                       <div class="mb-3 col-md-6">
                         <label
-                          for="nama-lengkap"
+                          for="nama_lengkap"
                           class="form-label"
                           >Nama Lengkap</label
                         >
                         <input
                           type="text"
-                          class="form-control"
-                          id="nama-lengkap"
-                          name="nama-lengkap"
+                          class="form-control @error('nama_lengkap') is-invalid @enderror"
+                          id="nama_lengkap"
+                          name="nama_lengkap"
                           placeholder="Nama Lengkap"
+                          value="{{ old('nama_lengkap') }}"
                         />
+                        @error('nama_lengkap')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
-                          for="nip"
+                          for="nomor_induk_pegawai"
                           class="form-label"
                           >Nomor Induk Pegawai</label
                         >
                         <input
                           type="text"
-                          class="form-control"
-                          id="nip"
-                          name="nip"
+                          class="form-control @error('nomor_induk_pegawai') is-invalid @enderror"
+                          id="nomor_induk_pegawai"
+                          name="nomor_induk_pegawai"
                           placeholder="Nomor Induk Pegawai"
+                          value="{{ old('nomor_induk_pegawai') }}"
                         />
+                        @error('nomor_induk_pegawai')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
@@ -75,11 +67,15 @@
                         >
                         <input
                           type="text"
-                          class="form-control"
+                          class="form-control @error('email') is-invalid @enderror"
                           id="email"
                           name="email"
                           placeholder="Email"
+                          value="{{ old('email') }}"
                         />
+                        @error('email')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                       <div class="mb-3 col-md-6">
                         <label
@@ -88,12 +84,16 @@
                           >Password</label
                         >
                         <input
-                          type="text"
-                          class="form-control"
+                          type="password"
+                          class="form-control @error('password') is-invalid @enderror"
                           id="password"
                           name="password"
                           placeholder="Password"
+                          value="{{ old('password') }}"
                         />
+                        @error('password')
+                        <div class="invalid-feedback"> {{ $message }}</div>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -112,10 +112,10 @@
                       >
                         Reset
                       </button>
-                      <a
-                        href="/admin/verifikator"
+                      <button
+                        type="submit"
                         class="btn btn-primary text-white"
-                        >Simpan</a
+                        >Simpan</button
                       >
                     </div>
                   </div>

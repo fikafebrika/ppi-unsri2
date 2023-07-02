@@ -26,13 +26,13 @@
             <div class="avatar">
                 {{-- Pasfoto Terbaru 3x4 cm pas Register --}}
               <img
-                src="{{asset('mahasiswa/assets/img/avatars/1.png')}}"
+                src="{{ asset('storage/' . auth()->user()->image) }}"
                 alt
-                class="w-px-40 h-auto rounded-circle"
+                class="w-px-30 h-auto rounded-circle"
               />
             </div>
             <div class="nav-item ms-2 mt-2">
-              <p>Bambang Pamungkas</p>
+              <p>{{ auth()->user()->name }}</p>
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -42,7 +42,7 @@
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar">
                       <img
-                        src="{{asset('mahasiswa/assets/img/avatars/1.png')}}"
+                        src="{{ asset('storage/' . auth()->user()->image) }}"
                         alt
                         class="w-px-40 h-auto rounded-circle"
                       />
@@ -50,10 +50,10 @@
                   </div>
                   <div class="flex-grow-1">
                     <span class="fw-semibold d-block"
-                      >Bambang Pamungkas</span
+                      >{{ auth()->user()->name }}</span
                     >
                     <small class="text-muted"
-                      >bambang@unsri.ac.id</small
+                      >{{ auth()->user()->email }}</small
                     >
                   </div>
                 </div>

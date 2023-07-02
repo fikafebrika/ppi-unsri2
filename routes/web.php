@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicWritingController;
+use App\Http\Controllers\AdminVerifikatorController;
 use App\Http\Controllers\BahasaController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KaryaTemuanController;
@@ -25,9 +26,7 @@ use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
 use App\Http\Controllers\VerifikatorController;
-use App\Models\Karya;
-use App\Models\KaryaTemuan;
-use App\Models\Penghargaan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,26 +41,30 @@ use App\Models\Penghargaan;
 
 Route::prefix('/admin')->group(function () {
     Route::get('/login', function () {
-        return view('admin.login');
+        return view('admin.login.login');
     });
 
     Route::get('/beranda', function () {
         return view('admin.index');
     });
 
-    Route::prefix('/verifikator')->group(function () {
-        Route::get('/', function () {
-            return view('admin.verifikator.index');
-        });
+    Route::resource('/verifikator', AdminVerifikatorController::class);
 
-        Route::get('/tambah', function () {
-            return view('admin.verifikator.tambah');
-        });
 
-        Route::get('/edit', function () {
-            return view('admin.verifikator.edit');
-        });
-    });
+    // Route::prefix('/verifikator')->group(function () {
+
+    //     // Route::get('/', function () {
+    //     //     return view('admin.verifikator.index');
+    //     // });
+
+    //     // Route::get('/tambah', function () {
+    //     //     return view('admin.verifikator.tambah');
+    //     // });
+
+    //     // Route::get('/edit', function () {
+    //     //     return view('admin.verifikator.edit');
+    //     // });
+    // });
 });
 
 Route::prefix('/verifikator')->group(function () {

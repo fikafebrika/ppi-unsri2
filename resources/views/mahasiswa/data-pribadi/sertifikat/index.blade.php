@@ -40,8 +40,8 @@
             <th>Aksi</th>
           </tr>
         </thead>
-        @foreach ($sertifikat_users as $sertifikat_user)
         <tbody>
+          @foreach ($sertifikat_users as $sertifikat_user)
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- I.6 Kolom B --}}

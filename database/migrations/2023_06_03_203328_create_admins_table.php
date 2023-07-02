@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nomor_induk_pegawai');
             $table->string('email');
             $table->string('password');
-            $table->string('role');
+            $table->boolean('is_admin')->default(false);
             $table->timestamps();
         });
     }
