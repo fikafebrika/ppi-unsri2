@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcademicWritingController;
 use App\Http\Controllers\AdminVerifikatorController;
 use App\Http\Controllers\BahasaController;
+use App\Http\Controllers\KartuHasilStudiMahasiswaController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KaryaTemuanController;
 use App\Http\Controllers\KaryaTulisController;
@@ -252,11 +253,10 @@ Route::get('/register/checkSlug', [RegisterController::class, 'checkSlug']);
  */
 //PROFILE
 Route::get('profil', [ProfilController::class, 'index'])->name('profil');
-// Route::get('profil/create', [ProfilController::class,'create'])->name('profil.create');
 Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
 
 
-Route::get('/rekognisi-pencapaian', [RekognisiPencapaianController::class, 'index']);
+
 
 // Route::get('/beranda', [RekognisiPencapaianController::class, 'showBeranda']);
 
@@ -314,7 +314,6 @@ Route::prefix('/publikasi')->group(function () {
 
 Route::resource('/bahasa', BahasaController::class)->middleware('auth');
 
+Route::get('/rekognisi-pencapaian', [RekognisiPencapaianController::class, 'index']);
 
-Route::get('/kartu-hasil-studi', function () {
-    return view('mahasiswa.kartu-hasil-studi');
-});
+Route::get('/kartu-hasil-studi', [KartuHasilStudiMahasiswaController::class, 'index']);

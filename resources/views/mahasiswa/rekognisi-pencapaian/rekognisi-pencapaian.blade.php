@@ -5,147 +5,7 @@
 @endsection
 
 @section('sidebar')
-<ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
-      <a href="/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-      </a>
-    </li>
-    <li class="menu-item open">
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">Klaim Pencapaian</div>
-      </a>
-      <ul class="menu-sub">
-        <li class="menu-item">
-          <a href="/profil" class="menu-link">
-            <div data-i18n="Profil">Profil</div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Data Pribadi">Data Pribadi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/data-pribadi/pendidikan-formal" class="menu-link">
-                <div data-i18n="Pendidikan Formal">
-                  Pendidikan Formal
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/organisasi" class="menu-link">
-                <div data-i18n="Organisasi">Organisasi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/tanda-penghargaan" class="menu-link">
-                <div data-i18n="Tanda Penghargaan">
-                  Tanda Penghargaan
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/pelatihan" class="menu-link">
-                <div data-i18n="Pelatihan">Pelatihan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/data-pribadi/sertifikat" class="menu-link">
-                <div data-i18n="Sertifikat">Sertifikat</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/referensi"
-                class="menu-link"
-              >
-                <div data-i18n="Referensi">Referensi</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a
-                href="/kode-etik-insinyur/pengertian"
-                class="menu-link"
-              >
-                <div data-i18n="Pengertian">Pengertian</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/kualifikasi-profesional" class="menu-link">
-            <div data-i18n="Kualifikasi Profesional">
-              Kualifikasi Profesional
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/pengalaman-mengajar" class="menu-link">
-            <div data-i18n="Pengalaman Mengajar">
-              Pengalaman Mengajar
-            </div>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <div data-i18n="Publikasi">Publikasi</div>
-          </a>
-          <ul class="menu-sub ps-2">
-            <li class="menu-item">
-              <a href="/publikasi/karya-tulis" class="menu-link">
-                <div data-i18n="Karya Tulis">Karya Tulis</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/makalah" class="menu-link">
-                <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/seminar" class="menu-link">
-                <div data-i18n="Seminar/ Lokakarya">
-                  Seminar/ Lokakarya
-                </div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/publikasi/karya-temuan" class="menu-link">
-                <div data-i18n="Karya Temuan">Karya Temuan</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu-item">
-          <a href="/bahasa" class="menu-link">
-            <div data-i18n="Bahasa">Bahasa</div>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item active">
-      <a href="/rekognisi-pencapaian" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-        <div data-i18n="Rekognisi Pencapaian">Rekognisi Pencapaian</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="/kartu-hasil-studi" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-file"></i>
-        <div data-i18n="Kartu Hasil Studi">Kartu Hasil Studi</div>
-      </a>
-    </li>
-</ul>
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
@@ -169,7 +29,7 @@
                 >Organisasi Profesi & Organisasi Lainnya yang Dimasuki</strong
               >
             </td>
-            <td>30%</td>
+            <td>{{ $bobot['kode_etik_profesi']['organisasi'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -179,7 +39,7 @@
                 >Tanda Penghargaan yang Diterima</strong
               >
             </td>
-            <td>10%</td>
+            <td>{{ $bobot['kode_etik_profesi']['tanda-penghargaaan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -187,7 +47,7 @@
             <td class="text-start">
               <strong>Pendidikan/ Pelatihan Teknik/ Manajemen</strong>
             </td>
-            <td>15%</td>
+            <td>{{ $bobot['kode_etik_profesi']['pendidikan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -195,7 +55,7 @@
             <td class="text-start">
               <strong>Sertifikat Kompetensi dan Bidang Lainnya</strong>
             </td>
-            <td>15%</td>
+            <td>{{ $bobot['kode_etik_profesi']['sertifikat'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -203,7 +63,7 @@
             <td class="text-start">
               <strong>Kualifikasi Profesional</strong>
             </td>
-            <td>25%</td>
+            <td>{{ $bobot['kode_etik_profesi']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -211,7 +71,7 @@
             <td class="text-start">
               <strong>Pengalaman Mengajar Keinsinyuran</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['kode_etik_profesi']['pengalaman_mengajar'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -253,9 +113,9 @@
             <td class="text-start">
               <strong>Pendidikan Formal</strong>
             </td>
-            <td>20%</td>
-            <td>{{ $point }}</td>
-            <td>{{ $nilai_pendidikan_formal }}</td>
+            <td>{{ $bobot['profesionalisme']['pendidikan_formal'] }}</td>
+            <td>0</td> 
+            <td>0</td>
           </tr>
           <tr>
             <td class="text-start">
@@ -263,7 +123,7 @@
                 >Tanda Penghargaan yang Diterima</strong
               >
             </td>
-            <td>10%</td>
+            <td>{{ $bobot['profesionalisme']['tanda_penghargaan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -271,7 +131,7 @@
             <td class="text-start">
               <strong>Pendidikan/ Pelatihan Teknik/ Manajemen</strong>
             </td>
-            <td>15%</td>
+            <td>{{ $bobot['profesionalisme']['pendidikan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -279,7 +139,7 @@
             <td class="text-start">
               <strong>Sertifikat Kompetensi dan Bidang Lainnya</strong>
             </td>
-            <td>15%</td>
+            <td>{{ $bobot['profesionalisme']['sertifikat'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -287,7 +147,7 @@
             <td class="text-start">
               <strong>Kualifikasi Profesional</strong>
             </td>
-            <td>25%</td>
+            <td>{{ $bobot['profesionalisme']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -295,7 +155,7 @@
             <td class="text-start">
               <strong>Pengalaman Mengajar Keinsinyuran</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['profesionalisme']['pengalaman_mengajar'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -303,7 +163,7 @@
             <td class="text-start">
               <strong>Bahasa yang Dikuasai</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['profesionalisme']['bahasa'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -349,7 +209,7 @@
                 >Kualifikasi Profesional</strong
               >
             </td>
-            <td>100%</td>
+            <td>{{ $bobot['kesehatan_keselamatan_kerja']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -391,7 +251,7 @@
             <td class="text-start">
               <strong>Kualifikasi Profesional</strong>
             </td>
-            <td>65%</td>
+            <td>{{ $bobot['studi_kasus']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -399,7 +259,7 @@
             <td class="text-start">
               <strong>Pengalaman Mengajar Keinsinyuran</strong>
             </td>
-            <td>10%</td>
+            <td>{{ $bobot['studi_kasus']['pengalaman_mengajar'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -407,7 +267,7 @@
             <td class="text-start">
               <strong>Karya Tulis di Bidang Keinsinyuran yang Dipublikasikan</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['studi_kasus']['karya_tulis'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -415,7 +275,7 @@
             <td class="text-start">
               <strong>Makalah/ Tulisan yang Disajikan Dalam Seminar/ Lokakarya Keinsinyuran</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['studi_kasus']['makalah'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -423,7 +283,7 @@
             <td class="text-start">
               <strong>Seminar/ Lokakarya yang Diikuti</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['studi_kasus']['seminar'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -431,7 +291,7 @@
             <td class="text-start">
               <strong>Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['studi_kasus']['karya_temuan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -439,7 +299,7 @@
             <td class="text-start">
               <strong>Bahasa yang Dikuasai</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['studi_kasus']['bahasa'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -481,15 +341,25 @@
             <td class="text-start">
               <strong>Kualifikasi Profesional</strong>
             </td>
-            <td>65%</td>
+            <td>{{ $bobot['seminar']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
+          @if (auth()->user()->profesiutama === "praktisi")
+          <tr>
+            <td class="text-start">
+              <strong>Pengalaman Mengajar Keinsinyuran</strong>
+            </td>
+            <td>{{ $bobot['seminar']['pengalaman_mengajar'] }}</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>       
+          @endif
           <tr>
             <td class="text-start">
               <strong>Karya Tulis di Bidang Keinsinyuran yang Dipublikasikan</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['seminar']['karya_tulis'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -497,23 +367,25 @@
             <td class="text-start">
               <strong>Makalah/ Tulisan yang Disajikan Dalam Seminar/ Lokakarya Keinsinyuran</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['seminar']['makalah'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
+          @if (auth()->user()->profesiutama === "dosen")
           <tr>
             <td class="text-start">
               <strong>Seminar/ Lokakarya yang Diikuti</strong>
             </td>
-            <td>15%</td>
+            <td>{{ $bobot['seminar']['makalah'] }}</td>
             <td>0</td>
             <td>0</td>
-          </tr>
+          </tr>     
+          @endif
           <tr>
             <td class="text-start">
               <strong>Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['seminar']['karya_temuan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -521,7 +393,7 @@
             <td class="text-start">
               <strong>Bahasa yang Dikuasai</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['seminar']['bahasa'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -559,23 +431,39 @@
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
+          @if (auth()->user()->profesiutama === "praktisi")
+          <tr>
+            <td class="text-start">
+              <strong
+                >Pengalaman Mengajar Keinsinyuran</strong
+              >
+            </td>
+            <td>{{ $bobot['praktek_keinsinyuran']['kualifikasi_professional'] }}</td>
+            <td>0</td>
+            <td>0</td>
+          </tr> 
+          @endif
+          @if (auth()->user()->profesiutama === "dosen")
           <tr>
             <td class="text-start">
               <strong
                 >Kualifikasi Profesional</strong
               >
             </td>
-            <td>75%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['pengalaman_mengajar'] }}</td>
             <td>0</td>
             <td>0</td>
-          </tr>
+          </tr> 
+          @endif
+             
+          
           <tr>
             <td class="text-start">
               <strong
                 >Karya Tulis di Bidang Keinsinyuran yang Dipublikasikan</strong
               >
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['karya_tulis'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -583,7 +471,7 @@
             <td class="text-start">
               <strong>Makalah/ Tulisan yang Disajikan Dalam Seminar/ Lokakarya Keinsinyuran</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['makalah'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -591,7 +479,7 @@
             <td class="text-start">
               <strong>Seminar/ Lokakarya yang Diikuti</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['seminar'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -599,7 +487,7 @@
             <td class="text-start">
               <strong>Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['karya_temuan'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
@@ -607,7 +495,7 @@
             <td class="text-start">
               <strong>Bahasa yang Dikuasai</strong>
             </td>
-            <td>5%</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['bahasa'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>
