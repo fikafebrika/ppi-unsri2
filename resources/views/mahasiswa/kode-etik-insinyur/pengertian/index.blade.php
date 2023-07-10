@@ -16,7 +16,7 @@
       <h5 class="card-header">
         Pengertian, Pendapat, & Pengalaman Sendiri
       </h5>
-      
+
       <a href="/kode-etik-insinyur/pengertian/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -35,13 +35,14 @@
                   Pengertian, Pendapat, & Pengalaman Sendiri
               </th>
               <th>Status</th>
+              <th>Verifikator</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($pengertian_users as $pengertian_user)
-                
-            
+
+
             <tr>
               <th scope="row">{{ $loop->iteration }}</th>
               {{-- II.2 KOLOM A --}}
@@ -83,6 +84,7 @@
                   >Detail</a
                 >
               </td> --}}
+              <td>Belum Ada</td>
               <td class="text-nowrap">
                   <a href="/kode-etik-insinyur/pengertian/{{ $pengertian_user->id }}"
                   ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -138,7 +140,7 @@
     @else
     <p class="text-center fs-4">Data Pengertian Tidak Ada, Silahkan Masukkan Data Pengertian</p>
     @endif
-    
+
   </div>
 @endsection
 

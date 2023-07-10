@@ -16,7 +16,7 @@
       <h5 class="card-header">
         Referensi Kode Etik & Etika Profesi
       </h5>
-      
+
       <a href="/kode-etik-insinyur/referensi/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -37,6 +37,7 @@
             <th>Email</th>
             <th>Hubungan</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -55,7 +56,7 @@
               {{-- II.2 Kolom F --}}
               <td>{{ $referensi_user->hubungan }}</td>
               {{-- Status Data FAIP, Kalo dah upload excel, statusnyo masih "Pending" --}}
-              
+
               <td>
                 @if ($referensi_user->status_validasi ==="valid")
                 <span class="badge bg-label-success me-1"
@@ -70,10 +71,11 @@
                 >Pending</span
               >
                 @endif
-                
+
               </td>
+              <td>Belum Ada</td>
             <td>
-              
+
                 <a href="/kode-etik-insinyur/referensi/{{ $referensi_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
                 ></a>
@@ -124,11 +126,11 @@
           </nav>
         </div>
       </div>
-    </div> 
+    </div>
     @else
     <p class="text-center fs-4">Data Referensi Tidak Ada, Silahkan Masukkan Data Referensi Anda</p>
     @endif
-    
+
   </div>
 @endsection
 

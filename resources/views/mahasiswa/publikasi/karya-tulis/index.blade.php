@@ -36,6 +36,7 @@
             <th>Lokasi</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -53,9 +54,9 @@
             <td>{{ $karya_tulis_user->lokasi}}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ( $karya_tulis_user->bukti_karya_tulis)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -72,7 +73,7 @@
               @elseif($karya_tulis_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
@@ -94,6 +95,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
                 <a href="/publikasi/karya/{{ $karya_tulis_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -149,7 +151,7 @@
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

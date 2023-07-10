@@ -17,7 +17,7 @@
         Pengalaman Mengajar Pelajaran Keinsinyuran dan/ atau
         Manajemen
       </h5>
-      
+
       <a href="/pengalaman-mengajar/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -37,6 +37,7 @@
             <th>Nama Mata Ajaran & Uraian Singkat Yang Diajarkan/ Dikembangkan</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -52,9 +53,9 @@
             <td>{{ $pengalaman_mengajar_user->nama_mata_ajaran }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($pengalaman_mengajar_user->bukti_pengalaman_mengajar)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -71,7 +72,7 @@
               @elseif($pengalaman_mengajar_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
@@ -93,6 +94,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td class="text-nowrap">
                 <a href="/pengalaman-mengajar/{{ $pengalaman_mengajar_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -148,7 +150,7 @@
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

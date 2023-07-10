@@ -34,13 +34,14 @@
             <th>Nama Aktifitas/ Kegiatan/ Proyek</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($kualifikasi_profesional_users as $kualifikasi_profesional_user)
-              
-          
+
+
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- III KOLOM B --}}
@@ -53,9 +54,9 @@
             <td>{{ $kualifikasi_profesional_user->nama_aktifitas }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($kualifikasi_profesional_user->bukti_kualifikasi_profesional)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -94,6 +95,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
                 <a href="/kualifikasi-profesional/{{ $kualifikasi_profesional_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -145,11 +147,11 @@
           </nav>
         </div>
       </div>
-    </div> 
+    </div>
     @else
     <p class="text-center fs-4">Data Pengertian Tidak Ada, Silahkan Masukkan Data Pengertian</p>
     @endif
-    
+
   </div>
 @endsection
 

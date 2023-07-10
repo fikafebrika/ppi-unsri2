@@ -5,7 +5,7 @@
 @endsection
 
 @section('sidebar')
-@include('mahasiswa.layouts.sidebar')    
+@include('mahasiswa.layouts.sidebar')
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
       <h5 class="card-header">
         Seminar/Lokakarya Keinsinyuran Yang Diikuti
       </h5>
-      
+
       <a href="/publikasi/seminar/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -37,13 +37,14 @@
             <th>Lokasi</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($serminar_users as $serminar_user)
-              
-         
+
+
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- V.3 KOLOM B --}}
@@ -56,9 +57,9 @@
             <td>{{ $serminar_user->lokasi }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($serminar_user->bukti_seminar)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -75,7 +76,7 @@
               @elseif($serminar_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
@@ -97,8 +98,9 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
-              
+
                 <a href="/publikasi/seminar/{{ $serminar_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
                 ></a>
@@ -149,11 +151,11 @@
           </nav>
         </div>
       </div>
-    </div> 
+    </div>
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

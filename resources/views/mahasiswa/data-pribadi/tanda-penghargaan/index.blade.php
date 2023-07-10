@@ -37,13 +37,14 @@
               <th>Lokasi</th>
               <th>Bukti</th>
               <th>Status</th>
+              <th>Verifikator</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($penghargaan_users as $penghargaan_user)
-                
-           
+
+
             <tr>
               <th scope="row">{{ $loop->iteration }}</th>
               {{-- I.4 Kolom B --}}
@@ -74,6 +75,7 @@
               <span class="badge bg-label-danger me-1">Invalid</span>
               @endif
               </td>
+              <td>Belum Ada</td>
               <td>
                   <a href="/data-pribadi/tanda-penghargaan/{{ $penghargaan_user->id }}"
                   ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -129,7 +131,7 @@
       @else
       <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
       @endif
-    
+
 
 
   </div>

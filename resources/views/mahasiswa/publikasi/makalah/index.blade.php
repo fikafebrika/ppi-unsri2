@@ -17,7 +17,7 @@
         Makalah/ Tulisan yang Disajikan dalam Seminar/ Lokakarya
         Keinsinyuran
       </h5>
-      
+
       <a href="/publikasi/makalah/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -38,13 +38,14 @@
             <th>Penyelenggara</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($makalah_users as $makalah_user)
-              
-          
+
+
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- V.2 KOLOM B --}}
@@ -57,9 +58,9 @@
             <td>{{ $makalah_user->penyelenggara }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($makalah_user->bukti_makalah)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -76,7 +77,7 @@
               @elseif($makalah_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
@@ -98,8 +99,9 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
-              
+
                 <a href="/publikasi/makalah/{{ $makalah_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
                 ></a>
@@ -154,7 +156,7 @@
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

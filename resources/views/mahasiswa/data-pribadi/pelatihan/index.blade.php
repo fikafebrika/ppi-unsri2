@@ -36,13 +36,14 @@
             <th>Negara</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($pelatihan_users as $pelatihan_user)
-              
-          
+
+
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- I.5 Kolom B --}}
@@ -57,7 +58,7 @@
             @if ($pelatihan_user->bukti_pelatihan)
               <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -73,7 +74,7 @@
               <span class="badge bg-label-success me-1"
               >Valid</span>
               @endif
-              
+
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
             {{-- <td>
@@ -94,6 +95,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
                 <a href="/data-pribadi/pelatihan/{{ $pelatihan_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -145,11 +147,11 @@
           </nav>
         </div>
       </div>
-    </div> 
+    </div>
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

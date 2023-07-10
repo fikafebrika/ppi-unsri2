@@ -21,7 +21,7 @@
     </div>
     @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }} 
+        {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
@@ -37,6 +37,7 @@
             <th>Negara</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -99,6 +100,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
                 <a href="/data-pribadi/organisasi/{{ $organisasi_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -112,7 +114,7 @@
                   <button class="bx bx-trash me-1 text-danger border-0 " title="Hapus" onclick="return confirm('Are you sure ?')"></button>
                 </form>
             </td>
-          </tr> 
+          </tr>
           @endforeach
         </tbody>
       </table>

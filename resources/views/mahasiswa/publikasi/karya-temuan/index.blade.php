@@ -35,6 +35,7 @@
             <th>Judul/ Nama Karya Temuan/ Inovasi/ Paten dan Implementasi Teknologi Baru</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -48,10 +49,10 @@
               <td>{{ $karya_temuan_user->judul_karya_temuan }}</td>
               {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
               @if ($karya_temuan_user->bukti_karya_temuan)
-              <td>Ada</td> 
+              <td>Ada</td>
               @else
               <td>Belum Ada</td>
-              @endif 
+              @endif
               {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
               {{-- <td>Ada</td> --}}
               {{-- Status Data FAIP, Kalo dah upload excel, statusnyo masih "Pending" --}}
@@ -67,9 +68,10 @@
                 @elseif($karya_temuan_user->status_validasi === "pending")
                 <span class="badge bg-label-warning me-1"
                 >Pending</span
-              > 
+              >
                 @endif
               </td>
+              <td>Belum Ada</td>
               <td>
                   <a href="/publikasi/karya-temuan/{{ $karya_temuan_user->id }}"
                   ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -125,7 +127,7 @@
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

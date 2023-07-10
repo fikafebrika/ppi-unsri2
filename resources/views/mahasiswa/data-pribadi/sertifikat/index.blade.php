@@ -37,6 +37,7 @@
             <th>Negara</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -54,9 +55,9 @@
             <td>{{ $sertifikat_user->negara }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($sertifikat_user->bukti_pelatihan)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -73,9 +74,9 @@
               @elseif($sertifikat_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
-              
+
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
             {{-- <td>
@@ -96,6 +97,7 @@
                 >Detail</a
               >
             </td> --}}
+            <td>Belum Ada</td>
             <td>
                 <a href="/data-pribadi/sertifikat/{{ $sertifikat_user->id }}"
                 ><i class="bx bxs-show me-1" title="Lihat"></i
@@ -151,7 +153,7 @@
     @else
     <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 

@@ -13,7 +13,7 @@
     <div
       class="d-flex align-items-center justify-content-between">
       <h5 class="card-header">Pendidikan Formal</h5>
-      
+
       <a href="/data-pribadi/pendidikan_formal/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
@@ -22,7 +22,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-    
+
     @if ($pendidikan_formal_users->count())
     <div class="table-responsive mx-3 mb-2 text-center">
       <table class="table table-hover">
@@ -36,12 +36,13 @@
             <th>Kota</th>
             <th>Bukti</th>
             <th>Status</th>
+            <th>Verifikator</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($pendidikan_formal_users as $pendidikan_formal_user)
-              
+
           <tr>
             <th scope="row">{{ $loop->iteration }} </th>
             {{-- I.2 C2 --}}
@@ -73,8 +74,9 @@
                {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
               <span class="badge bg-label-danger me-1">Invalid</span>
               @endif
-                
+
             </td>
+            <td>Belum Ada</td>
             {{-- <td>
               <a
                 href="/data-pribadi/pendidikan-formal/detail"
@@ -139,7 +141,7 @@
     @else
       <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
     @endif
-    
+
   </div>
 @endsection
 
