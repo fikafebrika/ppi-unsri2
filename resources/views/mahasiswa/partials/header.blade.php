@@ -16,7 +16,7 @@
             </div> --}}
             <div class="card-body">
               <h5 class="card-title text-primary">
-                Selamat Datang, Bambang! 🎉
+                Selamat Datang, {{ auth()->user()->name }}! 🎉
               </h5>
               <p>
                 Silakan Lengkapi Data Klaim Pencapaian Anda.

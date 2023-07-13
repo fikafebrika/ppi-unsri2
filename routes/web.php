@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\AcademicWritingController;
-use App\Http\Controllers\AdminVerifikatorController;
 use App\Http\Controllers\BahasaController;
 use App\Http\Controllers\KartuHasilStudiMahasiswaController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KaryaTemuanController;
-use App\Http\Controllers\KaryaTulisController;
 use App\Http\Controllers\KualifikasiProfesionalController;
 use App\Http\Controllers\LoginAdminController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +15,6 @@ use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PendidikanFormalController;
 use App\Http\Controllers\PengalamanMengajarController;
 use App\Http\Controllers\PengertianController;
-use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\RegisterController;
@@ -26,8 +22,10 @@ use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
+use App\Http\Controllers\Verifikator\DashboardVerifikatorController;
+use App\Http\Controllers\Verifikator\OrganisasiVerifikatorController;
+use App\Http\Controllers\Verifikator\PendidikanFormalVerifikatorController;
 use App\Http\Controllers\VerifikatorAdminController;
-use App\Http\Controllers\VerifikatorController;
 
 
 /*
@@ -51,66 +49,37 @@ Route::prefix('/admin')->group(function () {
     });
 
     Route::resource('/verifikator', VerifikatorAdminController::class);
-
-
-    // Route::prefix('/verifikator')->group(function () {
-
-    //     // Route::get('/', function () {
-    //     //     return view('admin.verifikator.index');
-    //     // });
-
-    //     // Route::get('/tambah', function () {
-    //     //     return view('admin.verifikator.tambah');
-    //     // });
-
-    //     // Route::get('/edit', function () {
-    //     //     return view('admin.verifikator.edit');
-    //     // });
-    // });
 });
 
 Route::prefix('/verifikator')->group(function () {
-    // Route::get('/login', function () {
-    //     return view('verifikator.auth.login');
-    // });
 
 
     Route::get('/login', [LoginAdminController::class, 'index'])->name('login');
     Route::post('/login', [LoginAdminController::class, 'authenticate'])->name('login');
 
-    // Route::get('/register', function () {
-    //     return view('verifikator.auth.register');
-    // });
 
-    // Route::get('/beranda', function () {
-    //     return view('verifikator.index');
-    // });
+    // Route::get('/beranda', DashboardVerifikatorController::class)->middleware('auth');
 
-    Route::resource('/beranda', VerifikatorController::class)->middleware('auth');
+    Route::get('/beranda', [DashboardVerifikatorController::class, 'index'])->middleware('auth');
 
     Route::prefix('/data-pribadi')->group(function () {
 
-        // Route::get('/pendidikan-formal', function () {
-        //     return view('verifikator.data-pribadi.pendidikan-formal');
+
+        Route::get('/pendidikan-formal/{id}', [PendidikanFormalVerifikatorController::class, 'showPendidikanFormal'])->middleware('auth');
+
+        Route::get('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'showDetailPendidikanFormal']);
+
+        Route::put('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'updateDetailPendidikanFormal']);
+
+        Route::get('organisasi/{id}', [OrganisasiVerifikatorController::class, 'showOrganisasi'])->middleware('auth');
+
+        // Route::get('/organisasi', function () {
+        //     return view('verifikator.data-pribadi.organisasi');
         // });
 
-        Route::get('/pendidikan-formal/{id}', [VerifikatorController::class, 'showPendidikanFormal']);
-
-        // Route::get('/pendidikan-formal/periksa', function () {
-        //     return view('verifikator.data-pribadi.periksa.pendidikan-formal');
+        // Route::get('/organisasi/periksa', function () {
+        //     return view('verifikator.data-pribadi.periksa.organisasi');
         // });
-
-        Route::get('/pendidikan-formal/periksa/{id}/edit', [VerifikatorController::class, 'showDetailPendidikanFormalUser']);
-
-        Route::put('/pendidikan-formal/periksa/{id}/edit', [VerifikatorController::class, 'updateDetailPendidikanFormalUser']);
-
-        Route::get('/organisasi', function () {
-            return view('verifikator.data-pribadi.organisasi');
-        });
-
-        Route::get('/organisasi/periksa', function () {
-            return view('verifikator.data-pribadi.periksa.organisasi');
-        });
 
         Route::get('/tanda-penghargaan', function () {
             return view('verifikator.data-pribadi.tanda-penghargaan');
@@ -256,10 +225,6 @@ Route::get('/register/checkSlug', [RegisterController::class, 'checkSlug']);
 Route::get('profil', [ProfilController::class, 'index'])->name('profil');
 Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
 
-
-
-
-// Route::get('/beranda', [RekognisiPencapaianController::class, 'showBeranda']);
 
 /**
  * route untuk ke halaman beranda

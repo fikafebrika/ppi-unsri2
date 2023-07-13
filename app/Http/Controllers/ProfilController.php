@@ -18,7 +18,7 @@ class ProfilController extends Controller
 
         // dd($user);
 
-        return view('mahasiswa.profil', [
+        return view('mahasiswa.profil-mahasiswa.profil', [
             "user" => $user
         ]);
         // return view('mahasiswa.profil', compact('data'));

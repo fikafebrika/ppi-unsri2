@@ -5,123 +5,7 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item active">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
@@ -130,7 +14,7 @@
     <form
       id="formAccountSettings"
       method="post" 
-      action="/verifikator/data-pribadi/pendidikan-formal/periksa/{{ $pendidikan_formal->id }}/edit"
+      action="/verifikator/data-pribadi/pendidikan-formal/{{ $pendidikan_formal->id }}/edit"
       enctype="multipart/form-data">
       @csrf
       @method('PUT')
@@ -283,9 +167,7 @@
               class="form-control bg-white"
               placeholder="Judul Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
               disabled
-            >
-            {{ $pendidikan_formal->judul }}</textarea
-            >
+            >{{ $pendidikan_formal->judul }}</textarea>
           </div>
           {{-- I.2 C11 (Untuk S1) --}}
           {{-- I.2 D11 (Untuk S2) --}}
@@ -301,9 +183,7 @@
               class="form-control bg-white"
               placeholder="Uraian Singkat Tentang Materi Tugas Akhir/ Skripsi/ Tesis/ Disertasi"
               disabled
-            >
-            {{ $pendidikan_formal->uraian_singkat }}</textarea
-            >
+            >{{ $pendidikan_formal->uraian_singkat }}</textarea>
           </div>
           {{-- I.2 C12 (Untuk S1) --}}
           {{-- I.2 D12 (Untuk S2) --}}
@@ -359,7 +239,45 @@
             id="status_validasi"
             name="status_validasi"
             class="select2 form-select">
-            <option value="pending" selected>
+            @if ($pendidikan_formal->status_validasi === "valid")
+            <option value="valid" class="text-success fw-bold" selected>
+              VALID (*Bila semua pencapaian mahasiswa telah
+              sesuai)
+            </option>
+            <option value="invalid" class="text-danger fw-bold">
+              INVALID (*Bila ada kesalahan pada pencapaian
+              mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            <option value="" class="text-warning fw-bold">
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option> 
+            @elseif($pendidikan_formal->status_validasi === "invalid")
+            <option value="invalid" class="text-danger fw-bold" selected>
+              INVALID (*Bila ada kesalahan pada pencapaian
+              mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            <option value="valid" class="text-success fw-bold">
+              VALID (*Bila semua pencapaian mahasiswa telah
+              sesuai)
+            </option>
+            <option value="" class="text-warning fw-bold">
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option> 
+            @elseif($pendidikan_formal->status_validasi === "pending")
+            <option value="" class="text-warning fw-bold" selected>
+              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
+            </option> 
+            <option value="invalid" class="text-danger fw-bold" selected>
+              INVALID (*Bila ada kesalahan pada pencapaian
+              mahasiswa atau ada pencapaian yang tidak sesuai)
+            </option>
+            <option value="valid" class="text-success fw-bold">
+              VALID (*Bila semua pencapaian mahasiswa telah
+              sesuai)
+            </option> 
+            @endif
+
+            {{-- <option value="pending" selected>
               {{ $pendidikan_formal->status_validasi }}
             </option>
             <option value="invalid" class="text-danger fw-bold">
@@ -369,21 +287,22 @@
             <option value="valid" class="text-success fw-bold">
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
-            </option>
+            </option> --}}
           </select>
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator (*Bila Ada)</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          ></textarea>
+          >{{ old('catatan-verifikator', $pendidikan_formal->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">

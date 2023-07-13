@@ -16,7 +16,7 @@
       <h5 class="card-header">
         Karya Tulis di Bidang Keinsinyuran yang Dipublikasikan
       </h5>
-      <a href="/publikasi/karya-tulis/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
+      <a href="/publikasi/karya/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">

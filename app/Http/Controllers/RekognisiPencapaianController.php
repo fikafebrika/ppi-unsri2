@@ -106,7 +106,7 @@ class RekognisiPencapaianController extends Controller
                     "bahasa" => "5%",
                 ],
                 "praktek_keinsinyuran" => [
-                    "pengalaman_mengajar" => "15%",
+                    "kualifikasi_professional" => "15%",
                     "karya_tulis" => "20%",
                     "makalah" => "20%",
                     "seminar" => "15%",

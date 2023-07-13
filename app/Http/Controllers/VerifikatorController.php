@@ -142,21 +142,5 @@ class VerifikatorController extends Controller
         $data->save();
 
         return redirect('verifikator/data-pribadi/pendidikan-formal/' . $id);
-
-        // if ($updated) {
-        //     // Jika berhasil, lakukan tindakan sesuai kebutuhan
-        //     return redirect('verifikator.data-pribadi.periksa.pendidikan-formal');
-        // } else {
-        //     // Jika gagal, berikan respons sesuai kebutuhan Anda
-        //     return response()->json(['message' => 'Update failed'], 500);
-        // }
-
-
-        // $pendidikanFormal->update($validated_data);
-
-        // return view('verifikator.data-pribadi.pendidikan-formal', [
-        //     "pendidikan_formal" => $pendidikan_formal_user,
-        //     // "admin" => Auth::guard('admin')->user()
-        // ]);
     }
 }

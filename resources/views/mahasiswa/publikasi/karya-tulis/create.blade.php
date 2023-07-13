@@ -14,7 +14,7 @@
     <form
       id="formAccountSettings"
       method="POST"
-      action="/publikasi/karya-tulis"
+      action="/publikasi/karya"
       enctype="multipart/form-data"
     >
     @csrf

@@ -1,6 +1,6 @@
 <ul class="menu-inner py-1">
     <!-- Dashboard -->
-    <li class="menu-item">
+    <li class="menu-item {{ Request::is('beranda') ? 'active' : '' }}">
       <a href="/beranda" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Beranda">Beranda</div>

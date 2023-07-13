@@ -350,7 +350,7 @@
             <td class="text-start">
               <strong>Pengalaman Mengajar Keinsinyuran</strong>
             </td>
-            <td>{{ $bobot['seminar']['pengalaman_mengajar'] }}</td>
+            <td>{{ $bobot['seminar']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr>       
@@ -450,7 +450,7 @@
                 >Kualifikasi Profesional</strong
               >
             </td>
-            <td>{{ $bobot['praktek_keinsinyuran']['pengalaman_mengajar'] }}</td>
+            <td>{{ $bobot['praktek_keinsinyuran']['kualifikasi_professional'] }}</td>
             <td>0</td>
             <td>0</td>
           </tr> 
