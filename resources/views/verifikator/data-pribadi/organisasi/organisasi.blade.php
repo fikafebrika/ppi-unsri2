@@ -40,26 +40,39 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($list_organisasi_user as $organisasi_user)
+            
+       
         <tr>
-          <th scope="row">1</th>
+          <th scope="row">{{ $loop->iteration }}</th>
           {{-- I.3 Kolom B --}}
-          <td><strong>Universitas Sriwijaya</strong></td>
+          <td><strong>{{ $organisasi_user->nama_organisasi }}</strong></td>
           {{-- I.3 Kolom C --}}
-          <td>Organisasi PII</td>
+          <td>{{ $organisasi_user->jenis_organisasi }}</td>
           {{-- I.3 Kolom C --}}
-          <td>Palembang</td>
+          <td>{{ $organisasi_user->kota }}</td>
           {{-- I.3 Kolom D --}}
-          <td>Indonesia</td>
+          <td>{{ $organisasi_user->negara }}</td>
           {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-          <td>Belum Ada</td>
+          @if ($organisasi_user->bukti_organisasi)
+              <td>Ada</td>
+            @else
+            <td>Belum Ada</td>
+            @endif
           {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
           {{-- <td>Ada</td> --}}
 
           {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
           <td>
-              <span class="badge bg-label-warning me-1"
-                >Pending</span
-              >
+            @if ( $organisasi_user->status_validasi === "pending" )
+              <span class="badge bg-label-warning me-1">Pending</span>
+            @elseif($organisasi_user->status_validasi === "valid")
+            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo valid, statusnyo jadi "Valid" --}}
+            <span class="badge bg-label-success me-1">Valid</span>
+            @elseif($organisasi_user->status_validasi === "invalid")
+            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
+            <span class="badge bg-label-danger me-1">Invalid</span>
+            @endif
             </td>
             {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
             {{-- <td>
@@ -75,63 +88,18 @@
             </td> --}}
 
           {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-          <td></td>
+          <td>Admin@gmail.com</td>
           {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
           {{-- <td>Verifikator Satu</td> --}}
             <td>
             <a
-              href="/verifikator/data-pribadi/organisasi/periksa"
+              href="/verifikator/data-pribadi/organisasi/{{ $organisasi_user->id }}/edit"
               class="btn btn-sm btn-primary"
               >Periksa</a
             >
           </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          {{-- I.3 Kolom B --}}
-          <td><strong>Universitas Sriwijaya</strong></td>
-          {{-- I.3 Kolom C --}}
-          <td>Organisasi PII</td>
-          {{-- I.3 Kolom D --}}
-          <td>Palembang</td>
-          {{-- I.3 Kolom E --}}
-          <td>Indonesia</td>
-          {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-          <td>Belum Ada</td>
-          {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
-          {{-- <td>Ada</td> --}}
-
-          {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
-          <td>
-              <span class="badge bg-label-warning me-1"
-                >Pending</span
-              >
-            </td>
-            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
-            {{-- <td>
-              <span class="badge bg-label-success me-1"
-                >Valid</span
-              >
-            </td> --}}
-            {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
-            {{-- <td>
-              <span class="badge bg-label-danger me-1"
-                >Invalid</span
-              >
-            </td> --}}
-
-          {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-          <td></td>
-          {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
-          {{-- <td>Verifikator Satu</td> --}}
-          <td>
-            <a
-              href="/verifikator/data-pribadi/organisasi/periksa"
-              class="btn btn-sm btn-primary"
-              >Periksa</a
-            >
-          </td>
-        </tr>
+        @endforeach
       </tbody>
     </table>
     <div class="d-flex justify-content-between mt-3 mx-1">

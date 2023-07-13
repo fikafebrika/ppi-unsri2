@@ -71,15 +71,12 @@ Route::prefix('/verifikator')->group(function () {
 
         Route::put('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'updateDetailPendidikanFormal']);
 
-        Route::get('organisasi/{id}', [OrganisasiVerifikatorController::class, 'showOrganisasi'])->middleware('auth');
+        Route::get('/organisasi/{id}', [OrganisasiVerifikatorController::class, 'showOrganisasi'])->middleware('auth');
 
-        // Route::get('/organisasi', function () {
-        //     return view('verifikator.data-pribadi.organisasi');
-        // });
+        Route::get('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'showDetailOrganisasi'])->middleware('auth');
 
-        // Route::get('/organisasi/periksa', function () {
-        //     return view('verifikator.data-pribadi.periksa.organisasi');
-        // });
+        Route::put('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'updateDetailOrganisasi'])->middleware('auth');
+
 
         Route::get('/tanda-penghargaan', function () {
             return view('verifikator.data-pribadi.tanda-penghargaan');

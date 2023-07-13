@@ -15,6 +15,7 @@ class PendidikanFormalVerifikatorController extends Controller
         //
 
         $pendidikan_formal_user = PendidikanFormal::where('user_id', $id)->get();
+        // dd($pendidikan_formal_user->user_id);
 
 
         return view('verifikator.data-pribadi.pendidikan-formal.pendidikan-formal', [
@@ -32,7 +33,7 @@ class PendidikanFormalVerifikatorController extends Controller
 
         return view('verifikator.data-pribadi.pendidikan-formal.verifikasi-pendidikan-formal', [
             "pendidikan_formal" => $pendidikan_formal_user,
-            // "admin" => Auth::guard('admin')->user()
+            "userId" => $id,
         ]);
     }
 
@@ -55,10 +56,5 @@ class PendidikanFormalVerifikatorController extends Controller
         $data->update($validated_data);
 
         return redirect('verifikator/data-pribadi/pendidikan-formal/' . $id);
-    }
-
-    public function handleClick($id)
-    {
-        Session::put('selectedUserdId', $id);
     }
 }
