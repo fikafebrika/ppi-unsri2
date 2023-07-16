@@ -15,28 +15,28 @@
                 <div data-i18n="Data Pribadi">Data Pribadi</div>
             </a>
             <ul class="menu-sub ps-2">
-                <li class="menu-item active">
+                <li class="menu-item {{ Request::is('verifikator/data-pribadi/pendidikan-formal*') ? 'active' : '' }}">
                     <a href="/verifikator/data-pribadi/pendidikan-formal/{{ $userId }}" class="menu-link">
                         <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ Request::is('verifikator/data-pribadi/organisasi*') ? 'active' : '' }}">
                     <a href="/verifikator/data-pribadi/organisasi/{{ $userId }}" class="menu-link">
                         <div data-i18n="Organisasi">Organisasi</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/data-pribadi/tanda-penghargaan*') ? 'active' : '' }}">
+                    <a href="/verifikator/data-pribadi/tanda-penghargaan/{{ $userId }}" class="menu-link">
                         <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/data-pribadi/pelatihan*') ? 'active' : '' }}">
+                    <a href="/verifikator/data-pribadi/pelatihan/{{ $userId }}" class="menu-link">
                         <div data-i18n="Pelatihan">Pelatihan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/data-pribadi/sertifikat*') ? 'active' : '' }}">
+                    <a href="/verifikator/data-pribadi/sertifikat/{{ $userId }}" class="menu-link">
                         <div data-i18n="Sertifikat">Sertifikat</div>
                     </a>
                 </li>

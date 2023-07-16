@@ -10,45 +10,51 @@
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Profil</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      action=""
+      action="/profil/{{ $user->id }}/edit"
+      enctype="multipart/form-data"
     >
     @csrf
     @method('PUT')
-      <h5 class="card-header">Data Profil</h5>
       <div class="card-body">
         <div
           class="d-flex align-items-start align-items-sm-center gap-4"
         >
         {{-- Pasfoto Terbaru 3x4 cm pas Register --}}
-          <img
+            @if ($user->image)
+            <img
             src="{{ asset('storage/' . $user->image) }}"
             alt="user-avatar"
             class="d-block rounded"
             height="133"
             width="100"
-            id="uploadAvatar"
-            name="uploadAvatar"
+            id="image-preview"
+            name="image-preview"
           />
+            @else
+            <p>Tidak ada file Photo yang diunggah.</p>
+            @endif
+          
           <div class="button-wrapper">
             <label
-              for="upload"
+              for="image"
               class="btn btn-primary me-2 mb-4"
               tabindex="0"
             >
-              <span class="d-none d-sm-block"
-                >Perbarui Foto</span
-              >
-              <i class="bx bx-upload d-block d-sm-none"></i>
               <input
+              class="form-control @error('image') is-invalid @enderror"
                 type="file"
-                id="upload"
-                class="account-file-input"
-                hidden
+                id="image"
+                name="image"
                 accept="image/png, image/jpeg"
               />
+              {{-- <i class="bx bx-upload d-block d-sm-none"></i> --}}
+              @error('image')
+              <div class="invalid-feedback"> {{ $message }}</div>
+              @enderror
             </label>
             {{-- <button
               type="button"
@@ -68,36 +74,47 @@
             {{-- Nama Lengkap pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="name" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap" value="{{$user->name }}"/>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name) }}"/>
+                @error('name')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- No. KTA pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="nokta" class="form-label">No. KTA (6 Digit Terakhir)</label>
-                <input type="text" class="form-control" id="nokta" name="nokta" placeholder="No. KTA (6 Digit Terakhir)" value="{{$user->nokta }}"/>
+                <input type="text" class="form-control @error('nokta') is-invalid @enderror" id="nokta" name="nokta" placeholder="No. KTA (6 Digit Terakhir)" value="{{ old('nokta', $user->nokta) }}"/>
+                @error('nokta')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- Nomor Induk Mahasiswa pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="nikmhs" class="form-label">Nomor Induk Mahasiswa</label>
-                <input type="text" class="form-control" id="nikmhs" name="nikmhs" placeholder="Nomor Induk Mahasiswa" value="{{$user->nikmhs }}"/>
+                <input type="text" class="form-control @error('nikmhs') is-invalid @enderror" id="nikmhs" name="nikmhs" placeholder="Nomor Induk Mahasiswa" value="{{ old('nikmhs', $user->nikmhs) }}"/>
+                @error('nikmhs')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- Profesi Utama pas Register --}}
             <div class="mb-3 col-md-6">
                 <label class="form-label" for="profesiutama">Profesi Utama</label>
                 <select id="profesiutama" name="profesitama" class="select2 form-select">
                   <option value="">Pilih Profesi Utama</option>
-                  @if ($user->profesiutama === "dosen")
-                    <option value="dosen" selected>Dosen</option>
-                    <option value="praktisi">Praktisi</option>
-                  @else
-                    <option value="dosen" >Dosen</option>
-                    <option value="praktisi" selected>Praktisi</option>
-                  @endif
+                  <option value="dosen" {{ old('profesiutama', $user->profesiutama) == "dosen" ? ' selected' : '' }}>
+                    Dosen
+                  </option>
+                  <option value="praktisi" {{ old('profesiutama', $user->profesiutama) == "praktisi" ? ' selected' : '' }}>
+                    Praktisi
+                  </option>
                 </select>
             </div>
             {{-- Email pas Register --}}
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->email }}"/>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}"/>
+                @error('email')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
         </div>
       </div>
@@ -119,18 +136,24 @@
             <div class="col-md-6"></div>
             {{-- I.1 B5 --}}
             <div class="mb-3 col-md-6">
-                <label for="nama-lengkap2" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama-lengkap2" name="nama-lengkap2" placeholder="Nama Lengkap" value=" "/>
+                <label for="name" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name) }}"/>
+                @error('name')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.1 B6 --}}
             <div class="mb-3 col-md-6">
                 <label for="ttl" class="form-label">Tempat & Tanggal Lahir</label>
-                <input type="text" class="form-control" id="ttl" name="ttl" placeholder="Tempat & Tanggal Lahir" value=""/>
+                <input type="text" class="form-control " id="ttl" name="ttl" placeholder="Tempat & Tanggal Lahir" value=""/>
             </div>
             {{-- I.1 B7 --}}
             <div class="mb-3 col-md-6">
-                <label for="no-kta2" class="form-label">No. KTA (6 Digit Terakhir)</label>
-                <input type="text" class="form-control" id="no-kta2" name="no-kta2" placeholder="No. KTA (6 Digit Terakhir)" value=""/>
+                <label for="nokta" class="form-label">No. KTA (6 Digit Terakhir)</label>
+                <input type="text" class="form-control @error('nokta') is-invalid @enderror" id="nokta" name="nokta" placeholder="No. KTA (6 Digit Terakhir)" value="{{ old('name', $user->nokta) }}"/>
+                @error('nokta')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.1 B8 --}}
             <div class="mb-3 col-md-6">
@@ -175,8 +198,11 @@
             </div>
             {{-- I.1 E19 --}}
             <div class="mb-3 col-md-6">
-                <label for="email2" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email2" name="email2" placeholder="Email" value=""/>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}"/>
+                @error('email')
+                <div class="invalid-feedback"> {{ $message }}</div>
+                @enderror
             </div>
             {{-- I.1 E18 --}}
             <div class="mb-3 col-md-6">
@@ -252,5 +278,21 @@
     </form>
     <!-- /Account -->
 </div>
+<script>
+  // Dapatkan elemen input file
+      const pdfFileInput = document.getElementById('image');
+
+      // Tambahkan event listener untuk saat ada perubahan pada input file
+      pdfFileInput.addEventListener('change', function(e) {
+      // Dapatkan file yang dipilih oleh pengguna
+      const selectedFile = e.target.files[0];
+
+      // Buat objek URL untuk file yang dipilih
+      const fileUrl = URL.createObjectURL(selectedFile);
+
+      // Perbarui sumber data iframe dengan URL file yang baru
+      document.getElementById('image-preview').src = fileUrl;
+      });
+</script>
 @endsection
 

@@ -239,43 +239,18 @@
             id="status_validasi"
             name="status_validasi"
             class="select2 form-select">
-            @if ($pendidikan_formal->status_validasi === "valid")
-            <option value="valid" class="text-success fw-bold" selected>
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="" class="text-warning fw-bold">
-              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-            </option> 
-            @elseif($pendidikan_formal->status_validasi === "invalid")
-            <option value="invalid" class="text-danger fw-bold" selected>
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold">
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option>
-            <option value="" class="text-warning fw-bold">
-              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-            </option> 
-            @elseif($pendidikan_formal->status_validasi === "pending")
-            <option value="" class="text-warning fw-bold" selected>
-              Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-            </option> 
-            <option value="invalid" class="text-danger fw-bold" selected>
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold">
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option> 
-            @endif
+            <option value="" {{ old('status_validasi', $pendidikan_formal->status_validasi) == "" ? ' selected' : '' }} class="text-warning fw-bold">
+              PENDING (*Pilih Hasil Validasi Anda Terhadap Pencapaian
+              Mahasiswa)
+              </option>
+              <option value="invalid" {{ old('status_validasi', $pendidikan_formal->status_validasi) == "invalid" ? ' selected' : '' }} class="text-danger fw-bold">
+                INVALID (*Bila ada kesalahan pada pencapaian
+                mahasiswa atau ada pencapaian yang tidak sesuai)
+              </option>
+              <option value="valid" {{ old('status_validasi', $pendidikan_formal->status_validasi) == "valid" ? ' selected' : '' }} class="text-success fw-bold">
+                VALID (*Bila semua pencapaian mahasiswa telah
+                sesuai)
+              </option>
 
             {{-- <option value="pending" selected>
               {{ $pendidikan_formal->status_validasi }}
@@ -302,7 +277,7 @@
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          >{{ old('catatan-verifikator', $pendidikan_formal->catatan_verifikator) }}</textarea>
+          >{{ old('catatan_verifikator', $pendidikan_formal->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">

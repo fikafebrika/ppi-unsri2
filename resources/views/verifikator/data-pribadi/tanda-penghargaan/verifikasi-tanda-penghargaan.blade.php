@@ -5,133 +5,19 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item active">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/verifikator/data-pribadi/tanda-penghargaan/{{ $penghargaan_user->id }}/edit"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
+      @method('PUT')
       <div class="card-body pb-3">
         <div class="row">
             {{-- I.4 Kolom B --}}
@@ -145,37 +31,37 @@
                   id="tahun"
                   name="tahun"
                   placeholder="Tahun"
-                  value="2022"
+                  value="{{ old('tahun', $penghargaan_user->tahun) }}"
                   disabled
                 />
             </div>
             {{-- I.4 Kolom C --}}
             <div class="mb-3">
-                <label for="penghargaan" class="form-label"
+                <label for="nama_penghargaan" class="form-label"
                   >Nama Tanda Penghargaan</label
                 >
                 <input
                   class="form-control bg-white"
                   type="text"
-                  id="penghargaan"
-                  name="penghargaan"
+                  id="nama_penghargaan"
+                  name="nama_penghargaan"
                   placeholder="Nama Tanda Penghargaan"
-                  value="Penghargaan Satu"
+                  value="{{ old('nama_penghargaan', $penghargaan_user->nama_penghargaan) }}"
                   disabled
                 />
             </div>
             {{-- I.4 Kolom D --}}
             <div class="mb-3 col-md-6">
-                <label for="lembaga" class="form-label"
+                <label for="nama_lembaga_pemberi" class="form-label"
                   >Nama Lembaga yang Memberikan</label
                 >
                 <input
                   type="text"
                   class="form-control bg-white"
-                  id="lembaga"
-                  name="lembaga"
+                  id="nama_lembaga_pemberi"
+                  name="nama_lembaga_pemberi"
                   placeholder="Nama Lembaga yang Memberikan"
-                  value="Universitas Sriwijaya"
+                  value="{{ old('nama_lembaga_pemberi', $penghargaan_user->nama_lembaga_pemberi) }}"
                   disabled
                 />
             </div>
@@ -190,7 +76,7 @@
                   id="lokasi"
                   name="lokasi"
                   placeholder="Lokasi"
-                  value="Palembang"
+                  value="{{ old('lokasi', $penghargaan_user->lokasi) }}"
                   disabled
                 />
             </div>
@@ -205,54 +91,54 @@
                   id="negara"
                   name="negara"
                   placeholder="Negara"
-                  value="Indonesia"
+                  value="{{ old('negara', $penghargaan_user->negara) }}"
                   disabled
                 />
             </div>
             {{-- I.4 Kolom G --}}
             <div class="mb-3 col-md-6">
-                <label class="form-label" for="tingkat-penghargaan"
+                <label class="form-label" for="tingkat_penghargaan"
                 >Penghargaan yang Diterima Tingkat</label
                 >
                 <select
-                id="tingkat-penghargaan"
+                id="tingkat_penghargaan"
+                name="tingkat_penghargaan"
                 class="select2 form-select bg-white"
                 disabled
                 >
-                <option value="">
-                    Pilih Penghargaan yang Diterima Tingkat
+                <option value="pratama" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "pratama" ? ' selected' : '' }}>
+                  Tingkatan Muda/ Pratama
                 </option>
-                <option value="pratama">
-                    Tingkatan Muda/ Pratama
+                <option value="madya" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "madya" ? ' selected' : '' }}>
+                  Tingkatan Madya
                 </option>
-                <option value="madya" selected>
-                    Tingkatan Madya
+                <option value="utama" {{ old('tingkat_penghargaan', $penghargaan_user->tingkat_penghargaan) == "utama" ? ' selected' : '' }}>
+                  Tingkatan Utama
                 </option>
-                <option value="utama">Tingkatan Utama</option>
                 </select>
             </div>
             {{-- I.4 Kolom H --}}
             <div class="mb-3 col-md-6">
-                <label for="tingkatan-lembaga" class="form-label"
+                <label for="tingkatan_lembaga" class="form-label"
                 >Penghargaan Diberikan Oleh Lembaga</label
                 >
                 <select
-                id="tingkatan-lembaga"
+                id="tingkatan_lembaga"
+                name="tingkatan_lembaga"
                 class="select2 form-select bg-white"
                 disabled
                 >
-                <option value="">Pilih Penghargaan Diberikan Oleh Lembaga</option>
-                <option value="lokal" selected>
-                    Penghargaan Lokal
+                <option value="lokal" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "lokal" ? ' selected' : '' }}>
+                  Penghargaan Lokal
                 </option>
-                <option value="nasional">
-                    Penghargaan Nasional
+                <option value="nasional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "nasional" ? ' selected' : '' }}>
+                  Penghargaan Nasional
                 </option>
-                <option value="regional">
-                    Penghargaan Regional
+                <option value="regional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "regional" ? ' selected' : '' }}>
+                  Penghargaan Regional
                 </option>
-                <option value="internasional">
-                    Penghargaan Internasional
+                <option value="internasional" {{ old('tingkatan_lembaga', $penghargaan_user->tingkatan_lembaga) == "internasional" ? ' selected' : '' }}>
+                  Penghargaan Internasional
                 </option>
                 </select>
             </div>
@@ -267,7 +153,7 @@
                 class="form-control bg-white"
                 placeholder="Uraian Singkat Tanda Penghargaan"
                 disabled rows="5"
-                ></textarea>
+                >{{ old('uraian', $penghargaan_user->uraian) }}</textarea>
             </div>
             {{-- <div class="mb-3 col-md-6">
                 <label for="bukti" class="form-label"
@@ -714,23 +600,24 @@
       <hr class="my-0" />
       <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
+          <label class="form-label" for="status_validasi"
             >Hasil Validasi Anda Terhadap Pencapaian
             Mahasiswa</label
           >
           <select
-            id="hasil-validasi"
+            id="status_validasi"
+            name="status_validasi"
             class="select2 form-select"
           >
-            <option value="" selected>
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
+          <option value="" {{ old('status_validasi', $penghargaan_user->status_validasi) == "" ? ' selected' : '' }} class="text-warning fw-bold">
+            PENDING (*Pilih Hasil Validasi Anda Terhadap Pencapaian
+            Mahasiswa)
             </option>
-            <option value="invalid" class="text-danger fw-bold">
+            <option value="invalid" {{ old('status_validasi', $penghargaan_user->status_validasi) == "invalid" ? ' selected' : '' }} class="text-danger fw-bold">
               INVALID (*Bila ada kesalahan pada pencapaian
               mahasiswa atau ada pencapaian yang tidak sesuai)
             </option>
-            <option value="valid" class="text-success fw-bold">
+            <option value="valid" {{ old('status_validasi', $penghargaan_user->status_validasi) == "valid" ? ' selected' : '' }} class="text-success fw-bold">
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
@@ -738,16 +625,17 @@
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator (*Bila Ada)</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          ></textarea>
+          >{{ old('catatan_verifikator', $penghargaan_user->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">
@@ -762,10 +650,10 @@
             >
               Reset
             </button>
-            <a
-              href="/verifikator/data-pribadi/tanda-penghargaan"
+            <button
+              type="submit"
               class="btn btn-primary text-white"
-              >Simpan</a
+              >Simpan</button
             >
           </div>
         </div>

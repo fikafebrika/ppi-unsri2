@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Profil;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -21,16 +22,43 @@ class ProfilController extends Controller
         return view('mahasiswa.profil-mahasiswa.profil', [
             "user" => $user
         ]);
-        // return view('mahasiswa.profil', compact('data'));
     }
 
+    public function updateProfileUser(Request $request, $id, User $user)
+    {
+        dd($request->file('image'));
+
+        $rules = [
+            'name' => 'required|max:255',
+            'username' => 'required|unique:users',
+            'nikmhs' => 'required',
+            'nokta' => 'required',
+            'profesiutama' => 'required',
+            'image' => 'image|file|max:1024',
+        ];
+
+        $data = User::findOrFail($id);
+
+        if ($request->email != $data->email) {
+            $rules['email'] = 'required|email|unique:users';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        dd($request->file('image'));
+
+        if ($request->file('image')) {
+            //kalau gambar lamanya ada
+            if ($request->image) {
+                Storage::delete($request->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
 
-    //  public function store(Request $request )
-    // {
 
-    //     Profil::create($request->all());
-    //     return redirect()->back('success', 'data berhasil ditambah');
+        $data->update($validatedData);
 
-    // }
+        return redirect('/profil')->with('success', 'Profil has been updated!');
+    }
 }

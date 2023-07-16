@@ -24,7 +24,10 @@ use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
 use App\Http\Controllers\Verifikator\DashboardVerifikatorController;
 use App\Http\Controllers\Verifikator\OrganisasiVerifikatorController;
+use App\Http\Controllers\Verifikator\PelatihanVerifikatorController;
 use App\Http\Controllers\Verifikator\PendidikanFormalVerifikatorController;
+use App\Http\Controllers\Verifikator\SertifikatVerifikatorController;
+use App\Http\Controllers\Verifikator\TandaPenghargaanVerifikatorController;
 use App\Http\Controllers\VerifikatorAdminController;
 
 
@@ -77,30 +80,24 @@ Route::prefix('/verifikator')->group(function () {
 
         Route::put('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'updateDetailOrganisasi'])->middleware('auth');
 
+        Route::get('/tanda-penghargaan/{id}', [TandaPenghargaanVerifikatorController::class, 'showTandaPenghargaan'])->middleware('auth');
 
-        Route::get('/tanda-penghargaan', function () {
-            return view('verifikator.data-pribadi.tanda-penghargaan');
-        });
+        Route::get('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'showDetailTandaPenghargaan'])->middleware('auth');
 
-        Route::get('/tanda-penghargaan/periksa', function () {
-            return view('verifikator.data-pribadi.periksa.tanda-penghargaan');
-        });
+        Route::put('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'updateDetailTandaPenghargaan'])->middleware('auth');
 
-        Route::get('/pelatihan', function () {
-            return view('verifikator.data-pribadi.pelatihan');
-        });
 
-        Route::get('/pelatihan/periksa', function () {
-            return view('verifikator.data-pribadi.periksa.pelatihan');
-        });
+        Route::get('/sertifikat/{id}', [SertifikatVerifikatorController::class, 'showSertifikat'])->middleware('auth');
 
-        Route::get('/sertifikat', function () {
-            return view('verifikator.data-pribadi.sertifikat');
-        });
+        Route::get('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'showDetailSertifikat'])->middleware('auth');
 
-        Route::get('/sertifikat/periksa', function () {
-            return view('verifikator.data-pribadi.periksa.sertifikat');
-        });
+        Route::put('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'updateDetailSertifikat'])->middleware('auth');
+
+        Route::get('/pelatihan/{id}', [PelatihanVerifikatorController::class, 'showPelatihan'])->middleware('auth');
+
+        Route::get('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'showDetailPelatihan'])->middleware('auth');
+
+        Route::put('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'updateDetailPelatihan'])->middleware('auth');
     });
 
     Route::prefix('/kode-etik-insinyur')->group(function () {
@@ -220,7 +217,9 @@ Route::get('/register/checkSlug', [RegisterController::class, 'checkSlug']);
  */
 //PROFILE
 Route::get('profil', [ProfilController::class, 'index'])->name('profil');
-Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
+
+Route::put('/profil/{id}/edit', [ProfilController::class, 'updateProfileUser']);
+// Route::put('profil/store', [ProfilController::class, 'store'])->name('profil.store');
 
 
 /**
