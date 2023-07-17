@@ -47,25 +47,25 @@
                 <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
             </a>
             <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/kode-etik-insinyur/referensi*') ? 'active' : '' }}">
+                    <a href="/verifikator/kode-etik-insinyur/referensi/{{ $userId }}" class="menu-link">
                         <div data-i18n="Referensi">Referensi</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/kode-etik-insinyur/pengertian*') ? 'active' : '' }}">
+                    <a href="/verifikator/kode-etik-insinyur/pengertian/{{ $userId }}" class="menu-link">
                         <div data-i18n="Pengertian">Pengertian</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
+        <li class="menu-item {{ Request::is('verifikator/kualifikasi-profesional*') ? 'active' : '' }}">
+            <a href="/verifikator/kualifikasi-profesional/{{ $userId }}" class="menu-link">
                 <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
+        <li class="menu-item {{ Request::is('verifikator/pengalaman-mengajar*') ? 'active' : '' }}">
+            <a href="/verifikator/pengalaman-mengajar/{{ $userId }}" class="menu-link">
                 <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
             </a>
         </li>
@@ -74,30 +74,30 @@
                 <div data-i18n="Publikasi">Publikasi</div>
             </a>
             <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/publikasi/karya-tulis*') ? 'active' : '' }}">
+                    <a href="/verifikator/publikasi/karya-tulis/{{ $userId }}" class="menu-link">
                         <div data-i18n="Karya Tulis">Karya Tulis</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/publikasi/makalah*') ? 'active' : '' }}">
+                    <a href="/verifikator/publikasi/makalah/{{ $userId }}" class="menu-link">
                         <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/publikasi/seminar*') ? 'active' : '' }}">
+                    <a href="/verifikator/publikasi/seminar/{{ $userId }}" class="menu-link">
                         <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
+                <li class="menu-item {{ Request::is('verifikator/publikasi/karya-temuan*') ? 'active' : '' }}">
+                    <a href="/verifikator/publikasi/karya-temuan/{{ $userId }}" class="menu-link">
                         <div data-i18n="Karya Temuan">Karya Temuan</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
+        <li class="menu-item {{ Request::is('verifikator/bahasa*') ? 'active' : '' }}">
+            <a href="/verifikator/bahasa/{{ $userId }}" class="menu-link">
                 <div data-i18n="Bahasa">Bahasa</div>
             </a>
         </li>

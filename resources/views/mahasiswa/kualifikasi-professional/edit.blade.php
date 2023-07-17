@@ -107,7 +107,7 @@
               id="nama_instansi"
               name="nama_instansi"
               placeholder="Nama Instansi/ Perusahaan"
-              value="{{ old('periode', $kualifikasi_professional_user->nama_instansi) }}"
+              value="{{ old('nama_instansi', $kualifikasi_professional_user->nama_instansi) }}"
 
             />
             @error('nama_instansi')
@@ -125,7 +125,7 @@
               id="jabatan"
               name="jabatan"
               placeholder="Jabatan/ Tugas"
-              value="{{ old('periode', $kualifikasi_professional_user->jabatan) }}"
+              value="{{ old('jabatan', $kualifikasi_professional_user->jabatan) }}"
 
             />
             @error('jabatan')
@@ -143,7 +143,7 @@
               id="nama_aktifitas"
               name="nama_aktifitas"
               placeholder="Nama Aktifitas/ Kegiatan/ Proyek"
-              value="{{ old('periode', $kualifikasi_professional_user->nama_aktifitas) }}"
+              value="{{ old('nama_aktifitas', $kualifikasi_professional_user->nama_aktifitas) }}"
 
             />
             @error('nama_aktifitas')

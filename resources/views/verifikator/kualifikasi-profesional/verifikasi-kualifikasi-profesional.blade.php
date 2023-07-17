@@ -5,133 +5,19 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item active">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/verifikator/kualifikasi-profesional/{{ $kualifikasi_profesional_user->id }}/edit"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
+      @method('PUT')
       <div class="card-body pb-3">
         <div class="row">
             {{-- III KOLOM B --}}
@@ -145,22 +31,22 @@
                   id="periode"
                   name="periode"
                   placeholder="Periode"
-                  value=""
+                  value="{{ old('periode', $kualifikasi_profesional_user->periode) }}"
                   disabled
                 />
               </div>
           {{-- III KOLOM C --}}
               <div class="mb-3 col-md-6">
-            <label for="nama-instansi" class="form-label"
+            <label for="nama_instansi" class="form-label"
               >Nama Instansi/ Perusahaan</label
             >
             <input
               class="form-control bg-white"
               type="text"
-              id="nama-instansi"
-              name="nama-instansi"
+              id="nama_instansi"
+              name="nama_instansi"
               placeholder="Nama Instansi/ Perusahaan"
-              value="Universitas Sriwijaya"
+              value="{{ old('nama_instansi', $kualifikasi_profesional_user->nama_instansi) }}"
               disabled
             />
           </div>
@@ -175,37 +61,37 @@
               id="jabatan"
               name="jabatan"
               placeholder="Jabatan/ Tugas"
-              value="Dosen"
+              value="{{ old('jabatan', $kualifikasi_profesional_user->jabatan) }}"
               disabled
             />
           </div>
           {{-- III KOLOM E --}}
           <div class="mb-3">
-            <label for="nama-aktifitas" class="form-label"
+            <label for="nama_aktifitas" class="form-label"
               >Nama Aktifitas/ Kegiatan/ Proyek</label
             >
             <input
               type="text"
               class="form-control bg-white"
-              id="nama-aktifitas"
-              name="nama-aktifitas"
+              id="nama_aktifitas"
+              name="nama_aktifitas"
               placeholder="Nama Aktifitas/ Kegiatan/ Proyek"
-              value="Kegiatan Jurusan"
+              value="{{ old('nama_aktifitas', $kualifikasi_profesional_user->nama_aktifitas) }}"
               disabled
             />
           </div>
           {{-- III KOLOM F --}}
           <div class="mb-3 col-md-6">
-            <label for="pemberi-tugas" class="form-label"
+            <label for="pemberi_tugas" class="form-label"
               >Pemberi Tugas</label
             >
             <input
               type="text"
               class="form-control bg-white"
-              id="pemberi-tugas"
-              name="pemberi-tugas"
+              id="pemberi_tugas"
+              name="pemberi_tugas"
               placeholder="Pemberi Tugas"
-              value="Ketua Jurusan"
+              value="{{ old('pemberi_tugas', $kualifikasi_profesional_user->pemberi_tugas) }}"
               disabled
             />
           </div>
@@ -220,7 +106,7 @@
               id="lokasi"
               name="lokasi"
               placeholder="Lokasi"
-              value="Palembang"
+              value="{{ old('lokasi', $kualifikasi_profesional_user->lokasi) }}"
               disabled
             />
           </div>
@@ -231,14 +117,22 @@
             >
             <select
               id="durasi"
+              name="durasi"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">Pilih Durasi</option>
-              <option value="1-3" selected>1 - 3 Tahun</option>
-              <option value="4-7">4 - 7 Tahun</option>
-              <option value="8-10">8 - 10 Tahun</option>
-              <option value="lebih-dari-10">> 10 Tahun</option>
+            <option value="1-3" {{ old('durasi', $kualifikasi_profesional_user->durasi) == "1-3" ? ' selected' : '' }}>
+              1 - 3 Tahun
+            </option>
+            <option value="4-7" {{ old('durasi', $kualifikasi_profesional_user->durasi) == "4-7" ? ' selected' : '' }}>
+              4 - 7 Tahun
+            </option>
+            <option value="8-10" {{ old('durasi', $kualifikasi_profesional_user->durasi) == "8-10" ? ' selected' : '' }}>
+              8 - 10 Tahun
+            </option>
+            <option value="lebih-dari-10" {{ old('durasi', $kualifikasi_profesional_user->durasi) == "lebih-dari-10" ? ' selected' : '' }}>
+              10 Tahun
+            </option>
             </select>
           </div>
 
@@ -249,112 +143,128 @@
             >
             <select
               id="posisi"
+              name="posisi"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">
-                Pilih Posisi Tugas, Jabatan
-              </option>
-              <option value="anggota" selected>
-                Anggota/ Staff/ Dosen
-              </option>
-              <option value="supervisor">
-                Supervisor/ Site Engineer/ Site Manager/
-                KaLab/Sekretaris Jurusan/ Ketua Jurusan/ PD
-              </option>
-              <option value="direktur">
-                Direktur/ Ketua Tim/ Dekan/ PR/ Rektor
-              </option>
-              <option value="pengarah">
-                Pengarah/ Adviser/ Narasumber Ahli
-              </option>
+            <option value="anggota" {{ old('posisi', $kualifikasi_profesional_user->posisi) == "anggota" ? ' selected' : '' }}>
+              Anggota/ Staff/ Dosen
+            </option>
+            <option value="supervisor" {{ old('posisi', $kualifikasi_profesional_user->posisi) == "supervisor" ? ' selected' : '' }}>
+              Supervisor/ Site Engineer/ Site Manager/
+              KaLab/Sekretaris Jurusan/ Ketua Jurusan/ PD
+            </option>
+            <option value="direktur" {{ old('posisi', $kualifikasi_profesional_user->posisi) == "direktur" ? ' selected' : '' }}>
+              Direktur/ Ketua Tim/ Dekan/ PR/ Rektor
+            </option>
+            <option value="pengarah" {{ old('posisi', $kualifikasi_profesional_user->posisi) == "pengarah" ? ' selected' : '' }}>
+              Pengarah/ Adviser/ Narasumber Ahli
+            </option>
             </select>
           </div>
           {{-- III KOLOM J --}}
           <div class="mb-3 col-md-6">
-            <label for="nilai-proyek" class="form-label"
+            <label for="nilai_proyek" class="form-label"
               >Nilai Proyek</label
             >
             <input
               type="number"
               class="form-control bg-white"
-              id="nilai-proyek"
-              name="nilai-proyek"
+              id="nilai_proyek"
+              name="nilai_proyek"
               placeholder="Nilai Proyek"
-              value="10000000"
+              value="{{ old('nilai_proyek', $kualifikasi_profesional_user->nilai_proyek) }}"
               disabled
             />
           </div>
           {{-- III KOLOM K --}}
           <div class="mb-3 col-md-6">
-            <label for="nilai-tanggung-jawab" class="form-label"
+            <label for="nilai_tanggung_jawab" class="form-label"
               >Nilai Tanggung Jawab</label
             >
             <input
               type="text"
               class="form-control bg-white"
-              id="nilai-tanggung-jawab"
-              name="nilai-tanggung-jawab"
+              id="nilai_tanggung_jawab"
+              name="nilai_tanggung_jawab"
               placeholder="Nilai Tanggung Jawab"
-              value=""
+              value="{{ old('nilai_tanggung_jawab', $kualifikasi_profesional_user->nilai_tanggung_jawab) }}"
               disabled
             />
           </div>
           {{-- III KOLOM L --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="sdm"
+            <label class="form-label" for="sdm_terlibat"
               >SDM yang Terlibat</label
             >
             <select
-              id="sdm"
+              id="sdm_terlibat"
+              name="sdm_terlibat"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">Pilih SDM yang Terlibat</option>
-              <option value="sedikit" selected>Sedikit</option>
-              <option value="sedang">Sedang</option>
-              <option value="banyak">Banyak</option>
-              <option value="sangat-banyak">
-                >Sangat Banyak
-              </option>
+            <option value="sedikit" {{ old('sdm_terlibat', $kualifikasi_profesional_user->sdm_terlibat) == "sedikit" ? ' selected' : '' }}>
+              Sedikit
+            </option>
+            <option value="sedang" {{ old('sdm_terlibat', $kualifikasi_profesional_user->sdm_terlibat) == "sedang" ? ' selected' : '' }}>
+              Sedang
+            </option>
+            <option value="banyak" {{ old('sdm_terlibat', $kualifikasi_profesional_user->sdm_terlibat) == "banyak" ? ' selected' : '' }}>
+              Banyak
+            </option>
+            <option value="sangat-banyak" {{ old('sdm_terlibat', $kualifikasi_profesional_user->sdm_terlibat) == "sangat-banyak" ? ' selected' : '' }}>
+              Sangat Banyak
+            </option>
+
             </select>
           </div>
           {{-- III KOLOM M --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkat"
+            <label class="form-label" for="tingkat_kesulitan"
               >Tingkat Kesulitan</label
             >
             <select
-              id="tingkat"
+              id="tingkat_kesulitan"
+              name="tingkat_kesulitan"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">Pilih Tingkat Kesulitan</option>
-              <option value="rendah" selected>Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
-                >Sangat tinggi
-              </option>
+            <option value="rendah" {{ old('tingkat_kesulitan', $kualifikasi_profesional_user->tingkat_kesulitan) == "rendah" ? ' selected' : '' }}>
+              Rendah
+            </option>
+            <option value="sedang" {{ old('tingkat_kesulitan', $kualifikasi_profesional_user->tingkat_kesulitan) == "sedang" ? ' selected' : '' }}>
+              Sedang
+            </option>
+            <option value="tinggi" {{ old('tingkat_kesulitan', $kualifikasi_profesional_user->tingkat_kesulitan) == "tinggi" ? ' selected' : '' }}>
+              Tinggi
+            </option>
+            <option value="sangat-tinggi" {{ old('tingkat_kesulitan', $kualifikasi_profesional_user->tingkat_kesulitan) == "sangat-tinggi" ? ' selected' : '' }}>
+              Sangat tinggi
+            </option>
             </select>
           </div>
           {{-- III KOLOM N --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="skala"
+            <label class="form-label" for="skala_proyek"
               >Skala Proyek</label
             >
             <select
-              id="skala"
+              id="skala_proyek"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">Pilih Skala Proyek</option>
-              <option value="rendah" selected>Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
-                >Sangat tinggi
-              </option>
+            <option value="rendah" {{ old('skala_proyek', $kualifikasi_profesional_user->skala_proyek) == "rendah" ? ' selected' : '' }}>
+              Rendah
+            </option>
+            <option value="sedang" {{ old('skala_proyek', $kualifikasi_profesional_user->skala_proyek) == "sedang" ? ' selected' : '' }}>
+              Sedang
+            </option>
+            <option value="tinggi" {{ old('skala_proyek', $kualifikasi_profesional_user->skala_proyek) == "tinggi" ? ' selected' : '' }}>
+              Tinggi
+            </option>
+            <option value="sangat-tinggi" {{ old('skala_proyek', $kualifikasi_profesional_user->skala_proyek) == "sangat-tinggi" ? ' selected' : '' }}>
+              Sangat tinggi
+            </option>
             </select>
           </div>
           {{-- III KOLOM O --}}
@@ -369,7 +279,7 @@
               class="form-control bg-white"
               placeholder="Uraian Singkat Tugas dan Tanggung Jawab Profesional Sesuai NSPK" rows="5"
               disabled
-            ></textarea>
+            >{{ old('uraian', $kualifikasi_profesional_user->uraian) }}</textarea>
           </div>
           <div class="mb-3">
             <label for="bukti" class="form-label"
@@ -4251,23 +4161,24 @@
       <hr class="my-0" />
       <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
+          <label class="form-label" for="status_validasi"
             >Hasil Validasi Anda Terhadap Pencapaian
             Mahasiswa</label
           >
           <select
-            id="hasil-validasi"
+            id="status_validasi"
+            name="status_validasi"
             class="select2 form-select"
           >
-            <option value="" selected>
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
+          <option value="" {{ old('status_validasi', $kualifikasi_profesional_user->status_validasi) == "" ? ' selected' : '' }} class="text-warning fw-bold">
+            PENDING (*Pilih Hasil Validasi Anda Terhadap Pencapaian
+            Mahasiswa)
             </option>
-            <option value="invalid" class="text-danger fw-bold">
+            <option value="invalid" {{ old('status_validasi', $kualifikasi_profesional_user->status_validasi) == "invalid" ? ' selected' : '' }} class="text-danger fw-bold">
               INVALID (*Bila ada kesalahan pada pencapaian
               mahasiswa atau ada pencapaian yang tidak sesuai)
             </option>
-            <option value="valid" class="text-success fw-bold">
+            <option value="valid" {{ old('status_validasi', $kualifikasi_profesional_user->status_validasi) == "valid" ? ' selected' : '' }} class="text-success fw-bold">
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
@@ -4275,16 +4186,17 @@
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator (*Bila Ada)</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          ></textarea>
+          >{{ old('catatan_verifikator', $kualifikasi_profesional_user->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">
@@ -4299,10 +4211,10 @@
             >
               Reset
             </button>
-            <a
-              href="/verifikator/kualifikasi-profesional"
+            <button
+              type="submit"
               class="btn btn-primary text-white"
-              >Simpan</a
+              >Simpan</button
             >
           </div>
         </div>

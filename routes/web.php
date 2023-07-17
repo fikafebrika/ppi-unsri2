@@ -22,10 +22,19 @@ use App\Http\Controllers\RekognisiPencapaianController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\TandaPenghargaanController;
+use App\Http\Controllers\Verifikator\BahasaVerifikatorController;
 use App\Http\Controllers\Verifikator\DashboardVerifikatorController;
+use App\Http\Controllers\Verifikator\KaryaTemuanVerifikatorController;
+use App\Http\Controllers\Verifikator\KaryaTulisVerifikatorController;
+use App\Http\Controllers\Verifikator\KualifikasiProfesionalVerifikatorController;
+use App\Http\Controllers\Verifikator\MakalahVerifikatorController;
 use App\Http\Controllers\Verifikator\OrganisasiVerifikatorController;
 use App\Http\Controllers\Verifikator\PelatihanVerifikatorController;
 use App\Http\Controllers\Verifikator\PendidikanFormalVerifikatorController;
+use App\Http\Controllers\Verifikator\PengalamanMengajarVerifikatorController;
+use App\Http\Controllers\Verifikator\PengertianVerifikatorController;
+use App\Http\Controllers\Verifikator\ReferensiVerifikatorController;
+use App\Http\Controllers\Verifikator\SeminarVerifikatorController;
 use App\Http\Controllers\Verifikator\SertifikatVerifikatorController;
 use App\Http\Controllers\Verifikator\TandaPenghargaanVerifikatorController;
 use App\Http\Controllers\VerifikatorAdminController;
@@ -56,17 +65,13 @@ Route::prefix('/admin')->group(function () {
 
 Route::prefix('/verifikator')->group(function () {
 
-
     Route::get('/login', [LoginAdminController::class, 'index'])->name('login');
+
     Route::post('/login', [LoginAdminController::class, 'authenticate'])->name('login');
-
-
-    // Route::get('/beranda', DashboardVerifikatorController::class)->middleware('auth');
 
     Route::get('/beranda', [DashboardVerifikatorController::class, 'index'])->middleware('auth');
 
     Route::prefix('/data-pribadi')->group(function () {
-
 
         Route::get('/pendidikan-formal/{id}', [PendidikanFormalVerifikatorController::class, 'showPendidikanFormal'])->middleware('auth');
 
@@ -101,80 +106,64 @@ Route::prefix('/verifikator')->group(function () {
     });
 
     Route::prefix('/kode-etik-insinyur')->group(function () {
-        Route::get('/referensi', function () {
-            return view('verifikator.kode-etik-insinyur.referensi');
-        });
 
-        Route::get('/referensi/periksa', function () {
-            return view('verifikator.kode-etik-insinyur.periksa.referensi');
-        });
+        Route::get('/referensi/{id}', [ReferensiVerifikatorController::class, 'showReferensi'])->middleware('auth');
 
-        Route::get('/pengertian', function () {
-            return view('verifikator.kode-etik-insinyur.pengertian');
-        });
+        Route::get('/referensi/{id}/edit', [ReferensiVerifikatorController::class, 'showDetailReferensi'])->middleware('auth');
 
-        Route::get('/pengertian/periksa', function () {
-            return view('verifikator.kode-etik-insinyur.periksa.pengertian');
-        });
+        Route::put('/referensi/{id}/edit', [ReferensiVerifikatorController::class, 'updateDetailReferensi'])->middleware('auth');
+
+        Route::get('/pengertian/{id}', [PengertianVerifikatorController::class, 'showPengertian'])->middleware('auth');
+
+        Route::get('/pengertian/{id}/edit', [PengertianVerifikatorController::class, 'showDetailPengertian'])->middleware('auth');
+
+        Route::put('/pengertian/{id}/edit', [PengertianVerifikatorController::class, 'updateDetailPengertian'])->middleware('auth');
     });
 
-    Route::get('/kualifikasi-profesional', function () {
-        return view('verifikator.kualifikasi-profesional');
-    });
+    Route::get('/kualifikasi-profesional/{id}', [KualifikasiProfesionalVerifikatorController::class, 'showKualifikasiProfesional'])->middleware('auth');
 
-    Route::get('/kualifikasi-profesional/periksa', function () {
-        return view('verifikator.periksa.kualifikasi-profesional');
-    });
+    Route::get('/kualifikasi-profesional/{id}/edit', [KualifikasiProfesionalVerifikatorController::class, 'showDetailKualifikasiProfesional'])->middleware('auth');
 
-    Route::get('/pengalaman-mengajar', function () {
-        return view('verifikator.pengalaman-mengajar');
-    });
+    Route::put('/kualifikasi-profesional/{id}/edit', [KualifikasiProfesionalVerifikatorController::class, 'updateDetailKualifikasiProfesional'])->middleware('auth');
 
-    Route::get('/pengalaman-mengajar/periksa', function () {
-        return view('verifikator.periksa.pengalaman-mengajar');
-    });
+    Route::get('/pengalaman-mengajar/{id}', [PengalamanMengajarVerifikatorController::class, 'showPengalamanMengajar'])->middleware('auth');
+
+    Route::get('/pengalaman-mengajar/{id}/edit', [PengalamanMengajarVerifikatorController::class, 'showDetailPengalamanMengajar'])->middleware('auth');
+
+    Route::put('/pengalaman-mengajar/{id}/edit', [PengalamanMengajarVerifikatorController::class, 'updateDetailPengalamanMengajar'])->middleware('auth');
 
     Route::prefix('/publikasi')->group(function () {
-        Route::get('/karya-tulis', function () {
-            return view('verifikator.publikasi.karya-tulis');
-        });
 
-        Route::get('/karya-tulis/periksa', function () {
-            return view('verifikator.publikasi.periksa.karya-tulis');
-        });
+        Route::get('/karya-tulis/{id}', [KaryaTulisVerifikatorController::class, 'showKaryaTulis'])->middleware('auth');
 
-        Route::get('/makalah', function () {
-            return view('verifikator.publikasi.makalah');
-        });
+        Route::get('/karya-tulis/{id}/edit', [KaryaTulisVerifikatorController::class, 'showDetailKaryaTulis'])->middleware('auth');
 
-        Route::get('/makalah/periksa', function () {
-            return view('verifikator.publikasi.periksa.makalah');
-        });
+        Route::put('/karya-tulis/{id}/edit', [KaryaTulisVerifikatorController::class, 'updateDetailKaryaTulis'])->middleware('auth');
 
-        Route::get('/seminar', function () {
-            return view('verifikator.publikasi.seminar');
-        });
+        Route::get('/makalah/{id}', [MakalahVerifikatorController::class, 'showMakalah'])->middleware('auth');
 
-        Route::get('/seminar/periksa', function () {
-            return view('verifikator.publikasi.periksa.seminar');
-        });
+        Route::get('/makalah/{id}/edit', [MakalahVerifikatorController::class, 'showDetailMakalah'])->middleware('auth');
 
-        Route::get('/karya-temuan', function () {
-            return view('verifikator.publikasi.karya-temuan');
-        });
+        Route::put('/makalah/{id}/edit', [MakalahVerifikatorController::class, 'updateDetailMakalah'])->middleware('auth');
 
-        Route::get('/karya-temuan/periksa', function () {
-            return view('verifikator.publikasi.periksa.karya-temuan');
-        });
+        Route::get('/seminar/{id}', [SeminarVerifikatorController::class, 'showSeminar'])->middleware('auth');
+
+        Route::get('/seminar/{id}/edit', [SeminarVerifikatorController::class, 'showDetailSeminar'])->middleware('auth');
+
+        Route::put('/seminar/{id}/edit', [SeminarVerifikatorController::class, 'updateDetailSeminar'])->middleware('auth');
+
+        Route::get('/karya-temuan/{id}', [KaryaTemuanVerifikatorController::class, 'showKaryaTemuan'])->middleware('auth');
+
+        Route::get('/karya-temuan/{id}/edit', [KaryaTemuanVerifikatorController::class, 'showDetailKaryaTemuan'])->middleware('auth');
+
+        Route::put('/karya-temuan/{id}/edit', [KaryaTemuanVerifikatorController::class, 'updateDetailKaryaTemuan'])->middleware('auth');
     });
 
-    Route::get('/bahasa', function () {
-        return view('verifikator.bahasa');
-    });
+    Route::get('/bahasa/{id}', [BahasaVerifikatorController::class, 'showBahasa'])->middleware('auth');
 
-    Route::get('/bahasa/periksa', function () {
-        return view('verifikator.periksa.bahasa');
-    });
+    Route::get('/bahasa/{id}/edit', [BahasaVerifikatorController::class, 'showDetailBahasa'])->middleware('auth');
+
+    Route::put('/bahasa/{id}/edit', [BahasaVerifikatorController::class, 'updateDetailBahasa'])->middleware('auth');
 
     Route::get('/akun', function () {
         return view('verifikator.akun');

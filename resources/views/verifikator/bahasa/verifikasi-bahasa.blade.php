@@ -1,258 +1,110 @@
 @extends('verifikator.layout')
 
 @section('pageHeading')
-  {{ __('Karya Tulis') }}
+  {{ __('Bahasa') }}
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item active">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/verifikator/bahasa/{{ $bahasa_user->id }}/edit"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @csrf
+      @method('PUT')
       <div class="card-body pb-3">
         <div class="row">
-          {{-- V.1 KOLOM B --}}
+          {{-- VI KOLOM B --}}
             <div class="mb-3 col-md-6">
-            <label for="bulan-tahun" class="form-label"
-              >Bulan - Tahun</label
-            >
-            <input
-              type="text"
-              class="form-control bg-white"
-              id="bulan-tahun"
-              name="bulan-tahun"
-              placeholder="Bulan - Tahun"
-              value=""
-              disabled
-            />
-          </div>
-          {{-- V.1 KOLOM C --}}
-          <div class="mb-3">
-            <label for="judul" class="form-label"
-              >Judul Karya Tulis</label
+            <label for="nama_bahasa" class="form-label"
+              >Nama Bahasa</label
             >
             <input
               class="form-control bg-white"
               type="text"
-              id="judul"
-              name="judul"
-              placeholder="Judul Karya Tulis"
-              value="Karya Tulis Satu"
+              id="nama_bahasa"
+              name="nama_bahasa"
+              placeholder="Nama Bahasa"
+              value="{{ old('nama_bahasa', $bahasa_user->nama_bahasa) }}"
               disabled
             />
           </div>
-          {{-- V.1 KOLOM D --}}
+          {{-- VI KOLOM C --}}
           <div class="mb-3 col-md-6">
-            <label for="nama-media" class="form-label"
-              >Nama Media Publikasi</label
-            >
-            <input
-              class="form-control bg-white"
-              type="text"
-              id="nama-media"
-              name="nama-media"
-              placeholder="Nama Media Publikasi"
-              value="Kompas"
-              disabled
-            />
-          </div>
-          {{-- V.1 KOLOM E --}}
-          <div class="mb-3 col-md-6">
-            <label for="lokasi" class="form-label"
-              >Lokasi</label
-            >
-            <input
-              type="text"
-              class="form-control bg-white"
-              id="lokasi"
-              name="lokasi"
-              placeholder="Lokasi"
-              value="Palembang"
-              disabled
-            />
-          </div>
-          {{-- V.1 KOLOM F --}}
-          <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkatan-media"
-              >Media Publikasi Tingkat</label
+            <label class="form-label" for="jenis_bahasa"
+              >Jenis Bahasa</label
             >
             <select
-              id="tingkatan-media"
+              id="jenis_bahasa"
+              name="jenis_bahasa"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">
-                Pilih Media Publikasi Tingkat
-              </option>
-              <option value="lokal" selected>
-                Dimuat di Media Lokal
-              </option>
-              <option value="nasional">
-                Dimuat di Media Nasional
-              </option>
-              <option value="internasional">
-                Dimuat di Media Internasional
-              </option>
+            <option value="daerah" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "daerah" ? ' selected' : '' }}>
+              Bahasa Daerah
+            </option>
+            <option value="nasional" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "nasional" ? ' selected' : '' }}>
+              Bahasa Nasional
+            </option>
+            <option value="asing-internasional" {{ old('jenis_bahasa', $bahasa_user->jenis_bahasa) == "asing-internasional" ? ' selected' : '' }}>
+              Bahasa Asing/ Internasional
+            </option>
             </select>
           </div>
-          {{-- V.1 KOLOM G --}}
+          {{-- VI KOLOM D --}}
           <div class="mb-3 col-md-6">
-            <label class="form-label" for="tingkat-kesulitan"
-              >Tingkat Kesulitan dan Manfaatnya Materi yang
-              Dipublikasikan</label
+            <label class="form-label" for="kemampuan"
+              >Kemampuan Verbal Aktif/ Pasif</label
             >
             <select
-              id="tingkat-kesulitan"
+              id="kemampuan"
+              name="kemampuan"
               class="select2 form-select bg-white"
               disabled
             >
-              <option value="">
-                Pilih Tingkat Kesulitan dan Manfaatnya Materi
-                yang Dipublikasikan
-              </option>
-              <option value="rendah" selected>Rendah</option>
-              <option value="sedang">Sedang</option>
-              <option value="tinggi">Tinggi</option>
-              <option value="sangat-tinggi">
-                Sangat Tinggi
-              </option>
+            <option value="pasif" {{ old('kemampuan', $bahasa_user->kemampuan) == "pasif" ? ' selected' : '' }}>
+              Pasif, Tertulis
+            </option>
+            <option value="aktif" {{ old('kemampuan', $bahasa_user->kemampuan) == "aktif" ? ' selected' : '' }}>
+              Aktif, Tertulis/ Lisan
+            </option>
             </select>
           </div>
-          {{-- V.1 KOLOM H --}}
-          <div class="mb-3">
-            <label for="uraian" class="form-label"
-              >Uraian Singkat Materi yang Dipublikasikan</label
+          {{-- VI KOLOM E --}}
+          <div class="mb-3 col-md-6">
+            <label class="form-label" for="jenis_tulisan"
+              >Jenis Tulisan yang Mampu Disusun</label
             >
-            <textarea
-              name="uraian"
-              id="uraian"
+            <input
+            class="form-control bg-white"
+            type="text"
+            id="jenis_tulisan"
+            name="jenis_tulisan"
+            placeholder="Jenis Tulisan yang Mampu Disusun"
+            value="{{ old('jenis_tulisan', $bahasa_user->jenis_tulisan) }}"
+            disabled
+          />
+          </div>
+          {{-- VI KOLOM F --}}
+          <div class="mb-3 col-md-6">
+            <label for="nilai" class="form-label"
+              >Nilai Toefl atau yang Sejenisnya</label
+            >
+            <input
               class="form-control bg-white"
-              placeholder="Uraian Singkat Materi yang Dipublikasikan"
-              disabled rows="5"
-            ></textarea>
+              type="text"
+              id="nilai"
+              name="nilai"
+              placeholder="Nilai Toefl atau yang Sejenisnya"
+              value="{{ old('nilai', $bahasa_user->nilai) }}"
+              disabled
+            />
           </div>
           <div class="mb-3">
             <label for="bukti" class="form-label"
@@ -745,7 +597,7 @@
         </div>
         <div class="mt-4">
           <a
-            href="publikasi-karyatulis.html"
+            href="bahasa.html"
             class="btn btn-secondary me-2 text-white"
             >Kembali</a
           >
@@ -754,23 +606,24 @@
       <hr class="my-0" />
       <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
+          <label class="form-label" for="status_validasi"
             >Hasil Validasi Anda Terhadap Pencapaian
             Mahasiswa</label
           >
           <select
-            id="hasil-validasi"
+            id="status_validasi"
+            name="status_validasi"
             class="select2 form-select"
           >
-            <option value="" selected>
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
+            <option value="" {{ old('status_validasi', $bahasa_user->status_validasi) == "" ? ' selected' : '' }} class="text-warning fw-bold">
+              PENDING (*Pilih Hasil Validasi Anda Terhadap Pencapaian
+              Mahasiswa)
+              </option>
+            <option value="invalid" {{ old('status_validasi', $bahasa_user->status_validasi) == "invalid" ? ' selected' : '' }} class="text-danger fw-bold">
               INVALID (*Bila ada kesalahan pada pencapaian
               mahasiswa atau ada pencapaian yang tidak sesuai)
             </option>
-            <option value="valid" class="text-success fw-bold">
+            <option value="valid" {{ old('status_validasi', $bahasa_user->status_validasi) == "valid" ? ' selected' : '' }} class="text-success fw-bold">
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
@@ -778,20 +631,21 @@
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator (*Bila Ada)</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          ></textarea>
+          >{{ old('catatan_verifikator', $bahasa_user->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">
-            <a href="/verifikator/publikasi/karya-tulis" class="btn btn-secondary"
+            <a href="/verifikator/bahasa" class="btn btn-secondary"
               >Kembali</a
             >
           </div>
@@ -802,10 +656,10 @@
             >
               Reset
             </button>
-            <a
-              href="/verifikator/publikasi/karya-tulis"
+            <button
+              type="submit"
               class="btn btn-primary text-white"
-              >Simpan</a
+              >Simpan</button
             >
           </div>
         </div>
