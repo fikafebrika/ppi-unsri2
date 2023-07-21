@@ -5,123 +5,7 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item active">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
@@ -134,6 +18,13 @@
         Manajemen
       </h5>
     </div>
+    @if (session()->has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+    @if ($list_pengalaman_mengajar_user->count())
     <div class="table-responsive mx-3 mb-2 text-center">
       <table class="table table-hover">
         <thead class="align-middle">
@@ -149,25 +40,40 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($list_pengalaman_mengajar_user as $pengalaman_mengajar_user)
           <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{ $loop->iteration }}</th>
             {{-- IV KOLOM B --}}
-            <td><strong>1 - 9 Tahun</strong></td>
+            <td><strong>{{ $pengalaman_mengajar_user->periode }}</strong></td>
             {{-- IV KOLOM C --}}
-            <td>Universitas Sriwijaya</td>
+            <td>{{ $pengalaman_mengajar_user->nama_perguruan_tinggi }}</td>
             {{-- IV KOLOM D --}}
-            <td>Pemrograman Web</td>
+            <td>{{ $pengalaman_mengajar_user->nama_mata_ajaran }}</td>
 
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
+            @if ($pengalaman_mengajar_user->bukti_pengalaman_mengajar)
+            <td>Ada</td>
+            @else
             <td>Belum Ada</td>
+            @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
 
             {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
             <td>
-                <span class="badge bg-label-warning me-1"
-                  >Pending</span
-                >
+              @if ($pengalaman_mengajar_user->status_validasi === "valid")
+              <span class="badge bg-label-success me-1"
+              >Valid</span
+            >
+              @elseif($pengalaman_mengajar_user->status_validasi === "invalid")
+              <span class="badge bg-label-danger me-1"
+              >Invalid</span
+            >
+              @elseif($pengalaman_mengajar_user->status_validasi === "pending")
+              <span class="badge bg-label-warning me-1"
+              >Pending</span
+            >
+              @endif
               </td>
               {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
               {{-- <td>
@@ -183,64 +89,19 @@
               </td> --}}
 
             {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-            <td></td>
+            <td>Admin@gmail.com</td>
             {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
             {{-- <td>Verifikator Satu</td> --}}
 
             <td>
               <a
-                href="/verifikator/pengalaman-mengajar/periksa"
+                href="/verifikator/pengalaman-mengajar/{{ $pengalaman_mengajar_user->id }}/edit"
                 class="btn btn-sm btn-primary"
                 >Periksa</a
               >
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            {{-- IV KOLOM B --}}
-            <td><strong>1 - 9 Tahun</strong></td>
-            {{-- IV KOLOM C --}}
-            <td>Universitas Sriwijaya</td>
-            {{-- IV KOLOM D --}}
-            <td>Pemrograman Web</td>
-
-            {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
-            <td>Belum Ada</td>
-            {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
-            {{-- <td>Ada</td> --}}
-
-            {{-- Status Data FAIP, Kalo belum diverifikasi atau divalidasi, statusnyo masih "Pending" --}}
-            <td>
-                <span class="badge bg-label-warning me-1"
-                  >Pending</span
-                >
-              </td>
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasilnyo valid, statusnyo jadi "Valid" --}}
-              {{-- <td>
-                <span class="badge bg-label-success me-1"
-                  >Valid</span
-                >
-              </td> --}}
-              {{-- Status Data FAIP, Kalo dah diverifikasi oleh verifikator terakhir dan hasil datanyo tidak valid, statusnyo jadi "Invalid" --}}
-              {{-- <td>
-                <span class="badge bg-label-danger me-1"
-                  >Invalid</span
-                >
-              </td> --}}
-
-            {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-            <td></td>
-            {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
-            {{-- <td>Verifikator Satu</td> --}}
-
-            <td>
-              <a
-                href="/verifikator/pengalaman-mengajar/periksa"
-                class="btn btn-sm btn-primary"
-                >Periksa</a
-              >
-            </td>
-          </tr>
+          @endforeach
         </tbody>
       </table>
       <div class="d-flex justify-content-between mt-3 mx-1">
@@ -277,7 +138,11 @@
           </nav>
         </div>
       </div>
-    </div>
+    </div>  
+    @else
+    <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+    @endif
+    
   </div>
 @endsection
 

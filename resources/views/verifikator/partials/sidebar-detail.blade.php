@@ -10,7 +10,7 @@
         <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
     </a>
     <ul class="menu-sub">
-        <li class="menu-item active open">
+        <li class="menu-item active {{ Request::is('verifikator/data-pribadi*') ? 'open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <div data-i18n="Data Pribadi">Data Pribadi</div>
             </a>
@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('verifikator/kode-etik-insinyur*') ? 'open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
             </a>
@@ -69,7 +69,7 @@
                 <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ Request::is('verifikator/publikasi*') ? 'open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <div data-i18n="Publikasi">Publikasi</div>
             </a>

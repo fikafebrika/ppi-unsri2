@@ -5,133 +5,19 @@
 @endsection
 
 @section('sidebar')
-<li class="menu-item">
-    <a href="/verifikator/beranda" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Beranda">Beranda</div>
-    </a>
-</li>
-<li class="menu-item active open">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-layout"></i>
-        <div data-i18n="Klaim Pencapaian">FAIP Pencapaian</div>
-    </a>
-    <ul class="menu-sub">
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Data Pribadi">Data Pribadi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pendidikan-formal" class="menu-link">
-                        <div data-i18n="Pendidikan Formal">Pendidikan Formal</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/organisasi" class="menu-link">
-                        <div data-i18n="Organisasi">Organisasi</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/tanda-penghargaan" class="menu-link">
-                        <div data-i18n="Tanda Penghargaan">Tanda Penghargaan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/pelatihan" class="menu-link">
-                        <div data-i18n="Pelatihan">Pelatihan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/data-pribadi/sertifikat" class="menu-link">
-                        <div data-i18n="Sertifikat">Sertifikat</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/kode-etik-insinyur/referensi" class="menu-link">
-                        <div data-i18n="Referensi">Referensi</div>
-                    </a>
-                </li>
-                <li class="menu-item active">
-                    <a href="/verifikator/kode-etik-insinyur/pengertian" class="menu-link">
-                        <div data-i18n="Pengertian">Pengertian</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/kualifikasi-profesional" class="menu-link">
-                <div data-i18n="Kualifikasi Profesional">Kualifikasi Profesional</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/pengalaman-mengajar" class="menu-link">
-                <div data-i18n="Pengalaman Mengajar">Pengalaman Mengajar</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <div data-i18n="Publikasi">Publikasi</div>
-            </a>
-            <ul class="menu-sub ps-2">
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-tulis" class="menu-link">
-                        <div data-i18n="Karya Tulis">Karya Tulis</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/makalah" class="menu-link">
-                        <div data-i18n="Makalah/ Tulisan">Makalah/ Tulisan</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/seminar" class="menu-link">
-                        <div data-i18n="Seminar/ Lokakarya">Seminar/ Lokakarya</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="/verifikator/publikasi/karya-temuan" class="menu-link">
-                        <div data-i18n="Karya Temuan">Karya Temuan</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="/verifikator/bahasa" class="menu-link">
-                <div data-i18n="Bahasa">Bahasa</div>
-            </a>
-        </li>
-    </ul>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/akun" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-user"></i>
-        <div data-i18n="Akun">Akun</div>
-    </a>
-</li>
-<li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
-</li>
+@include('verifikator.partials.sidebar-detail', ["userId" => $userId ])
 @endsection
 
 @section('content')
 <div class="card">
+  <h5 class="card-header">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
-      onsubmit="return false"
+      action="/verifikator/kode-etik-insinyur/pengertian/{{ $pengertian_user->id }}/edit"
     >
-      <h5 class="card-header">Data Pencapaian</h5>
+    @method('put')
+    @csrf
       <div class="card-body pb-3">
         <div class="row">
           {{-- II.2 KOLOM A --}}
@@ -150,7 +36,7 @@
               cols="30"
               rows="10"
             >
-Seorang insinyur harus mampu mempertanggungjawabkan ilmunya dalam kehidupannya. Sebagaimana esensi dari seorang insiyur adalah, maka orang yang menggunakan pengetahuan ilmiah untuk menyelesaikan masalah praktis menggunakan teknologi, maka sudah seharusnya kehadiran seorang insinyur mampu memberi manfaat bagi lingkungan sekitarnya. Insinyur selayaknya mampu memprediksi resiko dan tantangan dari setiap keputusan yang diambil, serta mampu memberikan penyelesaian masalah yang real. Selain itu, insinyur dituntut untuk tidak mengabaikan aspek keselamatan dan kesehatan dalam setiap penyelesaian masalah yang diterapkan. Seorang insinyur dapat dikatakan berkode etik apabila mengerjakan tugasnya dengan tanggung jawab dan integritas, serta mampu pula memperhatikan aspek sosial dan lingkungan. Seorang Insinyur harus memiliki moral intelektual yang mampu memahami lingkungan sosial dengan bijak dan arif.</textarea
+            {{ old('pengertian', $pengertian_user->pengertian) }}</textarea
             >
           </div>
         </div>
@@ -579,23 +465,24 @@ Seorang insinyur harus mampu mempertanggungjawabkan ilmunya dalam kehidupannya. 
       <hr class="my-0" />
       <div class="card-body">
         <div class="mb-3 col-md-12">
-          <label class="form-label" for="hasil-validasi"
+          <label class="form-label" for="status_validasi"
             >Hasil Validasi Anda Terhadap Pencapaian
             Mahasiswa</label
           >
           <select
-            id="hasil-validasi"
+            id="status_validasi"
+            name="status_validasi"
             class="select2 form-select"
           >
-            <option value="" selected>
-              Pilih Hasil Validasi Anda Terhadap Pencapaian
-              Mahasiswa
+          <option value="" {{ old('status_validasi', $pengertian_user->status_validasi) == "" ? ' selected' : '' }} class="text-warning fw-bold">
+            PENDING (*Pilih Hasil Validasi Anda Terhadap Pencapaian
+            Mahasiswa)
             </option>
-            <option value="invalid" class="text-danger fw-bold">
+            <option value="invalid" {{ old('status_validasi', $pengertian_user->status_validasi) == "invalid" ? ' selected' : '' }} class="text-danger fw-bold">
               INVALID (*Bila ada kesalahan pada pencapaian
               mahasiswa atau ada pencapaian yang tidak sesuai)
             </option>
-            <option value="valid" class="text-success fw-bold">
+            <option value="valid" {{ old('status_validasi', $pengertian_user->status_validasi) == "valid" ? ' selected' : '' }} class="text-success fw-bold">
               VALID (*Bila semua pencapaian mahasiswa telah
               sesuai)
             </option>
@@ -603,16 +490,17 @@ Seorang insinyur harus mampu mempertanggungjawabkan ilmunya dalam kehidupannya. 
         </div>
         <div class="mb-3 col-md-12">
           <label
-            for="catatan-verifikator"
+            for="catatan_verifikator"
             class="form-label text-danger"
             >Catatan Tim Verifikator (*Bila Ada)</label
           >
           <textarea
-            id="catatan-verifikator"
+            id="catatan_verifikator"
+            name="catatan_verifikator"
             class="form-control"
             placeholder="Berikan Catatan Kepada Mahasiswa Terkait Kesesuaian Maupun Kesalahan Dalam Mengklaim Pencapaian Mahasiswa"
             rows="5"
-          ></textarea>
+          >{{ old('catatan_verifikator', $pengertian_user->catatan_verifikator) }}</textarea>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <div class="me-2">
@@ -627,10 +515,10 @@ Seorang insinyur harus mampu mempertanggungjawabkan ilmunya dalam kehidupannya. 
             >
               Reset
             </button>
-            <a
-              href="/verifikator/kode-etik-insinyur/pengertian"
+            <button
+              type="submit"
               class="btn btn-primary text-white"
-              >Simpan</a
+              >Simpan</button
             >
           </div>
         </div>

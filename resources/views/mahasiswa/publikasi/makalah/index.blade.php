@@ -44,8 +44,6 @@
         </thead>
         <tbody>
           @foreach ($makalah_users as $makalah_user)
-
-
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             {{-- V.2 KOLOM B --}}
