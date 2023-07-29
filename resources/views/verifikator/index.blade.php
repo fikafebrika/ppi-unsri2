@@ -25,24 +25,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($list_verifikasi as $verifikasi)
                 <tr>
                     <td class="text-lg-start">
                         <img
-                            src="{{ asset('storage/' . $user->image) }}"
+                            src="{{ asset('storage/' . $verifikasi->user->image) }}"
                             alt=""
                             class="rounded me-lg-2 my-2"
                             width="90"
                             height="120"
                         />
-                        <strong>{{ $user->name }}</strong>
+                        <strong>{{ $verifikasi->user->name }}</strong>
                     </td>
-                    <td>{{ $user->nokta }}</td>
-                    <td>{{ $user->jurusan }}</td>
-                    <td>{{ $user->profesiutama }}</td>
+                    <td>{{ $verifikasi->user->nokta }}</td>
+                    <td>{{ $verifikasi->user->jurusan }}</td>
+                    <td>{{ $verifikasi->user->profesiutama }}</td>
                     <td>
                         <a
-                            href="/verifikator/data-pribadi/pendidikan-formal/{{ $user->id }}"
+                            href="/verifikator/data-pribadi/pendidikan-formal/{{ $verifikasi->user->id }}"
                             class="btn btn-primary"
                             >Verifikasi</a
                         >

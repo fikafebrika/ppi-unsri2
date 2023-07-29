@@ -4,32 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-class Verifikator extends Authenticatable
+
+class Verifikator extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable, AuthenticableTrait;
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function getAuthIdentifierName()
+    {
+        return 'id'; // Nama kolom yang merupakan primary key dari model
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
 
-    protected $guard = 'admin'; // Menyatakan bahwa model ini menggunakan guard 'verifikator'
+    public function getAuthPassword()
+    {
+        return $this->password; // Nama kolom yang menyimpan password
+    }
+
 
     protected $guarded = ['id'];
 

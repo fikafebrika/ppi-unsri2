@@ -126,6 +126,6 @@ class User extends Authenticatable
 
     public function verifikasi()
     {
-        return $this->hasMany(Verifikasi::class);
+        return $this->hasMany(Verifikasi::class, 'user_id');
     }
 }

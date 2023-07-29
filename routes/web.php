@@ -83,42 +83,44 @@ Route::prefix('/verifikator')->group(function () {
     Route::group(['middleware' => 'verifikator'], function () {
 
         Route::get('/beranda', [DashboardVerifikatorController::class, 'index'])->middleware('verifikator');
+
+        Route::prefix('/data-pribadi')->group(function () {
+
+            Route::get('/pendidikan-formal/{id}', [PendidikanFormalVerifikatorController::class, 'showPendidikanFormal']);
+
+            Route::get('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'showDetailPendidikanFormal']);
+
+            Route::put('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'updateDetailPendidikanFormal']);
+
+            Route::get('/organisasi/{id}', [OrganisasiVerifikatorController::class, 'showOrganisasi']);
+
+            Route::get('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'showDetailOrganisasi']);
+
+            Route::put('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'updateDetailOrganisasi']);
+
+            Route::get('/tanda-penghargaan/{id}', [TandaPenghargaanVerifikatorController::class, 'showTandaPenghargaan']);
+
+            Route::get('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'showDetailTandaPenghargaan']);
+
+            Route::put('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'updateDetailTandaPenghargaan']);
+
+
+            Route::get('/sertifikat/{id}', [SertifikatVerifikatorController::class, 'showSertifikat']);
+
+            Route::get('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'showDetailSertifikat']);
+
+            Route::put('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'updateDetailSertifikat']);
+
+            Route::get('/pelatihan/{id}', [PelatihanVerifikatorController::class, 'showPelatihan']);
+
+            Route::get('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'showDetailPelatihan']);
+
+            Route::put('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'updateDetailPelatihan']);
+        });
     });
 
 
-    Route::prefix('/data-pribadi')->group(function () {
 
-        Route::get('/pendidikan-formal/{id}', [PendidikanFormalVerifikatorController::class, 'showPendidikanFormal'])->middleware('auth');
-
-        Route::get('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'showDetailPendidikanFormal']);
-
-        Route::put('/pendidikan-formal/{id}/edit', [PendidikanFormalVerifikatorController::class, 'updateDetailPendidikanFormal']);
-
-        Route::get('/organisasi/{id}', [OrganisasiVerifikatorController::class, 'showOrganisasi'])->middleware('auth');
-
-        Route::get('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'showDetailOrganisasi'])->middleware('auth');
-
-        Route::put('/organisasi/{id}/edit', [OrganisasiVerifikatorController::class, 'updateDetailOrganisasi'])->middleware('auth');
-
-        Route::get('/tanda-penghargaan/{id}', [TandaPenghargaanVerifikatorController::class, 'showTandaPenghargaan'])->middleware('auth');
-
-        Route::get('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'showDetailTandaPenghargaan'])->middleware('auth');
-
-        Route::put('/tanda-penghargaan/{id}/edit', [TandaPenghargaanVerifikatorController::class, 'updateDetailTandaPenghargaan'])->middleware('auth');
-
-
-        Route::get('/sertifikat/{id}', [SertifikatVerifikatorController::class, 'showSertifikat'])->middleware('auth');
-
-        Route::get('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'showDetailSertifikat'])->middleware('auth');
-
-        Route::put('/sertifikat/{id}/edit', [SertifikatVerifikatorController::class, 'updateDetailSertifikat'])->middleware('auth');
-
-        Route::get('/pelatihan/{id}', [PelatihanVerifikatorController::class, 'showPelatihan'])->middleware('auth');
-
-        Route::get('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'showDetailPelatihan'])->middleware('auth');
-
-        Route::put('/pelatihan/{id}/edit', [PelatihanVerifikatorController::class, 'updateDetailPelatihan'])->middleware('auth');
-    });
 
     Route::prefix('/kode-etik-insinyur')->group(function () {
 

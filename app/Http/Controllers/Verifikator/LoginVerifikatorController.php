@@ -24,14 +24,15 @@ class LoginVerifikatorController extends Controller
     {
         // dd($request);
 
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email:dns',
             'password' => 'required',
         ]);
 
 
         // Coba melakukan proses login dengan menggunakan guard 'admin'
-        if (Auth::guard('verifikator')->attempt($request->only('email', 'password'))) {
+        if (Auth::guard('verifikator')->attempt($credentials)) {
+            $request->session()->regenerate();
             // Jika berhasil login, redirect ke halaman beranda admin
             return redirect('/verifikator/beranda');
         }
