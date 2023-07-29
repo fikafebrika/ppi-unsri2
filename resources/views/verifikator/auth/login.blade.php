@@ -13,7 +13,7 @@
 <div class="card-body">
     <!-- Logo -->
     <div class="app-brand justify-content-center mb-4">
-      <a href="index.html" class="app-brand-link gap-2">
+      <a href="" class="app-brand-link gap-2">
         <span class="app-brand-logo demo">
           <img src="{{asset('verifikator/assets/img/unsri.png')}}" alt="" width="100" />
         </span>

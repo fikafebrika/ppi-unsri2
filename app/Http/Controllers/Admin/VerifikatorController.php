@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\UserAdmin;
+use App\Http\Controllers\Controller;
+use App\Models\Verifikator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class VerifikatorAdminController extends Controller
+class VerifikatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class VerifikatorAdminController extends Controller
      */
     public function index()
     {
-        //
         return view("admin.verifikator.index", [
-            "verifikators" => UserAdmin::all()
+            "verifikators" => Verifikator::all()
         ]);
     }
 
@@ -28,7 +28,6 @@ class VerifikatorAdminController extends Controller
      */
     public function create()
     {
-        //
         return view('admin.verifikator.create');
     }
 
@@ -40,16 +39,15 @@ class VerifikatorAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validatedData = $request->validate([
             'nama_lengkap' => 'required|max:255',
-            'nomor_induk_pegawai' => 'required|max:255',
+            'nomor_induk_pegawai' => 'required|unique:verifikators|max:255',
             'email' => 'required|email:dns',
             'password' => 'required',
         ]);
 
         $validatedData['password'] = Hash::make($request->password);
-        UserAdmin::create($validatedData);
+        Verifikator::create($validatedData);
 
         // $request->user()->pendidikanFormal()->create($validatedData);
 
@@ -59,26 +57,24 @@ class VerifikatorAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UserAdmin  $userAdmin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserAdmin $userAdmin)
+    public function show(Verifikator $verifikator)
     {
-        //
-        return view('admin.verifikator.edit');
+        // return view('admin.verifikator.edit');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UserAdmin  $userAdmin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserAdmin $userAdmin)
+    public function edit(Verifikator $verifikator)
     {
-        //
         return view('admin.verifikator.edit', [
-            "verifikator" => $userAdmin
+            "verifikator" => $verifikator
         ]);
     }
 
@@ -86,12 +82,11 @@ class VerifikatorAdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserAdmin  $userAdmin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserAdmin $userAdmin)
+    public function update(Request $request, $id, Verifikator $verifikator)
     {
-        //
         $rules = [
             'nama_lengkap' => 'required|max:255',
             'nomor_induk_pegawai' => 'required|max:255',
@@ -102,7 +97,7 @@ class VerifikatorAdminController extends Controller
         $validatedData = $request->validate($rules);
 
 
-        $userAdmin->update($validatedData);
+        $verifikator->update($validatedData);
 
         return redirect('/admin/verifikator')->with('success', 'verifikator has been updated!');
     }
@@ -110,14 +105,12 @@ class VerifikatorAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserAdmin  $userAdmin
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserAdmin $userAdmin)
+    public function destroy(Verifikator $verifikator)
     {
-        //
-        // dd($userAdmin);
-        UserAdmin::destroy($userAdmin->id);
+        Verifikator::destroy($verifikator->id);
 
         return redirect('/admin/verifikator')->with('success', 'verifikator has been deleted!');
     }

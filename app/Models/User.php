@@ -123,4 +123,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bahasa::class);
     }
+
+    public function verifikasi()
+    {
+        return $this->hasMany(Verifikasi::class);
+    }
 }

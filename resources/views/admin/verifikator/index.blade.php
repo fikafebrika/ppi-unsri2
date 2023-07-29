@@ -105,7 +105,7 @@
             </div>
           </div> 
           @else
-          <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+          <p class="text-center fs-4">Verifikator Tidak Ada, Silahkan Tambah Verifikator</p>
           @endif
             
           </div>

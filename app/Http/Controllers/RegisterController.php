@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
         if ($request->file('image')) {
             //simpan gambar di folder post-images
-            $validatedData['image'] = $request->file('image')->store('post-images');
+            $validatedData['image'] = $request->file('image')->store('user-images');
         }
 
         //enkripsi password

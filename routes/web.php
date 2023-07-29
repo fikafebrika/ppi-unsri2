@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BerandaController;
+use App\Http\Controllers\Admin\LoginAdminController;
+use App\Http\Controllers\Admin\VerifikatorController;
 use App\Http\Controllers\BahasaController;
 use App\Http\Controllers\KartuHasilStudiMahasiswaController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\KaryaTemuanController;
 use App\Http\Controllers\KualifikasiProfesionalController;
-use App\Http\Controllers\LoginAdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -27,6 +29,7 @@ use App\Http\Controllers\Verifikator\DashboardVerifikatorController;
 use App\Http\Controllers\Verifikator\KaryaTemuanVerifikatorController;
 use App\Http\Controllers\Verifikator\KaryaTulisVerifikatorController;
 use App\Http\Controllers\Verifikator\KualifikasiProfesionalVerifikatorController;
+use App\Http\Controllers\Verifikator\LoginVerifikatorController;
 use App\Http\Controllers\Verifikator\MakalahVerifikatorController;
 use App\Http\Controllers\Verifikator\OrganisasiVerifikatorController;
 use App\Http\Controllers\Verifikator\PelatihanVerifikatorController;
@@ -37,7 +40,6 @@ use App\Http\Controllers\Verifikator\ReferensiVerifikatorController;
 use App\Http\Controllers\Verifikator\SeminarVerifikatorController;
 use App\Http\Controllers\Verifikator\SertifikatVerifikatorController;
 use App\Http\Controllers\Verifikator\TandaPenghargaanVerifikatorController;
-use App\Http\Controllers\VerifikatorAdminController;
 
 
 /*
@@ -52,24 +54,37 @@ use App\Http\Controllers\VerifikatorAdminController;
 */
 
 Route::prefix('/admin')->group(function () {
-    Route::get('/login', function () {
-        return view('admin.login.login');
-    });
 
-    Route::get('/beranda', function () {
-        return view('admin.index');
-    });
+    Route::get('/login', [LoginAdminController::class, 'index'])->name('admin.login');
+    Route::post('/login', [LoginAdminController::class, 'authenticate']);
+    Route::post('/logout', [LoginAdminController::class, 'logout']);
 
-    Route::resource('/verifikator', VerifikatorAdminController::class);
+    Route::get('/beranda', [BerandaController::class, 'index'])->middleware('admin');
+
+    Route::post('/beranda', [BerandaController::class, 'pilihVerifikator'])->name('simpan.verifikator')->middleware('admin');
+
+    Route::get('/beranda/{id}', [BerandaController::class, 'create'])->middleware('admin');
+
+    Route::post('/beranda/{id}', [BerandaController::class, 'pilihVerifikator'])->middleware('admin');
+
+    Route::delete('/beranda/{user_id}/{verifikator_id}', [BerandaController::class, 'destroy'])->name('destroy')->middleware('admin');
+
+    Route::resource('/verifikator', VerifikatorController::class)->except('show');
 });
 
 Route::prefix('/verifikator')->group(function () {
 
-    Route::get('/login', [LoginAdminController::class, 'index'])->name('login');
+    Route::get('/login', [LoginVerifikatorController::class, 'index'])->name('login');
 
-    Route::post('/login', [LoginAdminController::class, 'authenticate'])->name('login');
+    Route::post('/login', [LoginVerifikatorController::class, 'authenticate'])->name('login');
 
-    Route::get('/beranda', [DashboardVerifikatorController::class, 'index'])->middleware('auth');
+    Route::post('/logout', [LoginVerifikatorController::class, 'logout']);
+
+    Route::group(['middleware' => 'verifikator'], function () {
+
+        Route::get('/beranda', [DashboardVerifikatorController::class, 'index'])->middleware('verifikator');
+    });
+
 
     Route::prefix('/data-pribadi')->group(function () {
 

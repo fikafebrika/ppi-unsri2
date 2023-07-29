@@ -60,99 +60,72 @@
             >
               <h5 class="card-header">Daftar Mahasiswa</h5>
             </div>
+            @if (session()->has('success'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+            @if ($list_user->count())
             <div class="table-responsive mx-3 mb-2 text-center">
               <table class="table table-hover">
                 <thead class="align-middle">
                   <tr>
                     <th class="text-lg-start">Mahasiswa</th>
+                    <th>Nama Mahasiswa</th>
                     <th>Kejurusan</th>
                     <th>Profesi</th>
                     <th>Pilih Verifikator</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($list_user as $user)
                   <tr>
                     <td class="text-lg-start">
-                      <img
-                        src="{{asset('admin/assets/img/avatars/1.png')}}"
-                        alt=""
+                      
+                      {{-- <img
+                        alt="photo user"
+                        id="image"
+                        name="image"
                         class="rounded me-lg-2 my-2"
                         width="90"
                         height="120"
-                      />
-                      <strong>Bambang Pamungkas</strong>
-                    </td>
-                    <td>Teknik Informatika</td>
-                    <td>Praktisi</td>
-                    <td>
-                      <select
-                        id="jenis-organisasi"
-                        class="select2 form-select" multiple
-                      >
-                        <option value="verifikator-satu">
-                          Verifikator Satu
-                        </option>
-                        <option value="verifikator-dua">
-                          Verifikator Dua
-                        </option>
-                        <option value="verifikator-tiga">
-                          Verifikator Tiga
-                        </option>
-                        <option value="verifikator-empat">
-                          Verifikator Empat
-                        </option>
-                        <option value="verifikator-lima">
-                          Verifikator Lima
-                        </option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-lg-start">
-                      <img
-                        src="{{asset('admin/assets/img/avatars/1.png')}}"
-                        alt=""
-                        class="rounded me-lg-2 my-2"
+                      /> --}}
+                      @if ($user->image)
+                        <img
+                        src="{{ asset('storage/' . $user->image) }}"
+                        alt="user-avatar"
+                        class="d-block rounded"
                         width="90"
                         height="120"
+                        id="image-preview"
+                        name="image-preview"
                       />
-                      <strong>Bambang Pamungkas</strong>
+                      @else
+                      <p>Tidak ada file Photo yang diunggah.</p>
+                      @endif
+                      
                     </td>
-                    <td>Teknik Informatika</td>
-                    <td>Praktisi</td>
+                    <td><strong>{{ $user->name }}</strong></td>
+                    <td>{{ $user->badan_kejurusan }}</td>
+                    <td>{{ $user->profesiutama }}</td>
                     <td>
-                      <select
-                        id="jenis-organisasi"
-                        class="select2 form-select" multiple
-                      >
-                        <option value="verifikator-satu">
-                          Verifikator Satu
-                        </option>
-                        <option value="verifikator-dua">
-                          Verifikator Dua
-                        </option>
-                        <option value="verifikator-tiga">
-                          Verifikator Tiga
-                        </option>
-                        <option value="verifikator-empat">
-                          Verifikator Empat
-                        </option>
-                        <option value="verifikator-lima">
-                          Verifikator Lima
-                        </option>
-                      </select>
+                      {{-- <a href="/admin/beranda/{{ $user->id }}/edit" class="btn btn-primary">Pilih Verifikator</a> --}}
+                      <!-- Button trigger modal -->
+                        {{-- <button type="button" class="btn btn-primary btn-open-modal" data-mahasiswa-id="{{ $user->id }}" data-bs-toggle="modal" data-bs-target="#modalAddVerifier">
+                          Pilih Verifikator
+                        </button> --}}
+                        <a href="/admin/beranda/{{ $user->id }}" class="btn btn-primary">Pilih Verifikator</a>
+                    
                     </td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
-            </div>
-            <div class="d-flex justify-content-end mt-2 mx-4">
-              <a
-              href="#"
-              class="btn btn-primary px-5"
-              >Simpan</a
-              >
-            </div>
+            </div> 
+            @else
+            <p class="text-center fs-4">Data Mahasiswa Tidak Ada</p> 
+            @endif
             <hr class="mx-3">
             <div class="d-flex justify-content-between my-1 mx-3 mx-lg-4">
               <div><small>Showing 1 to 2 of 2 entries</small></div>
@@ -203,4 +176,9 @@
       </div>
     </div>
 </div>
+
+
+
+
+
 @endsection

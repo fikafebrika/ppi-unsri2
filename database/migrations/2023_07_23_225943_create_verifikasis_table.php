@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_admins', function (Blueprint $table) {
+        Schema::create('verifikasis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap');
-            $table->string('nomor_induk_pegawai');
-            $table->string('email');
-            $table->string('password');
-            $table->boolean('is_admin')->default(false);
+            $table->foreignId('user_id');
+            $table->foreignId('verifikator_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_admins');
+        Schema::dropIfExists('verifikasis');
     }
 };

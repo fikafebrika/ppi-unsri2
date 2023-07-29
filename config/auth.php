@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'verifikator' => [
+            'driver' => 'session',
+            'provider' => 'verifikators',
+        ],
     ],
     'admin' => [
         'driver' => 'session',
@@ -68,9 +76,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'verifikators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Verifikator::class,
         ],
 
         // 'users' => [

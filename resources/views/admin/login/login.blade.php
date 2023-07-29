@@ -66,7 +66,7 @@
                             <!-- Logo -->
                             <div class="app-brand justify-content-center mb-4">
                                 <a
-                                    href="index.html"
+                                    href=""
                                     class="app-brand-link gap-2"
                                 >
                                     <span class="app-brand-logo demo">
@@ -85,25 +85,46 @@
                             <!-- /Logo -->
                             <h4 class="mb-2">Program Profesi Insinyur UNSRI</h4>
                             <p>Silakan Login</p>
-
+                            @if (session()->has('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif      
+                            
+                            @if (session()->has('loginError'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('loginError') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                
+                            @endif 
                             <form
                                 id="formAuthentication"
                                 class="mb-3"
-                                action="/admin/beranda"
-                                method=""
+                                action="/admin/login"
+                                method="POST"
                             >
+                            @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label"
                                         >Email Prodi PPI UNSRI</label
                                     >
                                     <input
                                         type="email"
-                                        class="form-control"
+                                        class="form-control @error('email') is-invalid @enderror"
                                         id="email"
-                                        name="email-username"
+                                        name="email"
+                                        value="{{ old('email') }}"
                                         placeholder="Masukkan Email Prodi PPI UNSRI"
                                         autofocus
+                                        required
                                     />
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>                         
+                                    @enderror
                                 </div>
                                 <div class="mb-3 form-password-toggle">
                                     <div class="d-flex justify-content-between">
@@ -115,11 +136,18 @@
                                         <input
                                             type="password"
                                             id="password"
-                                            class="form-control"
+                                            class="form-control @error('password') is-invalid @enderror"
                                             name="password"
+                                            value="{{ old('password') }}"
                                             placeholder="Masukkan Password"
                                             aria-describedby="password"
+                                            required
                                         />
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>                         
+                                        @enderror
                                         <span
                                             class="input-group-text cursor-pointer"
                                             ><i class="bx bx-hide"></i

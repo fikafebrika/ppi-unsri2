@@ -11,8 +11,11 @@
     </a>
 </li>
 <li class="menu-item">
-    <a href="/verifikator/login" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-power-off"></i>
-        <div data-i18n="Logout">Logout</div>
-    </a>
+    <form action="/verifikator/logout" method="post">
+        @csrf
+        <button type="submit" class="dropdown-item mx-2">
+            <i class="bx bx-power-off me-2"></i>
+            <span class="align-middle">Logout</span>
+        </button>
+    </form>
 </li>
