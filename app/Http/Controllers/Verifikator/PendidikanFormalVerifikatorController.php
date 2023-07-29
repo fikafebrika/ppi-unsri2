@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
 use App\Models\PendidikanFormal;
+use App\Models\Verifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PendidikanFormalVerifikatorController extends Controller
@@ -13,21 +15,28 @@ class PendidikanFormalVerifikatorController extends Controller
     public function showPendidikanFormal($id)
     {
         //
-
         $pendidikan_formal_user = PendidikanFormal::where('user_id', $id)->get();
-        // dd($pendidikan_formal_user->user_id);
+        $verifikator = Auth::guard('verifikator')->user();
+        $list_verifikasi = Verifikasi::where('user_id', $verifikator->id)->get();
+
+        // dd($verifikasi);
 
 
         return view('verifikator.data-pribadi.pendidikan-formal.pendidikan-formal', [
             "pendidikan_formals" => $pendidikan_formal_user,
             "userId" => $id,
+            "list_verifikasi" => $list_verifikasi,
         ]);
     }
 
     public function showDetailPendidikanFormal($id)
     {
-        // dd($id);
+
         $pendidikan_formal_user = PendidikanFormal::find($id);
+
+
+
+
 
         // dd($pendidikan_formal_user->jenjang);
 

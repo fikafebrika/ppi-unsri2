@@ -224,7 +224,11 @@
               >Bukti Pencapaian</label
             >
             <div>
-                <a href="#" class="btn btn-outline-primary">Download File</a>
+              @if ($pendidikan_formal->bukti)
+              <iframe  id="pdf-preview" src="{{ asset('storage/' . $pendidikan_formal->bukti) }}" width="50%" height="500px"></iframe>
+              @else
+              <p>Tidak ada file PDF yang diunggah.</p>
+              @endif
             </div>
           </div>
         </div>
@@ -251,18 +255,6 @@
                 VALID (*Bila semua pencapaian mahasiswa telah
                 sesuai)
               </option>
-
-            {{-- <option value="pending" selected>
-              {{ $pendidikan_formal->status_validasi }}
-            </option>
-            <option value="invalid" class="text-danger fw-bold">
-              INVALID (*Bila ada kesalahan pada pencapaian
-              mahasiswa atau ada pencapaian yang tidak sesuai)
-            </option>
-            <option value="valid" class="text-success fw-bold">
-              VALID (*Bila semua pencapaian mahasiswa telah
-              sesuai)
-            </option> --}}
           </select>
         </div>
         <div class="mb-3 col-md-12">
@@ -301,6 +293,21 @@
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti');
 
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
+  </script>
 @endsection
 

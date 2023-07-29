@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Organisasi;
+use App\Models\Verifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrganisasiVerifikatorController extends Controller
 {
@@ -14,11 +16,14 @@ class OrganisasiVerifikatorController extends Controller
         //
 
         $list_organisasi_user = Organisasi::where('user_id', $id)->get();
+        $verifikator = Auth::guard('verifikator')->user();
+        $list_verifikasi = Verifikasi::where('user_id', $verifikator->id)->get();
 
 
         return view('verifikator.data-pribadi.organisasi.organisasi', [
             "list_organisasi_user" => $list_organisasi_user,
             "userId" => $id,
+            "list_verifikasi" => $list_verifikasi,
         ]);
     }
 

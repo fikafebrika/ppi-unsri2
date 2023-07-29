@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Verifikator;
 
 use App\Http\Controllers\Controller;
 use App\Models\TandaPenghargaan;
+use App\Models\Verifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TandaPenghargaanVerifikatorController extends Controller
 {
@@ -15,10 +17,14 @@ class TandaPenghargaanVerifikatorController extends Controller
 
         $list_tanda_penghargaan_user = TandaPenghargaan::where('user_id', $id)->get();
 
+        $verifikator = Auth::guard('verifikator')->user();
+        $list_verifikasi = Verifikasi::where('user_id', $verifikator->id)->get();
+
 
         return view('verifikator.data-pribadi.tanda-penghargaan.tanda-penghargaan', [
             "list_tanda_penghargaan_user" => $list_tanda_penghargaan_user,
             "userId" => $id,
+            "list_verifikasi" => $list_verifikasi,
         ]);
     }
 

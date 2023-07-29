@@ -111,7 +111,11 @@
               >Bukti Pencapaian</label
             >
             <div>
-                <a href="#" class="btn btn-outline-primary">Download File</a>
+              @if ($bahasa_user->bukti_bahasa)
+              <iframe  id="pdf-preview" src="{{ asset('storage/' . $bahasa_user->bukti_bahasa) }}" width="50%" height="500px"></iframe>
+              @else
+              <p>Tidak ada file PDF yang diunggah.</p>
+              @endif
             </div>
           </div>
         </div>
@@ -667,5 +671,21 @@
     </form>
     <!-- /Account -->
   </div>
+  <script>
+    // Dapatkan elemen input file
+        const pdfFileInput = document.getElementById('bukti_bahasa');
+
+        // Tambahkan event listener untuk saat ada perubahan pada input file
+        pdfFileInput.addEventListener('change', function(e) {
+        // Dapatkan file yang dipilih oleh pengguna
+        const selectedFile = e.target.files[0];
+
+        // Buat objek URL untuk file yang dipilih
+        const fileUrl = URL.createObjectURL(selectedFile);
+
+        // Perbarui sumber data iframe dengan URL file yang baru
+        document.getElementById('pdf-preview').src = fileUrl;
+        });
+  </script>
 @endsection
 

@@ -88,7 +88,14 @@
             </td> --}}
 
           {{-- Kalo belum ada verifikator yang meriksa, kosongin be --}}
-          <td>Admin@gmail.com</td>
+          <td>
+            @foreach ($list_verifikasi as $verifikasi)
+            <ul>
+              <li>{{ $verifikasi->verifikator->nama_lengkap }}</li>
+            </ul>
+            @endforeach
+            
+          </td>
           {{-- Kalo ada, tampilin verifikator terakhir yg meriksa --}}
           {{-- <td>Verifikator Satu</td> --}}
             <td>
