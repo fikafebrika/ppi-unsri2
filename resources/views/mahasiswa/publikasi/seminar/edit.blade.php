@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -25,7 +25,7 @@
           <label class="form-label" for="hasil-validasi"
             >Hasil Validasi</label
           >
-      
+
           @if ($seminar_user->status_validasi === "valid")
           <option value="valid" class="text-success fw-bold" selected>
             VALID (*Bila semua pencapaian mahasiswa telah
@@ -56,7 +56,7 @@
           >{{ $seminar_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> 
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">

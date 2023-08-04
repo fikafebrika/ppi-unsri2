@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -1647,12 +1647,12 @@
     function previewPDF(input) {
         const file = input.files[0];
         const reader = new FileReader();
-        
+
         reader.onloadend = function () {
             const pdfPreview = document.getElementById('pdf-preview');
             pdfPreview.innerHTML = `<iframe src="${reader.result}" width="100%" height="500px"></iframe>`;
         }
-        
+
         if (file) {
             reader.readAsDataURL(file);
         } else {

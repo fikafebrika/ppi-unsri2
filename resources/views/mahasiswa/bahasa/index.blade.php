@@ -14,7 +14,7 @@
       class="d-flex align-items-center justify-content-between"
     >
       <h5 class="card-header">Bahasa yang Dikuasai</h5>
-      <a href="/bahasa/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
+      <a href="/bahasa/create" class="btn btn-primary text-nowrap mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,9 +48,9 @@
             <td>{{ $bahasa_user->kemampuan }}</td>
             {{-- Kalo Belum Upload Bukti, status buktinyo jadi "Belum Ada" --}}
             @if ($bahasa_user->bukti_bahasa)
-            <td>Ada</td> 
+            <td>Ada</td>
             @else
-            <td>Belum Ada</td> 
+            <td>Belum Ada</td>
             @endif
             {{-- Kalo Sudah Upload Bukti, status buktinyo jadi "Ada" --}}
             {{-- <td>Ada</td> --}}
@@ -67,7 +67,7 @@
               @elseif($bahasa_user->status_validasi === "pending")
               <span class="badge bg-label-warning me-1"
               >Pending</span
-            > 
+            >
               @endif
 
             </td>
@@ -141,11 +141,13 @@
           </nav>
         </div>
       </div>
-    </div> 
+    </div>
     @else
-    <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+    <div class="alert alert-primary text-center fs-5 mx-4 mt-2" role="alert">
+        Data Bahasa Tidak Ada, Silakan <a href="/bahasa/create" class="fw-semibold text-decoration-underline">Tambah Data</a> Bahasa
+    </div>
     @endif
-    
+
   </div>
 @endsection
 

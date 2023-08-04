@@ -18,7 +18,7 @@
         Manajemen
       </h5>
 
-      <a href="/pengalaman-mengajar/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
+      <a href="/pengalaman-mengajar/create" class="btn btn-primary text-nowrap mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -148,7 +148,9 @@
       </div>
     </div>
     @else
-    <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+    <div class="alert alert-primary text-center fs-5 mx-4 mt-2" role="alert">
+        Data Pengalaman Mengajar Tidak Ada, Silakan <a href="/pengalaman-mengajar/create" class="fw-semibold text-decoration-underline">Tambah Data</a> Pengalaman Mengajar
+    </div>
     @endif
 
   </div>

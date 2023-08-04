@@ -53,7 +53,7 @@
             </li>
           </ul>
         </li>
-        <li class="menu-item {{ Request::is('kode-etik-insinyur') ? 'open' : '' }}">
+        <li class="menu-item {{ Request::is('kode-etik-insinyur*') ? 'open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <div data-i18n="Kode Etik Insinyur">Kode Etik Insinyur</div>
           </a>
@@ -95,7 +95,7 @@
             <div data-i18n="Publikasi">Publikasi</div>
           </a>
           <ul class="menu-sub ps-2">
-            <li class="menu-item {{ Request::is('publikasi/karya*') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::is('publikasi/karya', 'publikasi/karya/*') ? 'active' : '' }}">
               <a href="/publikasi/karya" class="menu-link">
                 <div data-i18n="Karya Tulis">Karya Tulis</div>
               </a>

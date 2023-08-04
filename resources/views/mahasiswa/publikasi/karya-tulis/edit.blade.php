@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -39,7 +39,7 @@
           @elseif($karya_tulis_user->status_validasi === "pending")
           <option value="" class="text-warning fw-bold">
             Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-          </option> 
+          </option>
           @endif
 
         </div>

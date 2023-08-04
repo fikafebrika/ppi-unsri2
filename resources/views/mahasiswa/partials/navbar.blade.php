@@ -28,7 +28,7 @@
               <img
                 src="{{ asset('storage/' . auth()->user()->image) }}"
                 alt
-                class="w-px-30 h-auto rounded-circle"
+                class="w-px-40 h-px-40 rounded-circle"
               />
             </div>
             <div class="nav-item ms-2 mt-2">
@@ -37,18 +37,18 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/profil">
                 <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
+                  <div class="flex-shrink-0 me-4">
                     <div class="avatar">
                       <img
                         src="{{ asset('storage/' . auth()->user()->image) }}"
                         alt
-                        class="w-px-40 h-auto rounded-circle"
+                        class="w-px-50 h-px-50 rounded-circle"
                       />
                     </div>
                   </div>
-                  <div class="flex-grow-1">
+                  <div class="flex-grow-1 mt-1">
                     <span class="fw-semibold d-block"
                       >{{ auth()->user()->name }}</span
                     >

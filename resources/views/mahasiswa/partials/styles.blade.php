@@ -29,3 +29,7 @@
     <!-- Helpers -->
     <script src="{{asset('mahasiswa/assets/vendor/js/helpers.js')}}"></script>
     <script src="{{asset('mahasiswa/assets/js/config.js')}}"></script>
+
+    {{-- Custom CSS --}}
+    <link rel="stylesheet" href="{{asset('mahasiswa/assets/css/style.css')}}" />
+

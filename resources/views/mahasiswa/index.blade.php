@@ -8,6 +8,10 @@
 @include('mahasiswa.layouts.sidebar')
 @endsection
 
+@section('header')
+@include('mahasiswa.partials.header')
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-body pb-2">

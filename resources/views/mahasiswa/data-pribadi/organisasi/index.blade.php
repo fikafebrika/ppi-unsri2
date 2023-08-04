@@ -17,7 +17,7 @@
       <h5 class="card-header">
         Organisasi Profesi & Organisasi Lainnya yang Dimasuki
       </h5>
-      <a href="/data-pribadi/organisasi/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
+      <a href="/data-pribadi/organisasi/create" class="btn btn-primary text-nowrap mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -154,7 +154,9 @@
       </div>
     </div>
     @else
-    <p class="text-center fs-4">Data Organisasi Tidak Ada, Silahkan Masukkan Data Organisasi</p>
+    <div class="alert alert-primary text-center fs-5 mx-4 mt-2" role="alert">
+        Data Organisasi Tidak Ada, Silakan <a href="/data-pribadi/organisasi/create" class="fw-semibold text-decoration-underline">Tambah Data</a> Organisasi
+    </div>
     @endif
   </div>
 @endsection

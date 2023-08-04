@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -26,7 +26,7 @@
             >Hasil Validasi</label
           >
           @if ($pelatihan_user->status_validasi === "valid")
-          
+
           <option value="valid" class="text-success fw-bold" selected>
             VALID (*Bila semua pencapaian mahasiswa telah
             sesuai)
@@ -39,11 +39,11 @@
           @elseif($pelatihan_user->status_validasi === "pending")
           <option value="" class="text-warning fw-bold">
             Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-          </option> 
+          </option>
           @endif
-            
-            
-            
+
+
+
         </div>
         <div class="mb-3 col-md-12">
           <label

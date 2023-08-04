@@ -19,7 +19,7 @@
     >
     @csrf
     @method('PUT')
-      <div class="card-body">
+      <div class="card-body pt-0">
         <div
           class="d-flex align-items-start align-items-sm-center gap-4"
         >
@@ -37,13 +37,8 @@
             @else
             <p>Tidak ada file Photo yang diunggah.</p>
             @endif
-          
+
           <div class="button-wrapper">
-            <label
-              for="image"
-              class="btn btn-primary me-2 mb-4"
-              tabindex="0"
-            >
               <input
               class="form-control @error('image') is-invalid @enderror"
                 type="file"
@@ -55,7 +50,6 @@
               @error('image')
               <div class="invalid-feedback"> {{ $message }}</div>
               @enderror
-            </label>
             {{-- <button
               type="button"
               class="btn btn-outline-secondary account-image-reset mb-4"
@@ -63,7 +57,7 @@
               <i class="bx bx-reset d-block d-sm-none"></i>
               <span class="d-none d-sm-block">Reset</span>
             </button> --}}
-            <p class="text-muted mb-0">*Foto Ukuran 3x4.</p>
+            <p class="text-muted mt-2 mb-0">*Foto Ukuran 3x4.</p>
           </div>
         </div>
       </div>

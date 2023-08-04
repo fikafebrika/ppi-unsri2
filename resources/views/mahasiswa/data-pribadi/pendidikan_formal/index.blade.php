@@ -14,7 +14,7 @@
       class="d-flex align-items-center justify-content-between">
       <h5 class="card-header">Pendidikan Formal</h5>
 
-      <a href="/data-pribadi/pendidikan_formal/create" class="btn btn-primary mx-4 mt-2">Tambah Data</a>
+      <a href="/data-pribadi/pendidikan_formal/create" class="btn btn-primary text-nowrap mx-4 mt-2">Tambah Data</a>
     </div>
     @if (session()->has('success'))
       <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -139,7 +139,9 @@
       </div>
     </div>
     @else
-      <p class="text-center fs-4">Data Pendidikan Formal Tidak Ada, Silahkan Masukkan Data Pendidikan Formal</p>
+    <div class="alert alert-primary text-center fs-5 mx-4 mt-2" role="alert">
+        Data Pendidikan Formal Tidak Ada, Silakan <a href="/data-pribadi/pendidikan_formal/create" class="fw-semibold text-decoration-underline">Tambah Data</a> Pendidikan Formal
+    </div>
     @endif
 
   </div>

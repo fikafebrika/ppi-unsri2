@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-  <h5 class="card-header">Data Pencapaian</h5>
+  <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -38,7 +38,7 @@
           @elseif($bahasa_user->status_validasi === "pending")
           <option value="" class="text-warning fw-bold">
             Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-          </option> 
+          </option>
           @endif
 
         </div>
@@ -56,7 +56,7 @@
           >{{ $bahasa_user->catatan_verifikator }}</textarea>
         </div>
       </div>
-      <hr class="my-0" /> 
+      <hr class="my-0" />
       <div class="card-body pb-3">
         <div class="row">
             <div class="mb-3 col-md-6">
@@ -119,7 +119,7 @@
                 Bahasa Asing/ Internasional
               </option>
 
-            
+
             </select>
           </div>
           {{-- VI KOLOM D --}}

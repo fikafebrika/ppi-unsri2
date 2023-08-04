@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card">
-    <h5 class="card-header">Data Pencapaian</h5>
+    <h5 class="card-header pb-0">Data Pencapaian</h5>
     <form
       id="formAccountSettings"
       method="POST"
@@ -36,7 +36,7 @@
             @elseif($pendidikan_formal_user->status_validasi === "pending")
             <option value="" class="text-warning fw-bold">
               Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-            </option>  
+            </option>
             @endif
           {{-- <select
             id="status_validasi"
@@ -55,7 +55,7 @@
             @elseif($pendidikan_formal_user->status_validasi === "pending")
             <option value="" class="text-warning fw-bold">
               Pending(*Menunggu Verifikasi Pencapaian Mahasiswa)
-            </option>  
+            </option>
             @endif
           </select> --}}
         </div>
@@ -95,7 +95,7 @@
                 {{-- <p class="text-danger">{{ $message }}</p> --}}
                 @enderror
               </div>
-             
+
           {{-- I.2 C2 (Untuk S1) --}}
           {{-- I.2 D2 (Untuk S2) --}}
           {{-- I.2 E2 (Untuk S3) --}}
