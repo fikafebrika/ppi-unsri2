@@ -105,7 +105,7 @@
                 <form action="/pengalaman-mengajar/{{ $pengalaman_mengajar_user->id }}" method="post" class="d-inline">
                   @method('delete')
 						      @csrf
-                  <button class="bx bx-trash me-1 text-danger border-0 " title="Hapus" onclick="return confirm('Are you sure ?')"></button>
+                  <button class="bx bx-trash me-1 text-danger border-0 bg-transparent px-0 " title="Hapus" onclick="return confirm('Are you sure ?')"></button>
                 </form>
             </td>
           </tr>
